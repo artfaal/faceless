@@ -56,18 +56,129 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
+body {
+    background-color: #e4e4e4;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #000;
+    padding-top: 0px;
+
+    background-image: url(img/bg-startseite.gif);
+    background-repeat: repeat-x;
+    z-index: 1;
+}
+a {
+    text-decoration: underline;
+    color: #000;
+}
+a:hover {
+    text-decoration: underline;
+}
+a:visited {
+    color: #000;
+}
+#footer a:visited {
+    color: #4D4D4D;
+}
+p, code, ul {
+    padding-bottom: 1em;
+}
+li {
+    list-style: none;
+}
+h1 {
+    font-size: 29px;
+    font-weight: normal;
+    padding-bottom: 10px;
+    color: #545454;
+}
+h2 {
+    font-size: 21px;
+    font-weight: normal;
+    padding: 10px 0px 10px 0px;
+    margin: 0;
+    color: #545454;
+}
+h3 {
+    font-size: 14px;
+    font-weight: bold;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+    color: #545454;
+}
+h4 {
+    font-size: 12px;
+    font-weight: bold;
+    padding-bottom: 3px;
+    color: #545454;
+}
+th {
+    text-align: left;
+}
+.clearer {
+    clear: both;
+    font-size: 0;
+    border: none;
+    padding: 0px;
+    margin: 0px;
+}
+.cl-right {
+    clear: both;
+    font-size: 0;
+    border: none;
+}
+.left {
+    float: left;
+}
+.outer-container {
+    position: relative;
+    width: 1200px;
+    margin: 0 auto;
+}
 
 
 
+.main {
+    background-image: url(img/bg/eos_bg_1200_03.jpg);
+    position: relative;
+    margin-top: 45px;
+    padding: 0px;
+    width: 1200px;
+    height: 680px;
+    min-height: 680px;
+    float: left;
+    background-position: left bottom;
+    background-repeat: repeat-y;
+    z-index: 3;
+}
 
+.logo {
+    position: absolute;
+    top: 80px;
+    left: 50px;
+    z-index: 10;
+    width: 218px;
+    padding: 12px;
+    background-image: url(img/trans-logo.png);
+    text-align: center;
+}
 
+.prodhigh {
+    position: relative;
+    float: left;
+    width: 1200px;
+    min-height: 400px;
+    height: 400px;
+    margin-top: -40px;
+    padding-bottom: 60px;
+    background-image: url(img/henkel-01.png);
+    background-position: center top;
+    background-repeat: no-repeat;
+    z-index: 20;
+}
 
-
-
-
-
-
-
+.prodhigh h2 {
+    text-align: center;
+}
 
 
 /* ==========================================================================
