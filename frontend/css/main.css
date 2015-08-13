@@ -76,9 +76,7 @@ a:hover {
 a:visited {
     color: #000;
 }
-#footer a:visited {
-    color: #4D4D4D;
-}
+
 p, code, ul {
     padding-bottom: 1em;
 }
@@ -114,6 +112,14 @@ h4 {
 th {
     text-align: left;
 }
+
+hr {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 0;
+    border-top: 1px solid #eeeeee;
+}
+
 .clearer {
     clear: both;
     font-size: 0;
@@ -398,6 +404,44 @@ transition: all 0s ease;
     display: none;
 }
 /*ENDNAV*/
+
+
+/*FOOTER*/
+.footer {
+    position: relative;
+    float: left;
+    width: 1140px;
+    height: 240px;
+    display: block;
+    background-image: url(img/bg-footer.jpg);
+    background-repeat: repeat-x;
+    line-height: 140%;
+    font-size: 0.75em;
+    padding: 30px 30px 0px 30px;
+    color: #4d4d4d;
+    z-index: 8;
+}
+
+div.columnItems {
+    width: 16%;
+    min-width: 16%;
+    float: left;
+}
+
+.footer a:link, .footer a:visited {
+    text-decoration: none;
+    color: #4d4d4d;
+}
+
+.divider {
+    border-bottom: 1px solid #bbb;
+    margin: 10px 0px 20px 0px;
+    clear: both;
+}
+
+.divider hr {
+    border: none;
+}
 
 /* ==========================================================================
    Media Queries
