@@ -79,4 +79,4 @@ class ChildCat(db.Model):
     timestamp = db.Column(db.DateTime)
 
     def __repr__(self):
-        return u'<Category %r>' % (self.name)
+        return u'<Child_Category %r>' % (self.name)
