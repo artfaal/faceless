@@ -51,12 +51,15 @@ body {
 }
 
 .navigation ul li {
+    display: block;
+    position: relative;
     background:rgba(255,255,255,0.65);
     font-size: 1.2em;
     padding: .75em .5em;
     list-style-type: none;
     float: left;
-    border-right: 1px solid #ffffff;
+    border-right: 1px solid #fff;
+
 }
 
 .firstlvlnav li a {
@@ -66,5 +69,17 @@ body {
 }
 
 .firstlvlnav li:hover {
-    background-color: #ffffff;
+    background-color: #fff;
+}
+
+/* Второй уровень меню */
+
+.navigation .secondlvlnav {
+    /*display: none;*/
+    position: absolute;
+    top: 2.35em;
+    left: 0;
+    background-color: #fff;
+    width: 230px;
+    padding-top: .7em;
 }
