@@ -41,29 +41,30 @@ body {
 }
 
 .navigation {
-/*    margin: 0;
-    padding: 0;*/
-    background:rgba(255,255,255,0.5);
     display: block;
     position: absolute;
     bottom: 0;
     right: 0;
-    font-size: 1.15em;
-    /*height: 1.6em;*/
+    height: 2.8em;
     width: auto;
     line-height: 100%;
 }
 
-
-.firstlvlnav ul li {
+.navigation ul li {
+    background:rgba(255,255,255,0.65);
+    font-size: 1.2em;
+    padding: .75em .5em;
     list-style-type: none;
     float: left;
     border-right: 1px solid #ffffff;
 }
 
 .firstlvlnav li a {
-    padding: 0 .35em;
     text-decoration: none;
     float: left;
     color: #000000;
+}
+
+.firstlvlnav li:hover {
+    background-color: #ffffff;
 }
