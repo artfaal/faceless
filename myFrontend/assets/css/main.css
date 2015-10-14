@@ -43,25 +43,12 @@ body {
 }
 .searchboxField {
     width: 100%;
-    /*position: absolute;
-    top: 1px;
-
-    height: auto;
-    padding: 8px 40px 7px 9px;
-    margin: 0px;
-    display: inline;*/
 }
 
 .searchSubmit {
     position: absolute;
     right: 1%;
     top: .45em;
-    /*top: 3px;
-    left: 137px;
-    height: 28px;
-    width: 28px;
-
-    padding: 0px;*/
 }
 
 .side-menu ul {
