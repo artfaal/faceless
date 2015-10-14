@@ -59,7 +59,7 @@ body {
     list-style-type: none;
     float: left;
     border-right: 1px solid #fff;
-
+    z-index: 1;
 }
 
 .firstlvlnav li a {
