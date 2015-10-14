@@ -47,6 +47,10 @@ body {
     color: #000;
 }
 
+.side-menu ul a:hover {
+    color: #ED8C00;
+}
+
 .content-box {
     margin-top: .3em;
     background-color: #FFFFFF;
