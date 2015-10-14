@@ -167,7 +167,7 @@ body {
 .catbox {
     width: 172px;
     min-height: 320px;
-    /*height: 320px;*/
+    height: 360px;
     float: left;
     margin: 0px 40px 20px 0px;
     padding: 5px;
@@ -189,7 +189,7 @@ body {
 
 .catbox h2 {
     color: #545454;
-    font-size: 1.35em;
+    font-size: 1.15em;
     font-weight: normal;
     margin: .35em 0 .1em 0;
 
