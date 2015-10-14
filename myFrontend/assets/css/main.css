@@ -74,8 +74,17 @@ body {
 
 /* Второй уровень меню */
 
+/* Отдельный стек для анимации меню*/
+#NavTovarimenu {
+    display: none;
+}
+
+#NavTovariHover:hover #NavTovarimenu {
+    display: block;
+}
+/* Конец стека*/
+
 .navigation .secondlvlnav {
-    /*display: none;*/
     position: absolute;
     top: 2.35em;
     left: 0;
@@ -83,6 +92,7 @@ body {
     width: 550px;
     padding-top: .7em;
 }
+
 .navelement {
     display: block;
     width: 45%;
