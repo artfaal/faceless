@@ -44,14 +44,16 @@
 /* For devices larger than 400px */
 @media (min-width: 400px) {
   .container {
-    width: 85%;
+    /* was 85% */
+    width: 90%;
     padding: 0; }
 }
 
 /* For devices larger than 550px */
 @media (min-width: 550px) {
   .container {
-    width: 80%; }
+    /* was 80% */
+    width: 95%; }
   .column,
   .columns {
     margin-left: 4%; }
