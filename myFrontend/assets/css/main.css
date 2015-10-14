@@ -35,6 +35,18 @@ body {
     padding: 2em;
 }
 
+.side-menu ul {
+    list-style-type: none;
+    padding-left: 1em;
+    padding-top: 2em;
+}
+
+.side-menu ul a {
+    text-decoration: none;
+    text-align: left;
+    color: #000;
+}
+
 .content-box {
     margin-top: .3em;
     background-color: #FFFFFF;
