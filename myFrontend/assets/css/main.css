@@ -227,3 +227,8 @@ body {
 .footer img {
     padding-top: 2em;
 }
+
+.footer p {
+    text-align: right;
+    padding: 2em;
+}
