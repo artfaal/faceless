@@ -29,6 +29,7 @@ body {
 }
 
 .side-menu {
+    position: relative;
     margin-top: .3em;
     background-color: #FFFFFF;
     padding: 2em;
@@ -197,4 +198,18 @@ body {
     font-size: .78em;
     margin-bottom: 0;
     padding-bottom: 0;
+}
+
+.footer {
+    position: relative;
+    float: left;
+    width: 100%;
+    height: 240px;
+    display: block;
+    background-image: url(../img/bg-footer.jpg);
+    background-repeat: repeat-x;
+    line-height: 140%;
+    font-size: 0.75em;
+    color: #4d4d4d;
+    z-index: 8;
 }
