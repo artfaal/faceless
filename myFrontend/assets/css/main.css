@@ -122,8 +122,6 @@ body {
     right: 0;
     display: block;
 }
-
-
 /* Конец стека*/
 
 .navigation .secondlvlnav {
@@ -161,4 +159,22 @@ body {
 .elemdescription {
     font-size: .6em;
 }
+/* Конец навигации */
 
+/* Страница категорий */
+
+.catbox {
+    width: 172px;
+    min-height: 320px;
+    height: 320px;
+    float: left;
+    margin: 0px 40px 20px 0px;
+    padding: 5px;
+    position: relative;
+    border: 1px solid #FFF;
+    border-radius: 5px;
+}
+
+.catbox:hover {
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
