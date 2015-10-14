@@ -80,18 +80,20 @@ body {
     top: 2.35em;
     left: 0;
     background-color: #fff;
-    width: 500px;
+    width: 550px;
     padding-top: .7em;
 }
 .navelement {
     display: block;
-    width: 50%;
+    width: 45%;
+    float: left;
+    padding: .5em .5em;
 }
 
 .navelement img {
     display: block;
     float: left;
-    padding: 0 .35em;
+    padding-right: 1em;
 }
 
 .bodyofelement {
@@ -105,6 +107,6 @@ body {
 }
 
 .elemdescription {
-    font-size: .7em;
+    font-size: .6em;
 }
 
