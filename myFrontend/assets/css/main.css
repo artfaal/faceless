@@ -209,7 +209,21 @@ body {
     background-image: url(../img/bg-footer.jpg);
     background-repeat: repeat-x;
     line-height: 140%;
-    font-size: 0.75em;
+    font-size: 0.80em;
     color: #4d4d4d;
     z-index: 8;
+}
+
+.footer .leftFooterMenu {
+    float: left;
+}
+
+.footer ul {
+    padding: 2em;
+    position: block;
+    list-style-type: none;
+}
+
+.footer img {
+    padding-top: 2em;
 }
