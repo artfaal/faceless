@@ -66,9 +66,9 @@ body {
 .navigation ul li {
     display: block;
     position: relative;
-    background:rgba(255,255,255,0.65);
-    font-size: 1.2em;
-    padding: .75em .5em;
+    background:rgba(255,255,255,0.8);
+    font-size: 1em;
+    padding: .93em .5em;
     list-style-type: none;
     float: left;
     border-right: 1px solid #fff;
