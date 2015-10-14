@@ -166,7 +166,7 @@ body {
 .catbox {
     width: 172px;
     min-height: 320px;
-    height: 320px;
+    /*height: 320px;*/
     float: left;
     margin: 0px 40px 20px 0px;
     padding: 5px;
@@ -176,5 +176,25 @@ body {
 }
 
 .catbox:hover {
-    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    box-shadow: 0 0 .3em rgba(0,0,0,0.3);
+}
+.catbox .listItemtext {
+    vertical-align: bottom;
+    position: relative;
+    text-align: left;
+    margin: 0;
+    padding: 0;
+}
+
+.catbox h2 {
+    color: #545454;
+    font-size: 1.35em;
+    font-weight: normal;
+    margin: .35em 0 .1em 0;
+
+}
+.catbox p {
+    font-size: .78em;
+    margin-bottom: 0;
+    padding-bottom: 0;
 }
