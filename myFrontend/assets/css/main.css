@@ -32,7 +32,7 @@ body {
     background-size: 1400px 250px;
 }
 
-.mainPageBackgroundBanner {
+.main-page-banner {
     width: 1400px;
     min-height: 680px;
     float: left;
@@ -53,17 +53,17 @@ body {
     /*height: 1000px;*/
 }
 
-.sideSearchbox {
+.side-search {
     position: relative;
     height: 1em;
     padding-left: 1em;
     padding-bottom: 2em;
 }
-.searchboxField {
+.search-field {
     width: 100%;
 }
 
-.searchSubmit {
+.search-submit {
     position: absolute;
     right: 1%;
     top: .45em;
@@ -113,69 +113,69 @@ body {
     z-index: 1;
 }
 
-.firstlvlnav li a {
+.navigation li a {
     text-decoration: none;
     float: left;
     color: #000000;
 }
 
-.firstlvlnav li:hover {
+.navigation li:hover {
     background-color: #fff;
 }
 
 /* Второй уровень меню */
 
 /* Отдельный стек для анимации меню*/
-#NavOfenmenu {
+#nav-ofen-menu {
     display: none;
 }
-#NavOfenHover:hover #NavOfenmenu {
+#nav-ofen-hover:hover #nav-ofen-menu {
     left: 0;
     display: block;
 }
 
-#NavTovarimenu {
+#nav-card-menu {
     display: none;
 }
-#NavTovariHover:hover #NavTovarimenu {
+#nav-card-menu-hover:hover #nav-card-menu {
     left: 0;
     display: block;
 }
 
-#NavServicemenu {
+#nav-service-menu {
     display: none;
 }
-#NavServiceHover:hover #NavServicemenu {
+#nav-service-menu-hover:hover #nav-service-menu {
     left: 0;
     display: block;
 }
 
-#NavInfomenu {
+#nav-info-menu {
     display: none;
 }
-#NavInfoHover:hover #NavInfomenu {
+#nav-info-menu-hover:hover #nav-info-menu {
     right: 0;
     display: block;
 }
 
-#NavCompanymenu {
+#nav-company-menu {
     display: none;
 }
-#NavCompanyHover:hover #NavCompanymenu {
+#nav-company-menu-hover:hover #nav-company-menu {
     right: 0;
     display: block;
 }
 
-#NavContactsmenu {
+#nav-contacts-menu {
     display: none;
 }
-#NavContactsHover:hover #NavContactsmenu {
+#nav-contacts-menu-hover:hover #nav-contacts-menu {
     right: 0;
     display: block;
 }
 /* Конец стека*/
 
-.navigation .secondlvlnav {
+.navigation .second-lvl-nav {
     position: absolute;
     top: 2.35em;
 
@@ -184,37 +184,37 @@ body {
     padding-top: .7em;
 }
 
-.navelement {
+.nav-element {
     display: block;
     width: 45%;
     float: left;
     padding: .5em .5em;
 }
 
-.navelement img {
+.nav-element img {
     display: block;
     float: left;
     padding-right: 1em;
 }
 
-.bodyofelement {
+.body-of-the-element {
     display: block;
 }
 
-.headerofelem {
+.header-of-the-element {
     font-size: .7em;
     font-weight: 800;
 
 }
 
-.elemdescription {
+.element-description {
     font-size: .75em;
 }
 /* Конец навигации */
 
 /* Страница категорий */
 
-.catbox {
+.box-category {
     width: 172px;
     min-height: 320px;
     height: 360px;
@@ -226,10 +226,10 @@ body {
     border-radius: 5px;
 }
 
-.catbox:hover {
+.box-category:hover {
     box-shadow: 0 0 .3em rgba(0,0,0,0.3);
 }
-.catbox .listItemtext {
+.box-category .list-item-text {
     vertical-align: bottom;
     position: relative;
     text-align: left;
@@ -237,14 +237,14 @@ body {
     padding: 0;
 }
 
-.catbox h2 {
+.box-category h2 {
     color: #545454;
     font-size: 1.15em;
     font-weight: normal;
     margin: .35em 0 .1em 0;
 
 }
-.catbox p {
+.box-category p {
     font-size: .78em;
     margin-bottom: 0;
     padding-bottom: 0;
@@ -263,7 +263,7 @@ body {
     z-index: 8;
 }
 
-.footer .leftFooterMenu {
+.footer .left-footer-menu {
     float: left;
 }
 
