@@ -11,9 +11,7 @@ body {
     width: 100%;
     height: 214px;
     border-width: .2em;
-    border-bottom-width: .2em;
-    border-bottom-color: #E69000;
-    border-bottom-style: solid;
+    border-bottom: solid #E69000;
 }
 
 .header-main-page {
@@ -22,9 +20,7 @@ body {
     width: 100%;
     height: 50px;
     border-width: .2em;
-    border-bottom-width: .2em;
-    border-bottom-color: #E69000;
-    border-bottom-style: solid;
+    border-bottom: solid #E69000;
 }
 
 .content-header {
@@ -37,12 +33,10 @@ body {
 }
 
 .mainPageBackgroundBanner {
-    background-image: url(../img/eos_bg_1400.jpg);
     width: 1400px;
     min-height: 680px;
     float: left;
-    background-position: left bottom;
-    background-repeat: repeat-y;
+    background: url(../img/eos_bg_1400.jpg) repeat-y left bottom;
     z-index: 3;
 }
 
@@ -225,7 +219,7 @@ body {
     min-height: 320px;
     height: 360px;
     float: left;
-    margin: 0px 40px 20px 0px;
+    margin: 0 40px 20px 0;
     padding: 5px;
     position: relative;
     border: 1px solid #FFF;
@@ -262,8 +256,7 @@ body {
     width: 100%;
     height: 240px;
     display: block;
-    background-image: url(../img/bg-footer.jpg);
-    background-repeat: repeat-x;
+    background: url(../img/bg-footer.jpg) repeat-x;
     line-height: 140%;
     font-size: 0.80em;
     color: #4d4d4d;
@@ -276,7 +269,7 @@ body {
 
 .footer ul {
     padding: 2em;
-    position: block;
+    display: block;
     list-style-type: none;
 }
 
