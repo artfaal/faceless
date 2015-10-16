@@ -118,6 +118,11 @@ body {
     top: 0;
 }
 
+.logo-content-header {
+    margin-left: 2%;
+    margin-top: 2%;
+}
+
 .navigation ul li {
     display: block;
     position: relative;
