@@ -40,6 +40,24 @@ body {
     z-index: 3;
 }
 
+.wrap-main-logo {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.5);
+    top: 3em;
+    left: 3em;
+    height: 177px;
+    width: 256px;
+}
+
+.wrap-main-logo img {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
 .logo-content-header {
     margin-left: 2%;
     margin-top: 2%;
