@@ -114,6 +114,10 @@ body {
     line-height: 100%;
 }
 
+.fix-nav-on-main-properties {
+    top: 0;
+}
+
 .navigation ul li {
     display: block;
     position: relative;
