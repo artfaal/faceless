@@ -43,10 +43,10 @@ body {
 .wrap-main-logo {
     position: absolute;
     background: rgba(0, 0, 0, 0.5);
-    top: 3em;
+    top: 6em;
     left: 3em;
     height: 177px;
-    width: 256px;
+    width: 296px;
 }
 
 .wrap-main-logo img {

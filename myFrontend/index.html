@@ -20,6 +20,9 @@
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <link rel="stylesheet" href="assets/vendor/skeleton/normalize.css">
   <link rel="stylesheet" href="assets/vendor/skeleton/skeleton.css">
+
+    <!-- Include the basic styles for slider -->
+    <link type="text/css" rel="Stylesheet" href="assets/vendor/basic-jquery-slider/bjqs.css" />
   <link rel="stylesheet" href="assets/css/main.css">
 
   <!-- Favicon
@@ -279,6 +282,14 @@
               </li>
             </ul>
     </div>
+
+                <div id="slide-banner-main-page">
+                    <ul class="bjqs">
+                        <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus doloribus ex quo sapiente? Adipisci assumenda aut, deserunt esse ex facilis ipsa labore libero minus nesciunt non qui, saepe voluptates voluptatibus!</li>
+                        <li>Тролололо Тролололо Тролололо Тролололо Тролололо Тролололо Тролололо Тролололо Тролололо Тролололо Тролололо Тролололо Тролололо Тролололо </li>
+                    </ul>
+                </div>
+
       </div>
     <div class="row">
 
@@ -324,7 +335,25 @@
 
   <!-- Scripts
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <script src="assets/vendor/holder-js/holder.js"></script>
+    <script src="assets/vendor/holder-js/holder.js"></script>
+
+    <!-- Include the jQuery library (local or CDN) -->
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+    <!-- Include the plugin *after* the jQuery library -->
+    <script src="assets/vendor/basic-jquery-slider/js/bjqs-1.3.min.js"></script>
+
+      <script>
+          jQuery(document).ready(function($) {
+	    $('#slide-banner-main-page').bjqs({
+		'height' : 300,
+		'width' : 296,
+		'responsive' : true,
+        'showcontrols' : false,
+        'showmarkers' : false
+	});
+});
+      </script>
 
   <!-- End Document
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->

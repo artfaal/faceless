@@ -1,7 +1,16 @@
 /* Basic jQuery Slider essential styles */
 
-ul.bjqs{position:relative; list-style:none;padding:0;margin:0;overflow:hidden; display:none;}
-li.bjqs-slide{position:absolute; display:none;}
+#slide-banner-main-page {
+    display: block;
+    background:rgba(255,255,255,0.8);
+    top: 21em;
+    left: 3em;
+    box-shadow: 0 0 .5em rgba(0,0,0,0.8);
+}
+
+
+ul.bjqs{position:relative; list-style:none;padding:.8em;margin:0;overflow:hidden; display:none;}
+li.bjqs-slide{position:absolute; display:none; word-wrap: break-word;}
 ul.bjqs-controls{list-style:none;margin:0;padding:0;z-index:9999;}
 ul.bjqs-controls.v-centered li a{position:absolute;}
 ul.bjqs-controls.v-centered li.bjqs-next a{right:0;}
