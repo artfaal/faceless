@@ -1,0 +1,305 @@
+body {
+    background-color: #E4E4E4;
+    font-family: Arial,Helvetica,sans-serif;
+    color: #000;
+}
+.header {
+    /*TODO
+    Сделать все в % и EM */
+    background-color: #9E9E9E;
+    position: absolute;
+    width: 100%;
+    height: 214px;
+    border-width: .2em;
+    border-bottom: solid #E69000;
+}
+
+.header-main-page {
+    background-color: #9E9E9E;
+    position: relative;
+    width: 100%;
+    height: 30px;
+    border-width: .2em;
+    border-bottom: solid #E69000;
+}
+
+.content-header {
+    position: relative;
+    background-image: url(../img/content-header.jpg);
+    float: left;
+    height: 213px;
+    width: 1200px;
+    background-size: 1400px 250px;
+}
+
+.main-page-banner {
+    width: 1400px;
+    min-height: 680px;
+    float: left;
+    background: url(../img/eos_bg_1400.jpg) repeat-y left bottom;
+    z-index: 3;
+}
+
+.wrap-main-logo {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.5);
+    top: 6em;
+    left: 3em;
+    height: 177px;
+    width: 296px;
+}
+
+.wrap-main-logo img {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.side-menu {
+    position: relative;
+    margin-top: .3em;
+    background-color: #FFFFFF;
+    padding: 2em;
+    /*height: 1000px;*/
+}
+
+.side-search {
+    position: relative;
+    height: 1em;
+    padding-left: 1em;
+    padding-bottom: 2em;
+}
+.search-field {
+    width: 100%;
+}
+
+.search-submit {
+    position: absolute;
+    right: 1%;
+    top: .45em;
+}
+
+.side-menu ul {
+    list-style-type: none;
+    padding-left: 1em;
+    padding-top: 2em;
+}
+
+.side-menu ul a {
+    text-decoration: none;
+    text-align: left;
+    color: #000;
+}
+
+.side-menu ul a:hover {
+    color: #ED8C00;
+}
+
+.content-box {
+    margin-top: .3em;
+    background-color: #FFFFFF;
+    padding: 2em;
+}
+
+.navigation {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    height: 2.8em;
+    width: auto;
+    line-height: 100%;
+}
+
+.fix-nav-on-main-properties {
+    top: 0;
+}
+
+.logo-content-header {
+    margin-left: 2%;
+    margin-top: 2%;
+}
+
+.navigation ul li {
+    display: block;
+    position: relative;
+    background:rgba(255,255,255,0.8);
+    font-size: 1em;
+    padding: .93em .5em;
+    list-style-type: none;
+    float: left;
+    border-right: 1px solid #fff;
+    z-index: 1;
+}
+
+.navigation li a {
+    text-decoration: none;
+    float: left;
+    color: #000000;
+}
+
+.navigation li:hover {
+    background-color: #fff;
+}
+
+/* Второй уровень меню */
+
+/* Отдельный стек для анимации меню*/
+#nav-ofen-menu {
+    display: none;
+}
+#nav-ofen-hover:hover #nav-ofen-menu {
+    left: 0;
+    display: block;
+}
+
+#nav-card-menu {
+    display: none;
+}
+#nav-card-menu-hover:hover #nav-card-menu {
+    left: 0;
+    display: block;
+}
+
+#nav-service-menu {
+    display: none;
+}
+#nav-service-menu-hover:hover #nav-service-menu {
+    left: 0;
+    display: block;
+}
+
+#nav-info-menu {
+    display: none;
+}
+#nav-info-menu-hover:hover #nav-info-menu {
+    right: 0;
+    display: block;
+}
+
+#nav-company-menu {
+    display: none;
+}
+#nav-company-menu-hover:hover #nav-company-menu {
+    right: 0;
+    display: block;
+}
+
+#nav-contacts-menu {
+    display: none;
+}
+#nav-contacts-menu-hover:hover #nav-contacts-menu {
+    right: 0;
+    display: block;
+}
+/* Конец стека*/
+
+.navigation .second-lvl-nav {
+    position: absolute;
+    top: 2.35em;
+
+    background-color: #fff;
+    width: 550px;
+    padding-top: .7em;
+}
+
+.nav-element {
+    display: block;
+    width: 45%;
+    float: left;
+    padding: .5em .5em;
+}
+
+.nav-element img {
+    display: block;
+    float: left;
+    padding-right: 1em;
+}
+
+.body-of-the-element {
+    display: block;
+}
+
+.header-of-the-element {
+    font-size: .7em;
+    font-weight: 800;
+
+}
+
+.element-description {
+    font-size: .75em;
+}
+/* Конец навигации */
+
+/* Страница категорий */
+
+.box-category {
+    width: 172px;
+    min-height: 320px;
+    height: 360px;
+    float: left;
+    margin: 0 40px 20px 0;
+    padding: 5px;
+    position: relative;
+    border: 1px solid #FFF;
+    border-radius: 5px;
+}
+
+.box-category:hover {
+    box-shadow: 0 0 .3em rgba(0,0,0,0.3);
+}
+.box-category .list-item-text {
+    vertical-align: bottom;
+    position: relative;
+    text-align: left;
+    margin: 0;
+    padding: 0;
+}
+
+.box-category h2 {
+    color: #545454;
+    font-size: 1.15em;
+    font-weight: normal;
+    margin: .35em 0 .1em 0;
+
+}
+.box-category p {
+    font-size: .78em;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.footer {
+    position: relative;
+    float: left;
+    width: 100%;
+    height: 240px;
+    display: block;
+    background: url(../img/bg-footer.jpg) repeat-x;
+    line-height: 140%;
+    font-size: 0.80em;
+    color: #4d4d4d;
+    z-index: 8;
+}
+
+.footer .left-footer-menu {
+    float: left;
+}
+
+.footer ul {
+    padding: 2em;
+    display: block;
+    list-style-type: none;
+}
+
+.footer img {
+    padding-top: 2em;
+}
+
+.footer p {
+    text-align: right;
+    padding: 2em;
+}

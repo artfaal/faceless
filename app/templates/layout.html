@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>{% block title -%}{% endblock -%}</title>
+  <meta name="description" content="{% block description -%}{% endblock -%}">
+    <meta name="keywords" content="{% block keywords -%}{% endblock -%}">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='assets/vendor/skeleton/normalize.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='assets/vendor/skeleton/skeleton.css') }}">
+
+    <!-- Include the basic styles for slider -->
+    <link type="text/css" rel="Stylesheet" href="{{ url_for('static', filename='assets/vendor/basic-jquery-slider/bjqs.css') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/main.css') }}">
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='assets/img/favicon.png') }}">
+
+</head>
+<body>
