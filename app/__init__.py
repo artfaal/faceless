@@ -6,4 +6,5 @@ app.config.from_object('config')
 connection = Connection()
 
 
-from app import views
+from app import views, models
+
