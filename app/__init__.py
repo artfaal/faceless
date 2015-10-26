@@ -1,8 +1,9 @@
 from flask import Flask
-from flask.ext.sqlalchemy import SQLAlchemy
+from mongokit import Connection
 
 app = Flask(__name__)
 app.config.from_object('config')
-db = SQLAlchemy(app)
+connection = Connection()
 
-from app import views, models
+
+from app import views
