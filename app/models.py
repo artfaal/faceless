@@ -3,6 +3,10 @@ import datetime
 
 
 class Item(Document):
+    """
+    Документация по библиотеке
+    https://github.com/namlook/mongokit/wiki
+    """
     structure = {
         'name': basestring,
         'slug': basestring,
