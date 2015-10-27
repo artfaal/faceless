@@ -13,13 +13,12 @@ sys.setdefaultencoding("utf-8")
 DB_NAME = 'name_of_the_base'
 
 # Предобработка csv файлов
-FILENAME = 'pechi_small.csv'
+FILENAME = 'pechi.csv'
 
 
 def makedic():
     with open(FILENAME, 'rb') as f:
         reader = csv.reader(f, dialect='excel', delimiter=';')
-        # mydict = {rows[ARTICLE]: onlynum(rows[PRICE]) for rows in reader}
         for row in reader:
             print 'Имя: %s' % (row[0])
             print 'Категории: %s | %s' % (row[1], row[2])
@@ -34,5 +33,24 @@ def makedic():
             print '='*50
 
 
+def check_category():
+    with open(FILENAME, 'rb') as f:
+        reader = csv.reader(f, dialect='excel', delimiter=';')
+        list_of_cat = []
+        count_of_items = 0
+        for row in reader:
+            count_of_items += 1
+            if row[1] not in list_of_cat:
+                list_of_cat.append(row[1])
+
+            elif row[2] not in list_of_cat:
+                list_of_cat.append(row[2])
+
+        for i in list_of_cat:
+            print i
+
+        print '=' * 40 + '\n Всего полей просканированно: %s' % count_of_items
+
+
 if __name__ == '__main__':
-    makedic()
+    check_category()
