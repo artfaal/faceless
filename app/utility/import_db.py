@@ -18,17 +18,18 @@ def makedic():
     with open(FILENAME, 'rb') as f:
         reader = csv.reader(f, dialect='excel', delimiter=';')
         for row in reader:
-            print 'Имя: %s' % (row[0])
-            print 'Категории: %s | %s' % (row[1], row[2])
-            print 'Описание: %s...' % row[3][:100]
-            print 'Ключевики (SEO): %s...' % (row[4][:100])
-            print 'Мета-Описание (SEO): %s...' % (row[5][:100])
-            print 'Картинки: %s' % (row[6][:50])
-            print 'Видео: %s' % (row[7][:100])
-            print 'Инструкции: %s' % (row[8][:100])
-            print 'Позиция: %s' % (row[9][:100])
-            print 'Так же покупают: %s' % (row[10][:100])
-            print '='*50
+            # print 'Имя: %s' % (row[0])
+            # print 'Категории: %s | %s' % (row[1], row[2])
+            # print 'Описание: %s...' % row[3][:100]
+            # print 'Ключевики (SEO): %s...' % (row[4][:100])
+            # print 'Мета-Описание (SEO): %s...' % (row[5][:100])
+            # print 'Картинки: %s' % (row[6][:50])
+            # print 'Видео: %s' % (row[7][:100])
+            # print 'Инструкции: %s' % (row[8][:100])
+            # print 'Позиция: %s' % (row[9][:100])
+            # print 'Так же покупают: %s' % (row[10][:100])
+            # print '='*50
+            print row[6]
 
 
 def check_category():
@@ -49,9 +50,21 @@ def check_category():
         print '=' * 40 + '\n Всего полей просканированно: %s' % count_of_items
 
 
-def pars_img_doc_video(raw):
+def pars_img_doc_video(input):
+    # ex = "34_a.jpg$печь для сауны EOS 34 A&thermat.jpg$Для сауны EOS Thermat&"
     # Парсим участки с изображениями, видео и документами
-    pass
+    # Сначала разделяем основные части
+    l = input.split('&')
+    result = []
+    # Удаляем пустые значение
+    if '' in l:
+        l.remove('')
+    # Создаем словарь и добавляем в итог
+    for i in l:
+        part = i.split('$')
+        result.append({'filename': part[0], 'alt': part[1]})
+
+    return result
 
 
 def save_to_db():
