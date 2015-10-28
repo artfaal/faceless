@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import csv
 import sys
+from app import mongo
 
 # Trick for normal unicode symbols
 reload(sys)
@@ -45,5 +46,10 @@ def check_category():
 
         for i in list_of_cat:
             print i
-
         print '=' * 40 + '\n Всего полей просканированно: %s' % count_of_items
+
+
+def save_to_db():
+    add = mongo.test.example.Items()
+    add['name'] = 'testing'
+    print add

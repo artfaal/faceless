@@ -9,4 +9,4 @@ mongo = Connection()
 
 from app import views, models, utility
 
-utility.import_db.check_category()
+utility.import_db.save_to_db()
