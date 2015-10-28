@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
-from mongokit import Document
+from mongokit import *
 import datetime
+from app import mongo
 
 
-class Item(Document):
+@mongo.register
+class Items(Document):
     """
     Документация по библиотеке
     https://github.com/namlook/mongokit/wiki
@@ -47,6 +49,7 @@ class Item(Document):
     }
 
 
+@mongo.register
 class Category(Document):
     structure = {
         'name': basestring,

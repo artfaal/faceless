@@ -1,19 +1,16 @@
 # -*- coding: utf-8 -*-
-# import pymongo
 import csv
 import sys
-# import re
 
 # Trick for normal unicode symbols
 reload(sys)
 sys.setdefaultencoding("utf-8")
 
-
 # Имя базы данных
 DB_NAME = 'name_of_the_base'
 
 # Предобработка csv файлов
-FILENAME = 'pechi.csv'
+FILENAME = 'tmp/pechi.csv'
 
 
 def makedic():
@@ -50,7 +47,3 @@ def check_category():
             print i
 
         print '=' * 40 + '\n Всего полей просканированно: %s' % count_of_items
-
-
-if __name__ == '__main__':
-    check_category()
