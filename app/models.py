@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from mongokit import Document
 import datetime
 

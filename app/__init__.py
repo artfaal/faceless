@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from flask import Flask
 from mongokit import Connection
 
@@ -7,4 +8,3 @@ connection = Connection()
 
 
 from app import views, models
-
