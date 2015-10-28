@@ -36,7 +36,7 @@ class Items(Document):
         ],
         'video': [
             {
-                'url': basestring,
+                'filename': basestring,
                 'alt': basestring,
             }
         ]
