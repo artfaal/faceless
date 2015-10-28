@@ -11,7 +11,7 @@ sys.setdefaultencoding("utf-8")
 DB_NAME = 'name_of_the_base'
 
 # Предобработка csv файлов
-FILENAME = 'tmp/pechi.csv'
+FILENAME = 'tmp/one_elem.csv'
 
 
 def makedic():
@@ -49,7 +49,13 @@ def check_category():
         print '=' * 40 + '\n Всего полей просканированно: %s' % count_of_items
 
 
+def pars_img_doc_video(raw):
+    # Парсим участки с изображениями, видео и документами
+    pass
+
+
 def save_to_db():
+    # Сохраняем всё в базу
     add = mongo.test.example.Items()
     add['name'] = 'testing'
     print add
