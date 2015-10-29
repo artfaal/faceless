@@ -11,6 +11,9 @@ class Items(Document):
     Документация по библиотеке
     https://github.com/namlook/mongokit/wiki
     """
+    # __collection__ = 'collection_name'
+    # __database__ = 'database_name'
+
     structure = {
         'name': basestring,
         'slug': basestring,
@@ -57,6 +60,10 @@ class Items(Document):
 
 @mongo.register
 class Category(Document):
+
+    # __collection__ = 'collection_name'
+    # __database__ = 'database_name'
+
     structure = {
         'name': basestring,
         'slug': basestring,

@@ -9,4 +9,4 @@ mongo = Connection()
 
 from app import views, models, utility
 
-utility.import_db.pars_img_doc_video()
+utility.import_db.makedic()

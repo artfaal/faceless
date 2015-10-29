@@ -2,6 +2,7 @@
 import csv
 import sys
 from app import mongo
+from validators import *
 
 # Trick for normal unicode symbols
 reload(sys)
@@ -17,8 +18,9 @@ FILENAME = 'tmp/one_elem.csv'
 def makedic():
     with open(FILENAME, 'rb') as f:
         reader = csv.reader(f, dialect='excel', delimiter=';')
+        add = mongo.test.example.Items()
         for row in reader:
-            # print 'Имя: %s' % (row[0])
+            # print 'Имя: %s' % row[0]
             # print 'Категории: %s | %s' % (row[1], row[2])
             # print 'Описание: %s...' % row[3][:100]
             # print 'Ключевики (SEO): %s...' % (row[4][:100])
@@ -29,9 +31,20 @@ def makedic():
             # print 'Позиция: %s' % (row[9][:100])
             # print 'Так же покупают: %s' % (row[10][:100])
             # print '='*50
-            print row[6]
+            add['name'] = row[0]
+            add['slug'] = transliterate(row[0])
+            add['category'] = row[2]
+            add['body'] = row[3]
+            add['meta_keywords'] = row[4]
+            add['meta_description'] = row[5]
+            add['img'] = pars_img_doc_video(row[6])
+            add['video'] = pars_img_doc_video(row[7])
+            add['doc'] = pars_img_doc_video(row[8])
+            add['position'] = row[9]
+            add.save()
 
 
+#
 def check_category():
     with open(FILENAME, 'rb') as f:
         reader = csv.reader(f, dialect='excel', delimiter=';')
