@@ -2,6 +2,7 @@
 from mongokit import *
 import datetime
 from app import mongo
+from validators import *
 
 
 @mongo.register
@@ -41,11 +42,16 @@ class Items(Document):
             }
         ]
     }
+
     required_fields = []
     default_values = {
-        'date_creation': datetime.datetime.utcnow
+        'date_creation': datetime.datetime.utcnow,
+        'position': 0
     }
+
     validators = {
+        'meta_keywords': max_length(200),
+        'meta_description': max_length(200)
     }
 
 
@@ -83,9 +89,14 @@ class Category(Document):
             ]
         }
     }
+
     required_fields = []
+
     default_values = {
         'date_creation': datetime.datetime.utcnow
     }
+
     validators = {
+    'meta_keywords': max_length(200),
+    'meta_description': max_length(200)
     }
