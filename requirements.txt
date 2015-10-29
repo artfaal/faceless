@@ -16,6 +16,8 @@ simplegeneric==0.8.1
 traitlets==4.0.0
 Werkzeug==0.10.4
 wheel==0.24.0
+pyyaml
 
 # Пакет, который крешится на Linux
 #gnureadline==6.3.3
+
