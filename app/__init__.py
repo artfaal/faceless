@@ -9,4 +9,4 @@ mongo = Connection()
 
 from app import views, models, utility
 
-utility.import_db.makedic()
+utility.import_db.save_items_to_db()
