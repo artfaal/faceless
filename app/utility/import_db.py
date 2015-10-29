@@ -3,6 +3,7 @@ import csv
 import sys
 from app import mongo
 from validators import *
+import time
 
 # Trick for normal unicode symbols
 reload(sys)
@@ -18,8 +19,10 @@ FILENAME = 'tmp/pechi.csv'
 def makedic():
     with open(FILENAME, 'rb') as f:
         reader = csv.reader(f, dialect='excel', delimiter=';')
-        add = mongo.test.example.Items()
+        count = 0
         for row in reader:
+            count += 1
+            add = mongo.test.example.Items()
             # print 'Имя: %s' % row[0]
             # print 'Категории: %s | %s' % (row[1], row[2])
             # print 'Описание: %s...' % row[3][:100]
@@ -42,9 +45,13 @@ def makedic():
             add['doc'] = pars_img_doc_video(row[8])
             add['position'] = int_or_0(row[9])
             add.save()
+            # time.sleep(1)
+            print count
+
+        print count
+        sys.exit(1)
 
 
-#
 def check_category():
     with open(FILENAME, 'rb') as f:
         reader = csv.reader(f, dialect='excel', delimiter=';')
