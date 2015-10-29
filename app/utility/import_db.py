@@ -10,7 +10,7 @@ sys.setdefaultencoding("utf-8")
 DB_NAME = 'name_of_the_base'
 
 # Предобработка csv файлов
-FILENAME = 'tmp/pechi.csv'
+FILENAME = 'tmp/category.csv'
 
 
 def save_items_to_db():
@@ -29,6 +29,14 @@ def save_items_to_db():
             add['doc'] = pars_img_doc_video(row[8])
             add['position'] = int_or_0(row[9])
             add.save()
+
+
+def save_category_to_db():
+    with open(FILENAME, 'rb') as f:
+        reader = csv.reader(f, dialect='excel', delimiter=';')
+        for row in reader:
+            add = mongo.test.example.Category()
+            pass
 
 
 def pars_img_doc_video(input):
