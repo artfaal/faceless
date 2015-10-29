@@ -12,7 +12,7 @@ sys.setdefaultencoding("utf-8")
 DB_NAME = 'name_of_the_base'
 
 # Предобработка csv файлов
-FILENAME = 'tmp/one_elem.csv'
+FILENAME = 'tmp/pechi.csv'
 
 
 def makedic():
@@ -40,7 +40,7 @@ def makedic():
             add['img'] = pars_img_doc_video(row[6])
             add['video'] = pars_img_doc_video(row[7])
             add['doc'] = pars_img_doc_video(row[8])
-            add['position'] = row[9]
+            add['position'] = int_or_0(row[9])
             add.save()
 
 
@@ -75,7 +75,11 @@ def pars_img_doc_video(input):
     # Создаем словарь и добавляем в итог
     for i in l:
         part = i.split('$')
-        result.append({'filename': part[0], 'alt': part[1]})
+        # Надо удалять первую строчку и CSV, иначе будет exception
+        try:
+            result.append({'filename': part[0], 'alt': part[1]})
+        except IndexError:
+            print 'Error! Check first line in CSV file'
 
     return result
 

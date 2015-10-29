@@ -2,7 +2,7 @@
 from mongokit import *
 import datetime
 from app import mongo
-from validators import *
+from utility.validators import *
 
 
 @mongo.register
@@ -45,6 +45,12 @@ class Items(Document):
             }
         ]
     }
+    # TODO Индексы не работают, так что пока без них... -_-
+    indexes = [
+        {'fields': ['name'], 'unique': True},
+        {'fields': ['slug'], 'unique': True},
+        {'fields': ['body']},
+    ]
 
     required_fields = []
     default_values = {
@@ -52,9 +58,10 @@ class Items(Document):
         'position': 0
     }
 
+    # TODO Странная ошибка с валидацией. Нужен юникод?
     validators = {
-        'meta_keywords': max_length(200),
-        'meta_description': max_length(200)
+        # 'meta_keywords': max_length(200),
+        # 'meta_description': max_length(200)
     }
 
 
@@ -97,6 +104,17 @@ class Category(Document):
         }
     }
 
+    indexes = [
+        {'fields': ['name'], 'unique': True},
+        {'fields': ['child_category.name'], 'unique': True},
+        {'fields': ['slug'], 'unique': True},
+        {'fields': ['body']},
+
+        {'fields': ['child_category.name'], 'unique': True},
+        {'fields': ['child_category.slug'], 'unique': True},
+        {'fields': ['child_category.body']},
+    ]
+
     required_fields = []
 
     default_values = {
@@ -104,6 +122,6 @@ class Category(Document):
     }
 
     validators = {
-    'meta_keywords': max_length(200),
-    'meta_description': max_length(200)
+        # 'meta_keywords': max_length(200),
+        # 'meta_description': max_length(200)
     }

@@ -29,8 +29,16 @@ def transliterate(name):
 
 
 def max_length(length):
+    # TODO Странная ошибка. Нужен юникод?
     def validate(value):
         if len(value) <= length:
             return True
         raise Exception('%s must be at most %s characters long' % length)
     return validate
+
+
+def int_or_0(input):
+    if input != int:
+        return None
+    else:
+        return 0
