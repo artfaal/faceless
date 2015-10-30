@@ -11,14 +11,14 @@ sys.setdefaultencoding("utf-8")
 DB_NAME = 'name_of_the_base'
 
 # Предобработка csv файлов
-FILENAME = 'tmp/category.csv'
+FILENAME = 'tmp/category_s.csv'
 
 
 def save_items_to_db():
     with open(FILENAME, 'rb') as f:
         reader = csv.reader(f, dialect='excel', delimiter=';')
         for row in reader:
-            add = mongo.test.example.Items()
+            add = mongo.test.items.Items()
             add['name'] = row[0]
             add['slug'] = transliterate(row[0])
             add['category'] = row[2]
@@ -35,15 +35,25 @@ def save_items_to_db():
 def save_category_to_db():
     with open(FILENAME, 'rb') as f:
         reader = csv.reader(f, dialect='excel', delimiter=';')
-        count = 0
+        last_parent_cat = 0
         for row in reader:
-            count += 1
-            # add = mongo.test.example.Category()
-            print 'Главная: %s' % row[0]
-            print 'Дочерняя: %s' % row[1]
-            print '--'*40
-            sleep(.1)
-        print count
+            # Проверяем главная ли это категория. Если - да,
+            # перезаписываем её имя, как последнюю категорию.
+            if row[0] != '':
+                add = mongo.test.category.Category()
+                last_parent_cat = row[0]
+                add['name'] = row[0]
+                add['slug'] = transliterate(row[0])
+                if row[1] != '':
+                    print 'Ошибка. В Родительской категории, кусок дочерней'
+                    sys.exit(1)
+                add['mini_description'] = row[2]
+                add['body'] = row[3]
+                add['meta_keywords'] = row[4]
+                add['meta_description'] = row[5]
+                add['img'] = pars_img_doc_video(row[6])
+                add.save()
+        sys.exit()
 
 
 def pars_img_doc_video(input):

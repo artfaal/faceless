@@ -86,6 +86,7 @@ class Category(Document):
                 'alt': basestring,
             }
         ],
+
         'child_category': [
             {
                 'name': basestring,
@@ -103,18 +104,19 @@ class Category(Document):
                     }
                 ]
             }
-        ]
+        ],
     }
 
     indexes = [
-        {'fields': ['name'], 'unique': True},
-        {'fields': ['child_category.name'], 'unique': True},
-        {'fields': ['slug'], 'unique': True},
-        {'fields': ['body']},
+        # TODO Плюс нужно сделать сделать индексы итерабельными
+        # {'fields': ['name'], 'unique': True},
+        # {'fields': ['child_category.name'], 'unique': True},
+        # {'fields': ['slug'], 'unique': True},
+        # {'fields': ['body']},
 
-        {'fields': ['child_category.name'], 'unique': True},
-        {'fields': ['child_category.slug'], 'unique': True},
-        {'fields': ['child_category.body']},
+        # {'fields': ['child_category.name'], 'unique': True},
+        # {'fields': ['child_category.slug'], 'unique': True},
+        # {'fields': ['child_category.body']},
     ]
 
     required_fields = []
