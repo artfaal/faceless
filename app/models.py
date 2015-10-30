@@ -86,22 +86,24 @@ class Category(Document):
                 'alt': basestring,
             }
         ],
-        'child_category': {
-            'name': basestring,
-            'slug': basestring,
-            'position': int,
-            'meta_keywords': basestring,
-            'meta_description': basestring,
-            'mini_description': basestring,
-            'body': basestring,
-            'date_creation': datetime.datetime,
-            'img': [
-                {
-                    'filename': basestring,
-                    'alt': basestring,
-                }
-            ]
-        }
+        'child_category': [
+            {
+                'name': basestring,
+                'slug': basestring,
+                'position': int,
+                'meta_keywords': basestring,
+                'meta_description': basestring,
+                'mini_description': basestring,
+                'body': basestring,
+                'date_creation': datetime.datetime,
+                'img': [
+                    {
+                        'filename': basestring,
+                        'alt': basestring,
+                    }
+                ]
+            }
+        ]
     }
 
     indexes = [
