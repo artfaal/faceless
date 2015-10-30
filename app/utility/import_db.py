@@ -55,6 +55,7 @@ def save_category_to_db():
             if row[0] != '':
                 # Самый важный параметр который обнуляет переменную,
                 # когда опять попадается родительская категория.
+                add = mongo.test.category.Category()
                 add['name'] = row[0]
                 add['slug'] = transliterate(row[0])
                 if row[1] != '':
