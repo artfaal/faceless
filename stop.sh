@@ -1,10 +1,10 @@
 #! /bin/bash
 
-echo 'Push all from repo'
+echo 'Push'
 git push --all origin #&> /dev/null
 
 echo 'Stop Virtualenv'
 deactivate
 
-echo 'Close mongo'
+echo 'Close Mongo'
 sudo -i pkill mongod
