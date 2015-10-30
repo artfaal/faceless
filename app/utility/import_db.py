@@ -3,7 +3,7 @@ import csv
 import sys
 from app import mongo
 from validators import *
-from time import sleep
+
 # Trick for normal unicode symbols
 reload(sys)
 sys.setdefaultencoding("utf-8")
@@ -11,11 +11,12 @@ sys.setdefaultencoding("utf-8")
 DB_NAME = 'name_of_the_base'
 
 # Предобработка csv файлов
-FILENAME = 'tmp/category_s.csv'
+FILENAME = 'tmp/category.csv'
 
 
 def save_items_to_db():
     with open(FILENAME, 'rb') as f:
+        # TODO удалять первую строку csv, так как это описание
         reader = csv.reader(f, dialect='excel', delimiter=';')
         for row in reader:
             add = mongo.test.items.Items()
@@ -33,15 +34,27 @@ def save_items_to_db():
 
 
 def save_category_to_db():
+    """
+    О Боги, я не знаю, как я справился с этой наркоманией.
+    Суть в том, что в exel дочерние категории просто идут вслед за
+    главными. Нужно было как-то дать понять, что если опять показывается главная
+    категория, то надо записать закончившийся дочерний архив.
+    Сначала ищет если в первой части данные. Если есть, значит это главная
+    категория. Открывает класс Category который тянется из models.py.
+    Пишутся все основные значение. Сохраняется. Следущее поле если
+    оно дочерняя категория, уходит во вторую инерацию и пишутся в array.
+    Точнее, мы просто append'им всё в один запрос и опять сохраняем.
+    И так далее, пока опять не попадается родительная категория и там заново
+    срабатывает класс Category, который обнуляет все значения и пишет по новой.
+    """
     with open(FILENAME, 'rb') as f:
         reader = csv.reader(f, dialect='excel', delimiter=';')
-        last_parent_cat = 0
         for row in reader:
             # Проверяем главная ли это категория. Если - да,
             # перезаписываем её имя, как последнюю категорию.
             if row[0] != '':
-                add = mongo.test.category.Category()
-                last_parent_cat = row[0]
+                # Самый важный параметр который обнуляет переменную,
+                # когда опять попадается родительская категория.
                 add['name'] = row[0]
                 add['slug'] = transliterate(row[0])
                 if row[1] != '':
@@ -52,6 +65,16 @@ def save_category_to_db():
                 add['meta_keywords'] = row[4]
                 add['meta_description'] = row[5]
                 add['img'] = pars_img_doc_video(row[6])
+                add.save()
+            elif row[1] != '':
+                add['child_category'].append({'name': row[1],
+                                              'slug': transliterate(row[1]),
+                                              'mini_description': row[2],
+                                              'body': row[3],
+                                              'meta_keywords': row[4],
+                                              'meta_description': row[5],
+                                              'img': pars_img_doc_video(row[6])
+                                              })
                 add.save()
         sys.exit()
 

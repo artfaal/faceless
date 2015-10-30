@@ -74,12 +74,11 @@ class Category(Document):
     structure = {
         'name': basestring,
         'slug': basestring,
-        'position': int,
         'meta_keywords': basestring,
         'meta_description': basestring,
         'mini_description': basestring,
         'body': basestring,
-        'date_creation': datetime.datetime,
+        # 'date_creation': datetime.datetime,
         'img': [
             {
                 'filename': basestring,
@@ -91,12 +90,11 @@ class Category(Document):
             {
                 'name': basestring,
                 'slug': basestring,
-                'position': int,
                 'meta_keywords': basestring,
                 'meta_description': basestring,
                 'mini_description': basestring,
                 'body': basestring,
-                'date_creation': datetime.datetime,
+                # 'date_creation': datetime.datetime,
                 'img': [
                     {
                         'filename': basestring,
@@ -121,9 +119,7 @@ class Category(Document):
 
     required_fields = []
 
-    default_values = {
-        'date_creation': datetime.datetime.utcnow
-    }
+    default_values = {}
 
     validators = {
         # 'meta_keywords': max_length(200),
