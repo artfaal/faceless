@@ -3,6 +3,7 @@ import csv
 import sys
 from app import mongo
 from validators import *
+from time import sleep
 # Trick for normal unicode symbols
 reload(sys)
 sys.setdefaultencoding("utf-8")
@@ -34,9 +35,15 @@ def save_items_to_db():
 def save_category_to_db():
     with open(FILENAME, 'rb') as f:
         reader = csv.reader(f, dialect='excel', delimiter=';')
+        count = 0
         for row in reader:
-            add = mongo.test.example.Category()
-            pass
+            count += 1
+            # add = mongo.test.example.Category()
+            print 'Главная: %s' % row[0]
+            print 'Дочерняя: %s' % row[1]
+            print '--'*40
+            sleep(.1)
+        print count
 
 
 def pars_img_doc_video(input):
