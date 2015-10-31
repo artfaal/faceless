@@ -33,7 +33,28 @@
 </head>
 <body>
 {% block content -%}
+  {% block sidebar_item -%}
+  <!-- SideBar Begin
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <div class="side-menu three columns">
 
+  <div class="side-search">
+    <input class="search-field" id="" name="" value="Поиск" onfocus="" type="text">
+    <input class="search-submit" src="assets/img/find-ico.gif" alt="Найти" type="image">
+  </div>
+  <ul>
+    <li><a href="#">Печь для сауны S-Line</a></li>
+    <li><a href="#">Системы управления сауной</a></li>
+    <li><a href="#">Парогенераторы</a></li>
+    <li><a href="#">Цветное освещение</a></li>
+    <li><a href="#">Оборудование для ИК кабин</a></li>
+    <li><a href="#">Дозирующие станции</a></li>
+    <li><a href="#">Аксессуары</a></li>
+  </ul>
+  </div>
+  <!-- SideBar End
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  {% endblock-%}
 {% endblock -%}
       <!-- Footer Begin
       –––––––––––––––––––––––––––––––––––––––––––––––––– -->
