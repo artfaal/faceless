@@ -1,21 +1,20 @@
 # -*- coding: utf-8 -*-
 import csv
 import sys
-from app import mongo
+from app import mongo, app
 from validators import *
 
 # Trick for normal unicode symbols
 reload(sys)
 sys.setdefaultencoding("utf-8")
-# Имя базы данных
-DB_NAME = 'name_of_the_base'
 
 # Предобработка csv файлов
-FILENAME = 'tmp/pechi.csv'
+FILE_TO_IMPORT_ITEMS = app.config['FILE_TO_IMPORT_ITEMS']
+FILE_TO_IMPORT_CATEGORY = app.config['FILE_TO_IMPORT_CATEGORY']
 
 
 def save_items_to_db():
-    with open(FILENAME, 'rb') as f:
+    with open(FILE_TO_IMPORT_ITEMS, 'rb') as f:
         # TODO удалять первую строку csv, так как это описание
         reader = csv.reader(f, dialect='excel', delimiter=';')
         for row in reader:
@@ -48,7 +47,7 @@ def save_category_to_db():
     срабатывает класс Category, который обнуляет все значения и пишет по новой.
     """
     category_position = 10  # Создаем, что бы упорядочить их по мере итерации.
-    with open(FILENAME, 'rb') as f:
+    with open(FILE_TO_IMPORT_CATEGORY, 'rb') as f:
         reader = csv.reader(f, dialect='excel', delimiter=';')
         for row in reader:
             # Проверяем главная ли это категория. Если - да,
@@ -82,7 +81,7 @@ def save_category_to_db():
                                               })
                 category_position += 10
                 add.save()
-        sys.exit()
+
 
 
 def pars_img_doc_video(input):
@@ -111,7 +110,7 @@ def pars_img_doc_video(input):
 def check_category():
     # Вспомогательная функция, что бы визуально посмотреть,
     # какие категории есть у товаров
-    with open(FILENAME, 'rb') as f:
+    with open(FILE_TO_IMPORT_ITEMS, 'rb') as f:
         reader = csv.reader(f, dialect='excel', delimiter=';')
         list_of_cat = []
         count_of_items = 0
