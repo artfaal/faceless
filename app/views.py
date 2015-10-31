@@ -11,5 +11,6 @@ def index():
 @app.route('/catalog/', methods=['GET'])
 def catalog():
     category = mongo.test.category.find().sort('position')
+    category2 = mongo.test.category.find().sort('position')
 
-    return render_template('catalog.html', category=category)
+    return render_template('catalog.html', category=category, category2=category2)
