@@ -10,6 +10,6 @@ def index():
 
 @app.route('/catalog/', methods=['GET'])
 def catalog():
-    category = mongo.test.category.find()
+    category = mongo.test.category.find().sort('position')
 
     return render_template('catalog.html', category=category)

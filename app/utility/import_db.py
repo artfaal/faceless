@@ -81,6 +81,8 @@ def save_category_to_db():
                                               })
                 category_position += 10
                 add.save()
+    # Чудесный костыль, что бы при отладке дважды не запускалось
+    # sys.exit()
 
 
 def pars_img_doc_video(input):
