@@ -1,0 +1,10 @@
+{
+	"folders":
+	[
+		{
+			"path": "/home/max/dev/faceless",
+            "file_exclude_patterns": ["*.pyc", ".*",],
+            "folder_exclude_patterns": ["env"]
+		}
+	]
+}
