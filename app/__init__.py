@@ -11,4 +11,4 @@ from app import views, models, utility
 
 # utility.import_db.save_items_to_db()
 # utility.import_db.save_category_to_db()
-utility.import_db.check_item_in_category()
+# utility.import_db.check_item_in_category()
