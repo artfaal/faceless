@@ -18,7 +18,7 @@ def save_items_to_db():
         # TODO удалять первую строку csv, так как это описание
         reader = csv.reader(f, dialect='excel', delimiter=';')
         for row in reader:
-            add = mongo.test.items.Items()
+            add = mongo.Items()
             add['name'] = row[0]
             add['slug'] = transliterate(row[0])
             add['category'] = row[2]
@@ -55,7 +55,7 @@ def save_category_to_db():
             if row[0] != '':
                 # Самый важный параметр который обнуляет переменную,
                 # когда опять попадается родительская категория.
-                add = mongo.test.category.Category()
+                add = mongo.Category()
                 add['name'] = row[0]
                 add['slug'] = transliterate(row[0])
                 add['position'] = category_position
@@ -83,14 +83,13 @@ def save_category_to_db():
                 add.save()
 
 
-
 def pars_img_doc_video(input):
     # ex = "34_a.jpg$печь для сауны EOS 34 A&thermat.jpg$Для сауны EOS Thermat&"
     # Парсим участки с изображениями, видео и документами
     # Сначала разделяем основные части
     l = input.split('&')
     result = []
-    position = 1  # Позиция картинок по порядку
+    position = 0  # Позиция картинок по порядку
     # Удаляем пустые значение
     if '' in l:
         l.remove('')

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from mongokit import *
 import datetime
-from app import mongo
+from app import mongo, app
 from utility.validators import *
 
 
@@ -11,8 +11,9 @@ class Items(Document):
     Документация по библиотеке
     https://github.com/namlook/mongokit/wiki
     """
-    # __collection__ = 'collection_name'
-    # __database__ = 'database_name'
+
+    __database__ = app.config['DB']
+    __collection__ = app.config['ITEM_COLLECTION']
 
     structure = {
         'name': basestring,
@@ -71,8 +72,8 @@ class Items(Document):
 @mongo.register
 class Category(Document):
 
-    # __collection__ = 'collection_name'
-    # __database__ = 'database_name'
+    __database__ = app.config['DB']
+    __collection__ = app.config['CATEGORY_COLLECTION']
 
     structure = {
         'name': basestring,
