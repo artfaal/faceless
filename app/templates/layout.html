@@ -29,7 +29,6 @@
   <!-- Favicon
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <link rel="icon" type="image/png" href="{{ url_for('static', filename='assets/img/favicon.png') }}">
-
 </head>
 <body>
 
@@ -296,7 +295,7 @@
 
       <div class="side-search">
         <input class="search-field" id="" name="" value="Поиск" onfocus="" type="text">
-        <input class="search-submit" src="assets/img/find-ico.gif" alt="Найти" type="image">
+        <input class="search-submit" src="{{ url_for('static', filename='assets/img/find-ico.gif') }}" alt="Найти" type="image">
       </div>
       <ul>
         <li><a href="#">Печь для сауны S-Line</a></li>
