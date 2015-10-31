@@ -1,4 +1,4 @@
-from app import app
+from app import app, mongo
 from flask import render_template
 
 
@@ -10,4 +10,6 @@ def index():
 
 @app.route('/catalog/', methods=['GET'])
 def catalog():
-    return render_template('catalog.html')
+    category = mongo.test.category.find()
+
+    return render_template('catalog.html', category=category)
