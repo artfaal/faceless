@@ -289,20 +289,19 @@
       <!-- SideBar Begin
       –––––––––––––––––––––––––––––––––––––––––––––––––– -->
       {% block sidebar_item -%}
+        <div class="side-menu three columns">
 
-      <div class="side-menu three columns">
+        <div class="side-search">
+          <input class="search-field" id="" name="" value="Поиск" onfocus="" type="text">
+          <input class="search-submit" src="{{ url_for('static', filename='assets/img/find-ico.gif') }}" alt="Найти" type="image">
+        </div>
+        <ul>
+          {% for c in category -%}
 
-      <div class="side-search">
-        <input class="search-field" id="" name="" value="Поиск" onfocus="" type="text">
-        <input class="search-submit" src="{{ url_for('static', filename='assets/img/find-ico.gif') }}" alt="Найти" type="image">
-      </div>
-      <ul>
-        {% for c in category -%}
-
-        <li><a href="{{ c['slug'] }}">{{ c['name'] }}</a></li>
-        {% endfor -%}
-      </ul>
-      </div>
+          <li><a href="{{ c['slug'] }}">{{ c['name'] }}</a></li>
+          {% endfor -%}
+        </ul>
+        </div>
       {% endblock-%}
       <!-- SideBar End
       –––––––––––––––––––––––––––––––––––––––––––––––––– -->
