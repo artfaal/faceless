@@ -32,3 +32,55 @@
 
 </head>
 <body>
+{% block content -%}
+
+{% endblock -%}
+      <!-- Footer Begin
+      –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+      <div class="footer row">
+        <div class="left-footer-menu two columns">
+        <ul>
+          <li>обзор продуктов</li>
+          <li>Сервисный центр</li>
+          <li>Консультант</li>
+          <li>Контактный формуляр</li>
+        </ul>
+        </div>
+        <div class="left-footer-menu two columns">
+        <ul>
+          <li>обзор продуктов</li>
+          <li>Сервисный центр</li>
+          <li>Консультант</li>
+          <li>Контактный формуляр</li>
+        </ul>
+        </div>
+        <div class="one column">&nbsp;</div>
+        <div class="one column">
+          <img src="{{ url_for('static', filename='assets/img/eos-made-in-germany.png') }}">
+        </div>
+        <div class="two columns">&nbsp;</div>
+        <div class="one column">
+          <img src="{{ url_for('static', filename='assets/img/eos-sauna-logo-footer.png') }}">
+        </div>
+        <div class="three columns">
+          <p>
+            EOS Saunatechnik GmbH <br>
+            Schneiderstriesch 1 <br>
+            35759 Driedorf, Germany <br>
+            Fon: +49 (0)2775 82-0 <br>
+            Fax: +49 (0)2775 82-431 <br>
+            info(at)eos-sauna.com <br>
+          </p>
+        </div>
+      </div>
+      <!-- Footer End
+      –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+  <!-- Scripts
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <script src="{{ url_for('static', filename='assets/vendor/holder-js/holder.js') }}"></script>
+
+  <!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+</html>
