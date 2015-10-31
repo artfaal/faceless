@@ -30,18 +30,21 @@ class Items(Document):
             {
                 'filename': basestring,
                 'alt': basestring,
+                'position': int
             }
         ],
         'doc': [
             {
                 'filename': basestring,
                 'alt': basestring,
+                'position': int
             }
         ],
         'video': [
             {
                 'filename': basestring,
                 'alt': basestring,
+                'position': int
             }
         ]
     }
@@ -74,6 +77,7 @@ class Category(Document):
     structure = {
         'name': basestring,
         'slug': basestring,
+        'position': int,
         'meta_keywords': basestring,
         'meta_description': basestring,
         'mini_description': basestring,
@@ -83,6 +87,7 @@ class Category(Document):
             {
                 'filename': basestring,
                 'alt': basestring,
+                'position': int
             }
         ],
 
@@ -90,6 +95,7 @@ class Category(Document):
             {
                 'name': basestring,
                 'slug': basestring,
+                'position': int,
                 'meta_keywords': basestring,
                 'meta_description': basestring,
                 'mini_description': basestring,
@@ -99,6 +105,7 @@ class Category(Document):
                     {
                         'filename': basestring,
                         'alt': basestring,
+                        'position': int
                     }
                 ]
             }

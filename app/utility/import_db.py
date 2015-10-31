@@ -11,7 +11,7 @@ sys.setdefaultencoding("utf-8")
 DB_NAME = 'name_of_the_base'
 
 # Предобработка csv файлов
-FILENAME = 'tmp/category.csv'
+FILENAME = 'tmp/pechi.csv'
 
 
 def save_items_to_db():
@@ -47,6 +47,7 @@ def save_category_to_db():
     И так далее, пока опять не попадается родительная категория и там заново
     срабатывает класс Category, который обнуляет все значения и пишет по новой.
     """
+    category_position = 10  # Создаем, что бы упорядочить их по мере итерации.
     with open(FILENAME, 'rb') as f:
         reader = csv.reader(f, dialect='excel', delimiter=';')
         for row in reader:
@@ -58,6 +59,8 @@ def save_category_to_db():
                 add = mongo.test.category.Category()
                 add['name'] = row[0]
                 add['slug'] = transliterate(row[0])
+                add['position'] = category_position
+                category_position += 10
                 if row[1] != '':
                     print 'Ошибка. В Родительской категории, кусок дочерней'
                     sys.exit(1)
@@ -70,12 +73,14 @@ def save_category_to_db():
             elif row[1] != '':
                 add['child_category'].append({'name': row[1],
                                               'slug': transliterate(row[1]),
+                                              'position': category_position,
                                               'mini_description': row[2],
                                               'body': row[3],
                                               'meta_keywords': row[4],
                                               'meta_description': row[5],
                                               'img': pars_img_doc_video(row[6])
                                               })
+                category_position += 10
                 add.save()
         sys.exit()
 
@@ -86,6 +91,7 @@ def pars_img_doc_video(input):
     # Сначала разделяем основные части
     l = input.split('&')
     result = []
+    position = 1  # Позиция картинок по порядку
     # Удаляем пустые значение
     if '' in l:
         l.remove('')
@@ -94,7 +100,9 @@ def pars_img_doc_video(input):
         part = i.split('$')
         # Надо удалять первую строчку и CSV, иначе будет exception
         try:
-            result.append({'filename': part[0], 'alt': part[1]})
+            result.append({'filename': part[0], 'alt': part[1],
+                           'position': position})
+            position += 1
         except IndexError:
             print 'Error! Check first line in CSV file'
     return result
