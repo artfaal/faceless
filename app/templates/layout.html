@@ -235,7 +235,7 @@
         <ul>
           {% for c in category -%}
 
-          <li><a href="{{ c['slug'] }}">{{ c['name'] }}</a></li>
+          <li><a href="{{url_for('catalog', category_slug=c['slug'])}}">{{ c['name'] }}</a></li>
           {% endfor -%}
         </ul>
         </div>

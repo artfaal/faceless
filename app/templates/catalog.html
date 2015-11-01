@@ -26,14 +26,15 @@
         {% elif one_category -%}
             {# Обозначаем имя этой категории #}
             <h1>{{one_category['name']}}</h1>
-            <hr>
+            <p>{{one_category['body']}}</p>
             {# Теперь итерируем дочерние категории в ней #}
             {% for i in one_category['child_category']-%}
                 {# Выводим имена этих дочерних категорий #}
                 <h2>{{i['name']}}</h2>
+                <hr>
                 {# Этот кусок должен фильтровать товары, который есть внутри #}
                 {% for item in items_from_category(i['name']) -%}
-                    <a href="{{ item['slug'] }}"><div class="box-category">
+                    <a href="{{one_category['slug']}}/{{ item['slug'] }}"><div class="box-category">
                         {%set path_to_img = 'content/items/' + item['img'][0]['filename']%}
                         <img src="{{ url_for('static', filename=path_to_img) }}" height="245" width="170">
                         <div class="list-item-text">
@@ -48,7 +49,6 @@
         {# Здесь базовая страница catalog #}
         {% else-%}
             <h1>Каталог</h1>
-            <hr>
             {% for c in category2 -%}
                 <a href="{{ c['slug'] }}"><div class="box-category">
                 {%set path_to_img = 'content/category/' + c['img'][0]['filename']%}
