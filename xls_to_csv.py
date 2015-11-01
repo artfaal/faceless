@@ -4,7 +4,7 @@
 import  xlrd
 import  re
 import  os, sys, os.path
-import  csv, yaml
+import  csv
 
 #
 # Some portions based on a recipe by Bryan Niederberger from
@@ -101,16 +101,11 @@ def save_csv_tables(tables, outdir, outfilebase):
         outfilename = "%s_%d_%s.csv" % (outfilebase, sheet_idx, camelize(sheet['sheet_name']))
         dump_csv(sheet['sheet_data'], outdir, outfilename)
 
-def dump_yaml(tables, outdir, outfilename):
-    stream = file(os.path.join(outdir, outfilename+'.yaml'), 'wb')
-    yaml.safe_dump(tables, stream, allow_unicode=True)
-    stream.close()
-
 #
-# Process files listed on command line, or all .xls files in current dir if no
+# Process files listed on command line, or all .xlsx files in current dir if no
 # args given
 #
-re_excelfilename = re.compile(r'(\.xls)$')
+re_excelfilename = re.compile(r'(\.xlsx)$')
 try:    args = sys.argv[1:]
 except: args = []
 if len(args) < 1:
@@ -124,4 +119,3 @@ for infilename in infilenames:
     (outdir, infilebase) = os.path.split(infilename)
     outfilebase = re_excelfilename.sub('', infilebase)
     save_csv_tables(tables, outdir, outfilebase)
-    dump_yaml      (tables, outdir, outfilebase)
