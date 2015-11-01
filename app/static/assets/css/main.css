@@ -104,6 +104,11 @@ body {
     padding: 2em;
 }
 
+.content-box h1 {
+    color: #545454;
+    font-size: 2.2em;
+}
+
 .navigation {
     display: block;
     position: absolute;

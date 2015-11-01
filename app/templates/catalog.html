@@ -20,8 +20,11 @@
     <div class="content-box nine columns omega">
 
         {% if slug -%}
-            {{name_of_category['name']}}
+            <h1>{{name_of_category['name']}}</h1>
+            <hr>
         {% else-%}
+            <h1>Каталог</h1>
+            <hr>
             {% for c in category2 -%}
                 <a href="{{ c['slug'] }}"><div class="box-category">
                 {%set path_to_img = 'content/category/' + c['img'][0]['filename']%}
