@@ -14,8 +14,8 @@ def catalog(slug=None):
     category = mongo.test.category.find().sort('position')
     category2 = mongo.test.category.find().sort('position')
     category3 = mongo.test.category.find().sort('position')
-    name_of_category = mongo.test.category.find_one({'slug': slug})
+    one_category = mongo.test.category.find_one({'slug': slug})
 
     return render_template('catalog.html', category=category,
-                           category2=category2, category3=category3, slug=slug, name_of_category=name_of_category)
+                           category2=category2, category3=category3, slug=slug, one_category=one_category)
 

@@ -20,8 +20,11 @@
     <div class="content-box nine columns omega">
 
         {% if slug -%}
-            <h1>{{name_of_category['name']}}</h1>
+            <h1>{{one_category['name']}}</h1>
             <hr>
+            {% for i in one_category['child_category']-%}
+            {{i['name']}}
+            {% endfor-%}
         {% else-%}
             <h1>Каталог</h1>
             <hr>
