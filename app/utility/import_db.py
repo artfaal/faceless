@@ -21,7 +21,8 @@ def save_items_to_db():
             add = mongo.Items()
             add['name'] = row[0]
             add['slug'] = transliterate(row[0])
-            add['category'] = row[2]
+            add['main_category'] = row[1]
+            add['child_category'] = row[2]
             add['body'] = row[3]
             add['meta_keywords'] = row[4]
             add['meta_description'] = row[5]
@@ -134,7 +135,7 @@ def check_item_in_category():
     на предмет их нахождения в коллекции категорий.
     Пробегается по всем категориям, включая дочерние.
     """
-
+    # TODO переделать проверку под main и child
     raw_items = mongo.test.items.find()
     raw_category = mongo.test.category.find()
     list_of_cat_in_items = []

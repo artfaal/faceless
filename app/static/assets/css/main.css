@@ -109,6 +109,11 @@ body {
     font-size: 2.2em;
 }
 
+.content-box h2 {
+    color: #545454;
+    font-size: 1.7em;
+}
+
 .navigation {
     display: block;
     position: absolute;
@@ -308,4 +313,8 @@ body {
 .footer p {
     text-align: right;
     padding: 2em;
+}
+
+.clear {
+    clear:both;
 }
