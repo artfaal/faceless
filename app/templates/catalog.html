@@ -15,20 +15,24 @@
     <!-- Здесь сайдбар -->
     {% block sidebar_item -%}{{ super() }}{% endblock -%}
     <!-- Конец сайдбара -->
-
     <!-- Main Fraim Begin
     –––––––––––––––––––––––––––––––––––––––––––––––––– -->
     <div class="content-box nine columns omega">
-        {% for c in category2 -%}
-            <div class="box-category">
-            {%set path_to_img = 'content/category/' + c['img'][0]['filename']%}
-            <a href="{{ c['slug'] }}"><img src="{{ url_for('static', filename=path_to_img) }}" height="245" width="170"></a>
-            <div class="list-item-text">
-              <h2>{{ c['name'] }}</h2>
-              <p>{{ c['mini_description']|truncate(75) }}</p>
-            </div>
-            </div>
-        {% endfor -%}
+
+        {% if slug -%}
+            {{name_of_category['name']}}
+        {% else-%}
+            {% for c in category2 -%}
+                <a href="{{ c['slug'] }}"><div class="box-category">
+                {%set path_to_img = 'content/category/' + c['img'][0]['filename']%}
+                <img src="{{ url_for('static', filename=path_to_img) }}" height="245" width="170">
+                <div class="list-item-text">
+                  <h2>{{ c['name'] }}</h2>
+                  <p>{{ c['mini_description']|truncate(75) }}</p>
+                </div>
+                </div></a>
+            {% endfor -%}
+        {% endif %}
     </div>
     <!-- Main Fraim End
     –––––––––––––––––––––––––––––––––––––––––––––––––– -->
