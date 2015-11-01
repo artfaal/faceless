@@ -54,83 +54,20 @@
 
                       <!-- Пункны навигации
                       –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-                      <div class="nav-element">
-                        <img src="{{ url_for('static', filename='assets/examples/01.jpg') }}" height="70">
-                        <div class="body-of-the-element">
-                          <span class=header-of-the-element>Печи для сауны</span>
-                          <br>
-                          <span class=element-description>Высококачественная печь для сауны
-                          </span>
-                        </div>
-                      </div>
-
-                      <div class="nav-element">
-                        <img src="{{ url_for('static', filename='assets/examples/02.jpg') }}" height="70">
-                        <div class="body-of-the-element">
-                          <span class=header-of-the-element>Печь для сауны S-Line</span>
-                          <br>
-                          <span class=element-description>Эксклюзивные печи для саун, красивый дизайн и неизменная надежность
-                          </span>
-                        </div>
-                      </div>
-
-                      <div class="nav-element">
-                        <img src="{{ url_for('static', filename='assets/examples/03.jpg') }}" height="70">
-                        <div class="body-of-the-element">
-                          <span class=header-of-the-element>Системы управления сауной</span>
-                          <br>
-                          <span class=element-description>Легкий способ управления Вашей сауной
-                          </span>
-                        </div>
-                      </div>
-
-                      <div class="nav-element">
-                        <img src="{{ url_for('static', filename='assets/examples/04.jpg') }}" height="70">
-                        <div class="body-of-the-element">
-                          <span class=header-of-the-element>Парогенераторы</span>
-                          <br>
-                          <span class=element-description>Парогенераторы и принадлежности EOS
-                          </span>
-                        </div>
-                      </div>
-
-                      <div class="nav-element">
-                        <img src="{{ url_for('static', filename='assets/examples/05.jpg') }}" height="70">
-                        <div class="body-of-the-element">
-                          <span class=header-of-the-element>Цветное освещение</span>
-                          <br>
-                          <span class=element-description>Наслаждайтесь положительными эмоциями, которые неизменно вызовет от цветного освещения
-                          </span>
-                        </div>
-                      </div>
-                      <div class="nav-element">
-                        <img src="{{ url_for('static', filename='assets/examples/06.jpg') }}" height="70">
-                        <div class="body-of-the-element">
-                          <span class=header-of-the-element>Оборудование для ИК кабин</span>
-                          <br>
-                          <span class=element-description>Инфракрасные лучи согревают Ваше тело изнутри, что благоприятно сказывается на здоровье
-                          </span>
-                        </div>
-                      </div>
+                      {% for c in category3 %}
+                        {%set path_to_img = 'content/category/' + c['img'][0]['filename']%}
                         <div class="nav-element">
-                          <img src="{{ url_for('static', filename='assets/examples/07.jpg') }}" height="70">
+                          <img src="{{ url_for('static', filename=path_to_img) }}" height="70" width="50">
                           <div class="body-of-the-element">
-                            <span class=header-of-the-element>Дозирующие станции</span>
+                            <span class=header-of-the-element>{{ c['name'] }}</span>
                             <br>
-                            <span class=element-description>Дозирующие станции EOS премиум качества
+                            <span class=element-description>{{ c['mini_description']|truncate(75) }}
                             </span>
                           </div>
                         </div>
-                        <div class="nav-element">
-                          <img src="{{ url_for('static', filename='assets/examples/08.jpg') }}" height="70">
-                          <div class="body-of-the-element">
-                            <span class=header-of-the-element>Аксессуары</span>
-                            <br>
-                            <span class=element-description>Принадлежности для сауны EOS
-                            </span>
-                          </div>
-                        </div>
-                      </div>
+                      {% endfor %}
+
+                    </div>
 
                   </li>
 

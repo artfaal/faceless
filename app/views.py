@@ -12,5 +12,6 @@ def index():
 def catalog():
     category = mongo.test.category.find().sort('position')
     category2 = mongo.test.category.find().sort('position')
+    category3 = mongo.test.category.find().sort('position')
 
-    return render_template('catalog.html', category=category, category2=category2)
+    return render_template('catalog.html', category=category, category2=category2, category3=category3)
