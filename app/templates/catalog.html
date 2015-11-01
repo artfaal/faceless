@@ -20,7 +20,17 @@
     <div class="content-box nine columns omega">
 
         {% if one_item -%}
+        <div class="five columns alpha">
+            {%set path_to_img = 'content/items/' + one_item['img'][0]['filename']%}
+            <img src="{{ url_for('static', filename=path_to_img) }}" height="417" width="280">
+        </div>
+        <div class="">
             <h1>{{ one_item['name'] }}</h1>
+            {{ one_item['body']|markdown }}
+            <hr>
+            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        </div>
+
 
         {# Здесь отрабатывает, если указана конкретная категория slug #}
         {% elif one_category -%}
