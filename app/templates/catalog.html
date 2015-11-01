@@ -34,6 +34,7 @@
                         <img src="{{ url_for('static', filename=path_to_img) }}" height="245" width="170">
                         <div class="list-item-text">
                           <h2>{{ item['name'] }}</h2>
+                          <p>{{ item['body']|truncate(50) }}</p>
                         </div>
                     </div></a>
                 {% endfor -%}
