@@ -10,14 +10,22 @@ def index():
 
 
 @app.route('/catalog/', methods=['GET'])
-@app.route('/catalog/<slug>', methods=['GET'])
-def catalog(slug=None):
+@app.route('/catalog/<category_slug>', methods=['GET'])
+@app.route('/catalog/<category_slug>/<item_slug>', methods=['GET'])
+def catalog(category_slug=None, item_slug=None):
     category = mongo.test.category.find().sort('position')
     category2 = mongo.test.category.find().sort('position')
     category3 = mongo.test.category.find().sort('position')
     # Определяем, что эта страница будет посвящена этой категории.
-    one_category = mongo.test.category.find_one({'slug': slug})
-    if one_category:
+    one_category = mongo.test.category.find_one({'slug': category_slug})
+    one_item = mongo.test.items.find_one({'slug': item_slug})
+    if one_item:
+        return render_template('catalog.html', category=category,
+                               category2=category2, category3=category3,
+                               category_slug=category_slug, one_category=one_category,
+                               one_item=one_item)
+
+    elif one_category:
         # Здесь находим все товары, которые из этой категории
         def items_from_category(child):
             """
@@ -32,9 +40,9 @@ def catalog(slug=None):
                                           'child_category': child})
         return render_template('catalog.html', category=category,
                                category2=category2, category3=category3,
-                               slug=slug, one_category=one_category,
+                               category_slug=category_slug, one_category=one_category,
                                items_from_category=items_from_category)
-
-    return render_template('catalog.html', category=category,
-                           category2=category2, category3=category3,
-                           slug=slug, one_category=one_category)
+    else:
+        return render_template('catalog.html', category=category,
+                               category2=category2, category3=category3,
+                               category_slug=category_slug, one_category=one_category)
