@@ -16,21 +16,22 @@ FILE_TO_IMPORT_CATEGORY = app.config['FILE_TO_IMPORT_CATEGORY']
 def save_items_to_db():
     with open(FILE_TO_IMPORT_ITEMS, 'rb') as f:
         # TODO удалять первую строку csv, так как это описание
-        reader = csv.reader(f, dialect='excel', delimiter=';')
+        reader = csv.reader(f, dialect='excel', delimiter=';', escapechar='\\')
         for row in reader:
-            add = mongo.Items()
-            add['name'] = row[0]
-            add['slug'] = transliterate(row[0])
-            add['main_category'] = row[1]
-            add['child_category'] = row[2]
-            add['body'] = row[3]
-            add['meta_keywords'] = row[4]
-            add['meta_description'] = row[5]
-            add['img'] = pars_img_doc_video(row[6])
-            add['video'] = pars_img_doc_video(row[7])
-            add['doc'] = pars_img_doc_video(row[8])
-            add['position'] = int_or_0(row[9])
-            add.save()
+            if row[0][:1] != '^':  # Проверка на первую линию.
+                add = mongo.Items()
+                add['name'] = row[0]
+                add['slug'] = transliterate(row[0])
+                add['main_category'] = row[1]
+                add['child_category'] = row[2]
+                add['body'] = row[3]
+                add['meta_keywords'] = row[4]
+                add['meta_description'] = row[5]
+                add['img'] = pars_img_doc_video(row[6])
+                add['video'] = pars_img_doc_video(row[7])
+                add['doc'] = pars_img_doc_video(row[8])
+                add['position'] = int_or_0(row[9])
+                add.save()
 
 
 def save_category_to_db():
@@ -49,41 +50,40 @@ def save_category_to_db():
     """
     category_position = 10  # Создаем, что бы упорядочить их по мере итерации.
     with open(FILE_TO_IMPORT_CATEGORY, 'rb') as f:
-        reader = csv.reader(f, dialect='excel', delimiter=';')
+        reader = csv.reader(f, dialect='excel', delimiter=';', escapechar='\\')
         for row in reader:
             # Проверяем главная ли это категория. Если - да,
             # перезаписываем её имя, как последнюю категорию.
-            if row[0] != '':
-                # Самый важный параметр который обнуляет переменную,
-                # когда опять попадается родительская категория.
-                add = mongo.Category()
-                add['name'] = row[0]
-                add['slug'] = transliterate(row[0])
-                add['position'] = category_position
-                category_position += 10
-                if row[1] != '':
-                    print 'Ошибка. В Родительской категории, кусок дочерней'
-                    sys.exit(1)
-                add['mini_description'] = row[2]
-                add['body'] = row[3]
-                add['meta_keywords'] = row[4]
-                add['meta_description'] = row[5]
-                add['img'] = pars_img_doc_video(row[6])
-                add.save()
-            elif row[1] != '':
-                add['child_category'].append({'name': row[1],
-                                              'slug': transliterate(row[1]),
-                                              'position': category_position,
-                                              'mini_description': row[2],
-                                              'body': row[3],
-                                              'meta_keywords': row[4],
-                                              'meta_description': row[5],
-                                              'img': pars_img_doc_video(row[6])
-                                              })
-                category_position += 10
-                add.save()
-    # Чудесный костыль, что бы при отладке дважды не запускалось
-    # sys.exit()
+            if row[0][:1] != '^':  # Проверка на первую линию.
+                if row[0] != '':
+                    # Самый важный параметр который обнуляет переменную,
+                    # когда опять попадается родительская категория.
+                    add = mongo.Category()
+                    add['name'] = row[0]
+                    add['slug'] = transliterate(row[0])
+                    add['position'] = category_position
+                    category_position += 10
+                    if row[1] != '':
+                        print 'Ошибка. В Родительской категории, кусок дочерней'
+                        sys.exit(1)
+                    add['mini_description'] = row[2]
+                    add['body'] = row[3]
+                    add['meta_keywords'] = row[4]
+                    add['meta_description'] = row[5]
+                    add['img'] = pars_img_doc_video(row[6])
+                    add.save()
+                elif row[1] != '':
+                    add['child_category'].append({'name': row[1],
+                                                  'slug': transliterate(row[1]),
+                                                  'position': category_position,
+                                                  'mini_description': row[2],
+                                                  'body': row[3],
+                                                  'meta_keywords': row[4],
+                                                  'meta_description': row[5],
+                                                  'img': pars_img_doc_video(row[6])
+                                                  })
+                    category_position += 10
+                    add.save()
 
 
 def pars_img_doc_video(input):
