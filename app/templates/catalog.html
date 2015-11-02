@@ -19,32 +19,32 @@
     –––––––––––––––––––––––––––––––––––––––––––––––––– -->
     <div class="content-box nine columns omega">
 
-        {% if one_item -%}
+        {% if item_page -%}
         <div class="five columns alpha">
-            {%set path_to_img = 'content/items/' + one_item['img'][0]['filename']%}
+            {%set path_to_img = 'content/items/' + item_page['img'][0]['filename']%}
             <img src="{{ url_for('static', filename=path_to_img) }}" height="417" width="280">
         </div>
         <div class="">
-            <h1>{{ one_item['name'] }}</h1>
-            {{ one_item['body']|markdown }}
+            <h1>{{ item_page['name'] }}</h1>
+            {{ item_page['body']|markdown }}
             <hr>
             <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
         </div>
 
 
         {# Здесь отрабатывает, если указана конкретная категория slug #}
-        {% elif one_category -%}
+        {% elif category_page -%}
             {# Обозначаем имя этой категории #}
-            <h1>{{one_category['name']}}</h1>
-            <p>{{one_category['body']}}</p>
+            <h1>{{category_page['name']}}</h1>
+            <p>{{category_page['body']}}</p>
             {# Теперь итерируем дочерние категории в ней #}
-            {% for i in one_category['child_category']-%}
+            {% for i in category_page['child_category']-%}
                 {# Выводим имена этих дочерних категорий #}
                 <h2>{{i['name']}}</h2>
                 <hr>
                 {# Этот кусок должен фильтровать товары, который есть внутри #}
                 {% for item in items_from_category(i['name']) -%}
-                    <a href="{{one_category['slug']}}/{{ item['slug'] }}"><div class="box-category">
+                    <a href="{{category_page['slug']}}/{{ item['slug'] }}"><div class="box-category">
                         {%set path_to_img = 'content/items/' + item['img'][0]['filename']%}
                         <img src="{{ url_for('static', filename=path_to_img) }}" height="245" width="170">
                         <div class="list-item-text">
@@ -59,7 +59,7 @@
         {# Здесь базовая страница catalog #}
         {% else-%}
             <h1>Каталог</h1>
-            {% for c in category2 -%}
+            {% for c in category() -%}
                 <a href="{{ c['slug'] }}"><div class="box-category">
                 {%set path_to_img = 'content/category/' + c['img'][0]['filename']%}
                 <img src="{{ url_for('static', filename=path_to_img) }}" height="245" width="170">

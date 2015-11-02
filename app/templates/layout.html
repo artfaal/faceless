@@ -54,7 +54,7 @@
 
                       <!-- Пункны навигации
                       –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-                      {% for c in category3 %}
+                      {% for c in category() %}
                         {%set path_to_img = 'content/category/' + c['img'][0]['filename']%}
                         <div class="nav-element">
                           <img src="{{ url_for('static', filename=path_to_img) }}" height="70" width="50">
@@ -233,7 +233,7 @@
           <input class="search-submit" src="{{ url_for('static', filename='assets/img/find-ico.gif') }}" alt="Найти" type="image">
         </div>
         <ul>
-          {% for c in category -%}
+          {% for c in category() -%}
 
           <li><a href="{{url_for('catalog', category_slug=c['slug'])}}">{{ c['name'] }}</a></li>
           {% endfor -%}

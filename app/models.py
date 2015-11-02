@@ -5,6 +5,19 @@ from app import mongo, app
 from utility.validators import *
 
 
+class DB:
+    """Класс для получения данных их БД"""
+    def __init__(self):
+        self.db = mongo[app.config['DB']]
+
+    def get_db(self, param):
+        if param == 'cat':
+            return self.db[app.config['CATEGORY_COLLECTION']]
+
+        elif param == 'items':
+            return self.db[app.config['ITEM_COLLECTION']]
+
+
 @mongo.register
 class Items(Document):
     """
