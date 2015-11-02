@@ -15,7 +15,6 @@ FILE_TO_IMPORT_CATEGORY = app.config['FILE_TO_IMPORT_CATEGORY']
 
 def save_items_to_db():
     with open(FILE_TO_IMPORT_ITEMS, 'rb') as f:
-        # TODO удалять первую строку csv, так как это описание
         reader = csv.reader(f, dialect='excel', delimiter=';', escapechar='\\')
         for row in reader:
             if row[0][:1] != '^':  # Проверка на первую линию.
