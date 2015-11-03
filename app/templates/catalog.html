@@ -49,9 +49,12 @@
                     {# Этот кусок должен фильтровать товары, который есть внутри #}
                     {% for item in items_from_child_category(i['name']) -%}
                         <a href="{{category_page['slug']}}/{{ item['slug'] }}"><div class="box-items">
+
                             {%set path_to_img = 'items/' + item['img'][0]['filename']%}
                             {%set thumb = path_to_img|thumbnail('145x150')%}
-                            <img src="{{ thumb }}">
+                            <div class="wrap-img">
+                                <img src="{{ thumb }}">
+                            </div>
                             <div class="list-item-text">
                               <h2>{{ item['name'] }}</h2>
                               <hr>
@@ -69,7 +72,9 @@
                     <a href="{{category_page['slug']}}/{{ item['slug'] }}"><div class="box-items">
                         {%set path_to_img = 'items/' + item['img'][0]['filename']%}
                         {%set thumb = path_to_img|thumbnail('145x150')%}
-                        <img src="{{ thumb }}">
+                        <div class="wrap-img">
+                            <img src="{{ thumb }}">
+                        </div>
                         <div class="list-item-text">
                           <h2>{{ item['name'] }}</h2>
                           <hr>
