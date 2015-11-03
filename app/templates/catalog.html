@@ -48,12 +48,13 @@
                     <hr>
                     {# Этот кусок должен фильтровать товары, который есть внутри #}
                     {% for item in items_from_child_category(i['name']) -%}
-                        <a href="{{category_page['slug']}}/{{ item['slug'] }}"><div class="box-category">
+                        <a href="{{category_page['slug']}}/{{ item['slug'] }}"><div class="box-items">
                             {%set path_to_img = 'items/' + item['img'][0]['filename']%}
-                            {%set thumb = path_to_img|thumbnail('170x245', crop='fit')%}
-                            <img src="{{ thumb }}" height="245" width="170">
+                            {%set thumb = path_to_img|thumbnail('145x150')%}
+                            <img src="{{ thumb }}">
                             <div class="list-item-text">
                               <h2>{{ item['name'] }}</h2>
+                              <hr>
                               <p>{{ item['body']|truncate(50) }}</p>
                             </div>
                         </div></a>
@@ -65,13 +66,14 @@
             ======================================= -#}
             {% else %}
                 {% for item in items_from_main_category() -%}
-                    <a href="{{category_page['slug']}}/{{ item['slug'] }}"><div class="box-category">
+                    <a href="{{category_page['slug']}}/{{ item['slug'] }}"><div class="box-items">
                         {%set path_to_img = 'items/' + item['img'][0]['filename']%}
-                        {%set thumb = path_to_img|thumbnail('170x245', crop='fit')%}
-                        <img src="{{ thumb }}" height="245" width="170">
+                        {%set thumb = path_to_img|thumbnail('145x150')%}
+                        <img src="{{ thumb }}">
                         <div class="list-item-text">
                           <h2>{{ item['name'] }}</h2>
-                          <p>{{ item['body']|truncate(50) }}</p>
+                          <hr>
+                          <p>{{ item['body']|truncate(40) }}</p>
                         </div>
                     </div></a>
                 {% endfor -%}
@@ -88,7 +90,7 @@
                 <a href="{{ c['slug'] }}"><div class="box-category">
                 {%set path_to_img = 'category/' + c['img'][0]['filename']%}
                 {%set thumb = path_to_img|thumbnail('170x245')%}
-                <img src="{{ thumb }}" height="245" width="170">
+                <img src="{{ thumb }}">
 
                 <div class="list-item-text">
                   <h2>{{ c['name'] }}</h2>

@@ -106,12 +106,12 @@ body {
 
 .content-box h1 {
     color: #545454;
-    font-size: 2.2em;
+    font-size: 2.1em;
 }
 
 .content-box h2 {
     color: #545454;
-    font-size: 2em;
+    font-size: 1.8em;
 }
 
 .content-box h3 {
@@ -286,6 +286,50 @@ body {
     padding-bottom: 0;
     color: #000;
 }
+/* Страница с товарами */
+
+.box-items {
+    width: 150px;
+    min-height: 240px;
+    height: 240px;
+    float: left;
+    margin: 0 40px 20px 0;
+    padding: 5px;
+    position: relative;
+    border: 1px solid #FFF;
+    border-radius: 5px;
+}
+
+.box-items hr {
+    margin: 0;
+    padding: 0;
+}
+
+.box-items:hover {
+    box-shadow: 0 0 .3em rgba(0,0,0,0.3);
+}
+.box-items .list-item-text {
+    vertical-align: bottom;
+    position: relative;
+    text-align: left;
+    margin: 0;
+    padding: 0;
+}
+
+.box-items h2 {
+    color: #545454;
+    font-size: 1em;
+    font-weight: normal;
+    margin: .35em 0 .1em 0;
+
+}
+.box-items p {
+    font-size: .74em;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    color: #000;
+}
+
 
 .footer {
     position: relative;
