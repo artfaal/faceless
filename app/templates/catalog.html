@@ -19,6 +19,8 @@
     –––––––––––––––––––––––––––––––––––––––––––––––––– -->
     <div class="content-box nine columns omega">
 
+        {# Если это страница товара
+        ======================================= -#}
         {% if item_page -%}
         <div class="five columns alpha">
             {%set path_to_img = 'content/items/' + item_page['img'][0]['filename']%}
@@ -30,20 +32,37 @@
             <hr>
             <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
         </div>
-
-
-        {# Здесь отрабатывает, если указана конкретная категория slug #}
+        {# Если это Категория
+        ======================================= -#}
         {% elif category_page -%}
-            {# Обозначаем имя этой категории #}
             <h1>{{category_page['name']}}</h1>
-            <p>{{category_page['body']}}</p>
-            {# Теперь итерируем дочерние категории в ней #}
-            {% for i in category_page['child_category']-%}
-                {# Выводим имена этих дочерних категорий #}
-                <h2>{{i['name']}}</h2>
-                <hr>
-                {# Этот кусок должен фильтровать товары, который есть внутри #}
-                {% for item in items_from_category(i['name']) -%}
+            <p>{{category_page['mini_description']}}</p>
+
+            {# Если это Категория с дочерними
+            ======================================= -#}
+            {%if category_page['child_category']|length > 0 %}
+                {# Теперь итерируем дочерние категории в ней #}
+                {% for i in category_page['child_category']-%}
+                    <h2>{{i['name']}}</h2>
+                    <hr>
+                    {# Этот кусок должен фильтровать товары, который есть внутри #}
+                    {% for item in items_from_child_category(i['name']) -%}
+                        <a href="{{category_page['slug']}}/{{ item['slug'] }}"><div class="box-category">
+                            {%set path_to_img = 'content/items/' + item['img'][0]['filename']%}
+                            <img src="{{ url_for('static', filename=path_to_img) }}" height="245" width="170">
+                            <div class="list-item-text">
+                              <h2>{{ item['name'] }}</h2>
+                              <p>{{ item['body']|truncate(50) }}</p>
+                            </div>
+                        </div></a>
+                    {% endfor -%}
+                    <div class="clear"></div>
+                {% endfor-%}
+
+            {# Если это Категория без дочерних
+            ======================================= -#}
+            {% else %}
+                {% for item in items_from_main_category() -%}
                     <a href="{{category_page['slug']}}/{{ item['slug'] }}"><div class="box-category">
                         {%set path_to_img = 'content/items/' + item['img'][0]['filename']%}
                         <img src="{{ url_for('static', filename=path_to_img) }}" height="245" width="170">
@@ -54,9 +73,9 @@
                     </div></a>
                 {% endfor -%}
                 <div class="clear"></div>
-            {% endfor-%}
-
-        {# Здесь базовая страница catalog #}
+            {% endif %}
+        {# Если это стартовая страница каталога
+        ======================================= -#}
         {% else-%}
             <h1>Каталог</h1>
             {% for c in category() -%}
@@ -70,8 +89,6 @@
                 </div></a>
             {% endfor -%}
         {% endif %}
-
-        {# Здесь обрабатывается, если указан товар #}
 
     </div>
     <!-- Main Fraim End
