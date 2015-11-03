@@ -3,34 +3,38 @@ import csv
 import sys
 from app import mongo, app
 from validators import *
+import os
 
 # Trick for normal unicode symbols
 reload(sys)
 sys.setdefaultencoding("utf-8")
 
 # Предобработка csv файлов
-FILE_TO_IMPORT_ITEMS = app.config['FILE_TO_IMPORT_ITEMS']
+# FILE_TO_IMPORT_ITEMS = app.config['FILE_TO_IMPORT_ITEMS']
 FILE_TO_IMPORT_CATEGORY = app.config['FILE_TO_IMPORT_CATEGORY']
+TMP_PATH = app.config['TMP_PATH']
 
 
 def save_items_to_db():
-    with open(FILE_TO_IMPORT_ITEMS, 'rb') as f:
-        reader = csv.reader(f, dialect='excel', delimiter=';', escapechar='\\')
-        for row in reader:
-            if row[0][:1] != '^':  # Проверка на первую линию.
-                add = mongo.Items()
-                add['name'] = row[0]
-                add['slug'] = transliterate(row[0])
-                add['main_category'] = row[1]
-                add['child_category'] = row[2]
-                add['body'] = row[3]
-                add['meta_keywords'] = row[4]
-                add['meta_description'] = row[5]
-                add['img'] = pars_img_doc_video(row[6])
-                add['video'] = pars_img_doc_video(row[7])
-                add['doc'] = pars_img_doc_video(row[8])
-                add['position'] = int_or_0(row[9])
-                add.save()
+    files = get_items_csv()
+    for file in files:
+        with open(os.path.join(TMP_PATH, file), 'rb') as f:
+            reader = csv.reader(f, dialect='excel', delimiter=';', escapechar='\\')
+            for row in reader:
+                if row[0][:1] != '^':  # Проверка на первую линию.
+                    add = mongo.Items()
+                    add['name'] = row[0]
+                    add['slug'] = transliterate(row[0])
+                    add['main_category'] = row[1]
+                    add['child_category'] = row[2]
+                    add['body'] = row[3]
+                    add['meta_keywords'] = row[4]
+                    add['meta_description'] = row[5]
+                    add['img'] = pars_img_doc_video(row[6])
+                    add['video'] = pars_img_doc_video(row[7])
+                    add['doc'] = pars_img_doc_video(row[8])
+                    add['position'] = int_or_0(row[9])
+                    add.save()
 
 
 def save_category_to_db():
@@ -108,24 +112,24 @@ def pars_img_doc_video(input):
     return result
 
 
-def check_category():
-    # Вспомогательная функция, что бы визуально посмотреть,
-    # какие категории есть у товаров
-    with open(FILE_TO_IMPORT_ITEMS, 'rb') as f:
-        reader = csv.reader(f, dialect='excel', delimiter=';')
-        list_of_cat = []
-        count_of_items = 0
-        for row in reader:
-            count_of_items += 1
-            if row[1] not in list_of_cat:
-                list_of_cat.append(row[1])
+# def check_category():
+#     # Вспомогательная функция, что бы визуально посмотреть,
+#     # какие категории есть у товаров
+#     with open(FILE_TO_IMPORT_ITEMS, 'rb') as f:
+#         reader = csv.reader(f, dialect='excel', delimiter=';')
+#         list_of_cat = []
+#         count_of_items = 0
+#         for row in reader:
+#             count_of_items += 1
+#             if row[1] not in list_of_cat:
+#                 list_of_cat.append(row[1])
 
-            elif row[2] not in list_of_cat:
-                list_of_cat.append(row[2])
+#             elif row[2] not in list_of_cat:
+#                 list_of_cat.append(row[2])
 
-        for i in list_of_cat:
-            print i
-        print '=' * 40 + '\n Всего полей просканированно: %s' % count_of_items
+#         for i in list_of_cat:
+#             print i
+#         print '=' * 40 + '\n Всего полей просканированно: %s' % count_of_items
 
 
 def check_item_in_category():
@@ -162,3 +166,11 @@ def check_item_in_category():
     for i in list_of_cat_in_items:
         if i not in list_of_all_category:
             print '%s not in category at all!' % i
+
+
+def get_items_csv():
+    list_of_files = []
+    for file in os.listdir(TMP_PATH):
+        if file.endswith(".csv") and not file.endswith("Category.csv"):
+            list_of_files.append(file)
+    return list_of_files
