@@ -111,9 +111,13 @@ body {
 
 .content-box h2 {
     color: #545454;
-    font-size: 1.7em;
+    font-size: 2em;
 }
 
+.content-box h3 {
+    color: #545454;
+    font-size: 1.4em;
+}
 .navigation {
     display: block;
     position: absolute;

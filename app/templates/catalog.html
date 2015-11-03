@@ -74,7 +74,9 @@
                 {% endfor -%}
                 <div class="clear"></div>
             {% endif %}
-        <p>{{category_page['body']}}</p>
+        <hr>
+        <h3>Описание категории:</h3>
+        <p>{{category_page['body']|markdown}}</p>
         {# Если это стартовая страница каталога
         ======================================= -#}
         {% else-%}
