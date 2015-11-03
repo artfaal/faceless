@@ -19,6 +19,7 @@ wheel==0.24.0
 pyyaml
 xlrd
 Flask-Markdown
+git+https://github.com/SilentSokolov/flask-thumbnails.git
 # Пакет, который крешится на Linux
 #gnureadline==6.3.3
 
