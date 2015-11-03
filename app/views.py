@@ -37,17 +37,20 @@ def catalog(category_slug=None, item_slug=None):
     elif category_page:
         def items_from_child_category(child):
             return items.find({'main_category': category_page['name'],
-                               'child_category': child})
+                               'child_category': child}).sort('position')
 
         def items_from_main_category():
-            return items.find({'main_category': category_page['name']})
+            return items.find({'main_category':
+                               category_page['name']}).sort('position')
 
         return render_template('catalog.html',
                                category=category,
                                category_slug=category_slug,
                                category_page=category_page,
-                               items_from_child_category=items_from_child_category,
-                               items_from_main_category=items_from_main_category)
+                               items_from_child_category=
+                               items_from_child_category,
+                               items_from_main_category=
+                               items_from_main_category)
     #  Значит catalog/
     else:
         return render_template('catalog.html',

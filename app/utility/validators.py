@@ -38,7 +38,7 @@ def max_length(length):
 
 
 def int_or_0(input):
-    if input != int:
-        return None
-    else:
-        return 0
+        try:
+            return int(input)
+        except:
+            return None
