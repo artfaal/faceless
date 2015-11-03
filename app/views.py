@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from app import app
-from flask import render_template
+from flask import render_template, send_from_directory
 from models import DB
 
 
@@ -54,3 +54,13 @@ def catalog(category_slug=None, item_slug=None):
                                category=category,
                                category_slug=category_slug,
                                category_page=category_page)
+
+
+@app.route('/img/<path:filename>')
+def img(filename):
+    return send_from_directory(app.config['MEDIA_FOLDER'], filename)
+
+
+@app.route('/cache/<path:filename>')
+def cache(filename):
+    return send_from_directory(app.config['MEDIA_THUMBNAIL_FOLDER'], filename)

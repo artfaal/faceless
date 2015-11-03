@@ -55,9 +55,10 @@
                       <!-- Пункны навигации
                       –––––––––––––––––––––––––––––––––––––––––––––––––– -->
                       {% for c in category() %}
-                        {%set path_to_img = 'content/category/' + c['img'][0]['filename']%}
+                        {% set path_to_img = 'category/' + c['img'][0]['filename'] %}
+                        {% set thumb = path_to_img|thumbnail('70x50') %}
                         <div class="nav-element">
-                          <img src="{{ url_for('static', filename=path_to_img) }}" height="70" width="50">
+                          <img src="{{ thumb }}" height="70" width="50">
                           <div class="body-of-the-element">
                             <span class=header-of-the-element>{{ c['name'] }}</span>
                             <br>
