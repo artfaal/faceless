@@ -2,28 +2,16 @@
 <html lang="ru">
 <head>
 
-  <!-- Basic Page Needs
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <meta charset="utf-8">
   <title>{% block title -%}{% endblock -%}</title>
   <meta name="description" content="{% block description -%}{% endblock -%}">
-    <meta name="keywords" content="{% block keywords -%}{% endblock -%}">
-
-  <!-- Mobile Specific Metas
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="keywords" content="{% block keywords -%}{% endblock -%}">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- FONT
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-
-
-  <!-- CSS
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <link rel="stylesheet" href="{{ url_for('static', filename='assets/vendor/skeleton/normalize.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='assets/vendor/skeleton/skeleton.css') }}">
 
-    <!-- Include the basic styles for slider -->
-    <link type="text/css" rel="Stylesheet" href="{{ url_for('static', filename='assets/vendor/basic-jquery-slider/bjqs.css') }}" />
+  <link type="text/css" rel="Stylesheet" href="{{ url_for('static', filename='assets/vendor/basic-jquery-slider/bjqs.css') }}" />
   <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/main.css') }}">
 
   <!-- Favicon
@@ -40,20 +28,18 @@
         <div class="row">
           <div class="content-header twelve columns">
             <img class="logo-content-header" src="{{ url_for('static', filename='assets/img/content-header-eos-logo-rus.png') }}" alt="EOS-Премиум-СПА Технологии" height="127" width="206">
-            <!-- Navigation
-            –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+            {# Navigation
+            ======================================= -#}
             <div class="navigation">
                 <ul>
-                <!-- Раскрыващееся меню реализовал через классы css искать строчку в css 'Отдельный стек ...' -->
-                  <li id="NavOfenHover"><a href="#" title="">Ofen-Finder</a>
-
-                  </li>
-
+                  {# Раскрыващееся меню реализовал через классы css искать строчку в css 'Отдельный стек...'
+                  ======================================= -#}
+                  <li id="NavOfenHover"><a href="#" title="">Ofen-Finder</a></li>
                   <li id="nav-card-menu-hover"><a href="#" title="">Товары</a>
                     <div class="second-lvl-nav" id="nav-card-menu">
-
-                      <!-- Пункны навигации
-                      –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+                      {# Раскрываем пункты навигации
+                      ======================================= -#}
                       {% for c in category() %}
                         {% set path_to_img = 'category/' + c['img'][0]['filename'] %}
                         {% set thumb = path_to_img|thumbnail('70x50') %}
@@ -75,8 +61,8 @@
                   <li id="nav-service-menu-hover"><a href="#" title="">Сервисный центр</a>
                     <div class="second-lvl-nav" id="nav-service-menu">
 
-                      <!-- Пункны навигации
-                      –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+                      {# Пункты навигации
+                      ======================================= -#}
                       <div class="nav-element">
                         <img src="holder.js/70x70?random=yes">
                         <div class="body-of-the-element">
@@ -112,8 +98,8 @@
                   <li id="nav-info-menu-hover"><a href="#" title="">Полезная информация</a>
                     <div class="second-lvl-nav" id="nav-info-menu">
 
-                      <!-- Пункны навигации
-                      –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+                      {# Пункты навигации
+                      ======================================= -#}
                       <div class="nav-element">
                         <img src="holder.js/70x70?random=yes">
                         <div class="body-of-the-element">
@@ -148,8 +134,8 @@
                   <li id="nav-company-menu-hover"><a href="#" title="">Компания</a>
                     <div class="second-lvl-nav" id="nav-company-menu">
 
-                      <!-- Пункны навигации
-                      –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+                      {# Пункты навигации
+                      ======================================= -#}
                       <div class="nav-element">
                         <img src="holder.js/70x70?random=yes">
                         <div class="body-of-the-element">
@@ -184,8 +170,8 @@
                   <li id="nav-contacts-menu-hover"><a href="#" title="">Контакты</a>
                     <div class="second-lvl-nav" id="nav-contacts-menu">
 
-                      <!-- Пункны навигации
-                      –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+                      {# Пункты навигации
+                      ======================================= -#}
                       <div class="nav-element">
                         <img src="holder.js/70x70?random=yes">
                         <div class="body-of-the-element">
@@ -224,8 +210,8 @@
       {% endblock-%}
 
     {% block content -%}
-      <!-- SideBar Begin
-      –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+      {# Sidebar begin
+      ======================================= -#}
       {% block sidebar_item -%}
         <div class="side-menu three columns">
 
@@ -241,13 +227,13 @@
         </ul>
         </div>
       {% endblock-%}
-      <!-- SideBar End
-      –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+      {# Sidebar End
+      ======================================= -#}
     {% endblock -%}
 
 
-  <!-- Footer Begin
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  {# Footer begin
+  ======================================= -#}
   <div class="footer row">
     <div class="left-footer-menu two columns">
     <ul>
@@ -284,17 +270,17 @@
       </p>
     </div>
   </div>
-  <!-- Footer End
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  {# Footer end
+  ======================================= -#}
   {# End big container #}
   </div>
 
 
-  <!-- Scripts
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  {# Scripts
+  ======================================= -#}
   <script src="{{ url_for('static', filename='assets/vendor/holder-js/holder.js') }}"></script>
 
-  <!-- End Document
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  {# End Docement
+  ======================================= -#}
 </body>
 </html>
