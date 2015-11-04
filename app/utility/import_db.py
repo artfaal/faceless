@@ -12,13 +12,15 @@ sys.setdefaultencoding("utf-8")
 # Предобработка csv файлов
 FILE_TO_IMPORT_CATEGORY = app.config['FILE_TO_IMPORT_CATEGORY']
 TMP_PATH = app.config['TMP_PATH']
+NAME_CAT_CSV = app.config['CATEGORY_CSV_FILENAME_END']
 
 
 def save_items_to_db():
     files = get_items_csv()
     for file in files:
         with open(os.path.join(TMP_PATH, file), 'rb') as f:
-            reader = csv.reader(f, dialect='excel', delimiter=';', escapechar='\\')
+            reader = csv.reader(f, dialect='excel', delimiter=';',
+                                escapechar='\\')
             for row in reader:
                 if row[0][:1] != '^':  # Проверка на первую линию.
                     add = mongo.Items()
@@ -50,7 +52,8 @@ def save_category_to_db():
     И так далее, пока опять не попадается родительная категория и там заново
     срабатывает класс Category, который обнуляет все значения и пишет по новой.
     """
-    category_position = 10  # Создаем, что бы упорядочить их по мере итерации.
+    # Создаем, что бы упорядочить их по мере итерации.
+    category_position = 10
     with open(FILE_TO_IMPORT_CATEGORY, 'rb') as f:
         reader = csv.reader(f, dialect='excel', delimiter=';', escapechar='\\')
         for row in reader:
@@ -82,7 +85,8 @@ def save_category_to_db():
                                                   'body': row[3],
                                                   'meta_keywords': row[4],
                                                   'meta_description': row[5],
-                                                  'img': pars_img_doc_video(row[6])
+                                                  'img':
+                                                  pars_img_doc_video(row[6])
                                                   })
                     category_position += 10
                     add.save()
@@ -107,13 +111,15 @@ def pars_img_doc_video(input):
                            'position': position})
             position += 1
         except IndexError:
-            print 'Error! Check first line in CSV file'
+            print '_' * 40, 'Проблемы с этим выражением: \n', input, '_' * 40
     return result
 
 
 def get_items_csv():
+    #  Эта функция собирает все фалы из папки в список, кроме той,
+    #  в которой лежат категории.
     list_of_files = []
     for file in os.listdir(TMP_PATH):
-        if file.endswith(".csv") and not file.endswith("Category.csv"):
+        if file.endswith(".csv") and not file.endswith(NAME_CAT_CSV):
             list_of_files.append(file)
     return list_of_files

@@ -68,6 +68,7 @@ def img(filename):
 def doc(filename):
     return send_from_directory(app.config['DOC_FOLDER'], filename)
 
+
 @app.route('/cache/<path:filename>')
 def cache(filename):
     return send_from_directory(app.config['MEDIA_THUMBNAIL_FOLDER'], filename)
