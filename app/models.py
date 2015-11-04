@@ -36,9 +36,6 @@ class Items(Document):
         'meta_description': basestring,
         'body': basestring,
         'date_creation': datetime.datetime,
-        # Сдесь сделал так, что у товара есть только одна категория.
-        # Если нужно сделать так, что бы товар был в нескольких категориях
-        # То нужно сделать это значение в виде листа. ex.: 'category': list
         'main_category': basestring,
         'child_category': basestring,
         'img': [
