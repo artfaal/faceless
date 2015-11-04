@@ -111,7 +111,8 @@ def pars_img_doc_video(input):
                            'position': position})
             position += 1
         except IndexError:
-            print '_' * 40, 'Проблемы с этим выражением: \n', input, '_' * 40
+            print '_' * 10, '\n', '\n Проблемы с этим выражением: \n', \
+                  input, '\n'
     return result
 
 
