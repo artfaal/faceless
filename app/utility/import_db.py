@@ -10,7 +10,6 @@ reload(sys)
 sys.setdefaultencoding("utf-8")
 
 # Предобработка csv файлов
-# FILE_TO_IMPORT_ITEMS = app.config['FILE_TO_IMPORT_ITEMS']
 FILE_TO_IMPORT_CATEGORY = app.config['FILE_TO_IMPORT_CATEGORY']
 TMP_PATH = app.config['TMP_PATH']
 
@@ -110,62 +109,6 @@ def pars_img_doc_video(input):
         except IndexError:
             print 'Error! Check first line in CSV file'
     return result
-
-
-# def check_category():
-#     # Вспомогательная функция, что бы визуально посмотреть,
-#     # какие категории есть у товаров
-#     with open(FILE_TO_IMPORT_ITEMS, 'rb') as f:
-#         reader = csv.reader(f, dialect='excel', delimiter=';')
-#         list_of_cat = []
-#         count_of_items = 0
-#         for row in reader:
-#             count_of_items += 1
-#             if row[1] not in list_of_cat:
-#                 list_of_cat.append(row[1])
-
-#             elif row[2] not in list_of_cat:
-#                 list_of_cat.append(row[2])
-
-#         for i in list_of_cat:
-#             print i
-#         print '=' * 40 + '\n Всего полей просканированно: %s' % count_of_items
-
-
-def check_item_in_category():
-    """
-    Простая функция, которая проверяет все категории в items,
-    на предмет их нахождения в коллекции категорий.
-    Пробегается по всем категориям, включая дочерние.
-    """
-    # TODO переделать проверку под main и child
-    raw_items = mongo.test.items.find()
-    raw_category = mongo.test.category.find()
-    list_of_cat_in_items = []
-    list_of_all_category = []
-    print '_'*40
-
-    for i in raw_items:
-        if i['category'] not in list_of_cat_in_items:
-            list_of_cat_in_items.append(i['category'])
-    for i in list_of_cat_in_items:
-        print i
-    print '_'*40
-
-    for i in raw_category:
-        if i['name'] not in list_of_all_category:
-            list_of_all_category.append(i['name'])
-
-        if i['child_category'] > 0:
-            for b in i['child_category']:
-                if b['name'] not in list_of_all_category:
-                    list_of_all_category.append(b['name'])
-    for i in list_of_all_category:
-        print i
-    print '_'*40
-    for i in list_of_cat_in_items:
-        if i not in list_of_all_category:
-            print '%s not in category at all!' % i
 
 
 def get_items_csv():
