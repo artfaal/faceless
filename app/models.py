@@ -16,6 +16,8 @@ class DB:
 
         elif param == 'items':
             return self.db[app.config['ITEM_COLLECTION']]
+        else:
+            raise Exception('Collection "%s" is not registered' % param)
 
 
 @mongo.register
