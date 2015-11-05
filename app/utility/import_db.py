@@ -11,8 +11,11 @@ sys.setdefaultencoding("utf-8")
 
 # Предобработка csv файлов
 FILE_TO_IMPORT_CATEGORY = app.config['FILE_TO_IMPORT_CATEGORY']
+FILE_TO_IMPORT_PAGES = app.config['FILE_TO_IMPORT_PAGES']
 TMP_PATH = app.config['TMP_PATH']
 NAME_CAT_CSV = app.config['CATEGORY_CSV_FILENAME_END']
+NAME_PAGE_CSV = app.config['NAME_PAGE_CSV']
+
 
 
 def save_items_to_db():
@@ -92,6 +95,25 @@ def save_category_to_db():
                     add.save()
 
 
+def save_pages_to_db():
+    with open(FILE_TO_IMPORT_PAGES, 'rb') as f:
+        reader = csv.reader(f, dialect='excel', delimiter=';',
+                            escapechar='\\')
+        for row in reader:
+            if row[0][:1] != '^':  # Проверка на первую линию.
+                add = mongo.Pages()
+                add['section'] = row[0]
+                add['name'] = row[1]
+                add['slug'] = transliterate(row[1])
+                add['body'] = row[2]
+                add['meta_keywords'] = row[3]
+                add['meta_description'] = row[4]
+                add['mini_description'] = row[4]
+                add['img'] = pars_img_doc_video(row[5])
+                add['position'] = int_or_0(row[6])
+                add.save()
+
+
 def pars_img_doc_video(input):
     # ex = "34_a.jpg$печь для сауны EOS 34 A&thermat.jpg$Для сауны EOS Thermat&"
     # Парсим участки с изображениями, видео и документами
@@ -119,8 +141,9 @@ def pars_img_doc_video(input):
 def get_items_csv():
     #  Эта функция собирает все фалы из папки в список, кроме той,
     #  в которой лежат категории.
+    #  TODO Зарефакторить. А то какая-то жесть.
     list_of_files = []
     for file in os.listdir(TMP_PATH):
-        if file.endswith(".csv") and not file.endswith(NAME_CAT_CSV):
-            list_of_files.append(file)
+        if file.endswith(".csv") and not file.endswith(NAME_CAT_CSV) and not file.endswith(NAME_PAGE_CSV):
+                    list_of_files.append(file)
     return list_of_files

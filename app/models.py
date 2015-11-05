@@ -16,6 +16,8 @@ class DB:
 
         elif param == 'items':
             return self.db[app.config['ITEM_COLLECTION']]
+        elif param == 'pages':
+            return self.db[app.config['PAGES_COLLECTION']]
         else:
             raise Exception('Collection "%s" is not registered' % param)
 
@@ -145,4 +147,35 @@ class Category(Document):
     validators = {
         # 'meta_keywords': max_length(200),
         # 'meta_description': max_length(200)
+    }
+
+
+@mongo.register
+class Pages(Document):
+    __database__ = app.config['DB']
+    __collection__ = app.config['PAGES_COLLECTION']
+
+    structure = {
+        'name': basestring,
+        'slug': basestring,
+        'position': int,
+        'meta_keywords': basestring,
+        'meta_description': basestring,
+        'mini_description': basestring,
+        'body': basestring,
+        'date_creation': datetime.datetime,
+        'section': basestring,
+        'img': [
+            {
+                'filename': basestring,
+                'alt': basestring,
+                'position': int
+            }
+        ],
+    }
+
+    required_fields = []
+    default_values = {
+        'date_creation': datetime.datetime.utcnow,
+        'position': 0
     }
