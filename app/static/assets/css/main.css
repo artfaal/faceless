@@ -182,7 +182,7 @@ body {
     display: none;
 }
 #nav-service-menu-hover:hover #nav-service-menu {
-    left: 0;
+    right: 0;
     display: block;
 }
 
