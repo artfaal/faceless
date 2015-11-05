@@ -26,7 +26,7 @@
         <div class="five columns alpha">
             {%set path_to_img = 'items/' + item_page['img'][0]['filename']%}
             {%set thumb = path_to_img|thumbnail('280x417')%}
-            <img src="{{ thumb }}" height="417" width="280">
+            <img src="{{ thumb }}">
         </div>
         <div class="">
             <h1>{{ item_page['name'] }}</h1>

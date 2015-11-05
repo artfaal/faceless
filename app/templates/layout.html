@@ -27,7 +27,7 @@
       {% block nav -%}
         <div class="row">
           <div class="content-header twelve columns">
-            <img class="logo-content-header" src="{{ url_for('static', filename='assets/img/content-header-eos-logo-rus.png') }}" alt="EOS-Премиум-СПА Технологии" height="167" width="270">
+            <a href="{{url_for('catalog')}}" title="Каталог продукции"><img class="logo-content-header" src="{{ url_for('static', filename='assets/img/content-header-eos-logo-rus.png') }}" alt="EOS-Премиум-СПА Технологии" height="167" width="270"></a>
 
             {# Navigation
             ======================================= -#}
@@ -58,114 +58,66 @@
 
                   </li>
 
-                  <li id="nav-service-menu-hover"><a href="#" title="">Сервисный центр</a>
+                  <li id="nav-service-menu-hover"><a href="#" title="">Сервисное обслуживание</a>
                     <div class="second-lvl-nav" id="nav-service-menu">
-
                       {# Пункты навигации
                       ======================================= -#}
-                      <div class="nav-element">
-                        <img src="holder.js/70x70?random=yes">
-                        <div class="body-of-the-element">
-                          <span class=header-of-the-element>Супер печи</span>
-                          <br>
-                          <span class=element-description>Наслаждайтесь положительными эмоциями, которые неизменно вызовет от цветного освещения.
-                          </span>
+                      {% for p in pages() %}
+                        {% if p['section'] == 'Сервисное обслуживание'%}
+                        <div class="nav-element">
+                          <img src="holder.js/70x70?random=yes">
+                          <div class="body-of-the-element">
+                            <span class=header-of-the-element>{{p['name']}}</span>
+                            <br>
+                            <span class=element-description>{{p['mini_description']}}
+                            </span>
+                          </div>
                         </div>
-                      </div>
-
-                      <div class="nav-element">
-                        <img src="holder.js/70x70?random=yes">
-                        <div class="body-of-the-element">
-                          <span class=header-of-the-element>Супер печи</span>
-                          <br>
-                          <span class=element-description>Наслаждайтесь положительными эмоциями, которые неизменно вызовет от цветного освещения.
-                          </span>
-                        </div>
-                      </div>
-
-                      <div class="nav-element">
-                        <img src="holder.js/70x70?random=yes">
-                        <div class="body-of-the-element">
-                          <span class=header-of-the-element>Супер печи</span>
-                          <br>
-                          <span class=element-description>Наслаждайтесь положительными эмоциями, которые неизменно вызовет от цветного освещения.
-                          </span>
-                        </div>
-                      </div>
+                        {% endif %}
+                      {% endfor %}
                     </div>
                   </li>
 
 
                   <li id="nav-company-menu-hover"><a href="#" title="">Компания</a>
                     <div class="second-lvl-nav" id="nav-company-menu">
-
                       {# Пункты навигации
                       ======================================= -#}
-                      <div class="nav-element">
-                        <img src="holder.js/70x70?random=yes">
-                        <div class="body-of-the-element">
-                          <span class=header-of-the-element>Супер печи</span>
-                          <br>
-                          <span class=element-description>Наслаждайтесь положительными эмоциями, которые неизменно вызовет от цветного освещения.
-                          </span>
+                      {% for p in pages() %}
+                        {% if p['section'] == 'Компания'%}
+                        <div class="nav-element">
+                          <img src="holder.js/70x70?random=yes">
+                          <div class="body-of-the-element">
+                            <span class=header-of-the-element>{{p['name']}}</span>
+                            <br>
+                            <span class=element-description>{{p['mini_description']}}
+                            </span>
+                          </div>
                         </div>
-                      </div>
-
-                      <div class="nav-element">
-                        <img src="holder.js/70x70?random=yes">
-                        <div class="body-of-the-element">
-                          <span class=header-of-the-element>Супер печи</span>
-                          <br>
-                          <span class=element-description>Наслаждайтесь положительными эмоциями, которые неизменно вызовет от цветного освещения.
-                          </span>
-                        </div>
-                      </div>
-
-                      <div class="nav-element">
-                        <img src="holder.js/70x70?random=yes">
-                        <div class="body-of-the-element">
-                          <span class=header-of-the-element>Супер печи</span>
-                          <br>
-                          <span class=element-description>Наслаждайтесь положительными эмоциями, которые неизменно вызовет от цветного освещения.
-                          </span>
-                        </div>
-                      </div>
+                        {% endif %}
+                      {% endfor %}
                     </div>
                   </li>
+
                   <li id="nav-contacts-menu-hover"><a href="#" title="">Контакты</a>
                     <div class="second-lvl-nav" id="nav-contacts-menu">
 
                       {# Пункты навигации
                       ======================================= -#}
-                      <div class="nav-element">
-                        <img src="holder.js/70x70?random=yes">
-                        <div class="body-of-the-element">
-                          <span class=header-of-the-element>Супер печи</span>
-                          <br>
-                          <span class=element-description>Наслаждайтесь положительными эмоциями, которые неизменно вызовет от цветного освещения.
-                          </span>
+                      {% for p in pages() %}
+                        {% if p['section'] == 'Контакты'%}
+                        <div class="nav-element">
+                          <img src="holder.js/70x70?random=yes">
+                          <div class="body-of-the-element">
+                            <span class=header-of-the-element>{{p['name']}}</span>
+                            <br>
+                            <span class=element-description>{{p['mini_description']}}
+                            </span>
+                          </div>
                         </div>
-                      </div>
+                        {% endif %}
+                      {% endfor %}
 
-                      <div class="nav-element">
-                        <img src="holder.js/70x70?random=yes">
-                        <div class="body-of-the-element">
-                          <span class=header-of-the-element>Супер печи</span>
-                          <br>
-                          <span class=element-description>Наслаждайтесь положительными эмоциями, которые неизменно вызовет от цветного освещения.
-                          </span>
-                        </div>
-                      </div>
-
-                      <div class="nav-element">
-                        <img src="holder.js/70x70?random=yes">
-                        <div class="body-of-the-element">
-                          <span class=header-of-the-element>Супер печи</span>
-                          <br>
-                          <span class=element-description>Наслаждайтесь положительными эмоциями, которые неизменно вызовет от цветного освещения.
-                          </span>
-                        </div>
-                      </div>
                     </div>
                   </li>
                 </ul>

@@ -17,11 +17,14 @@ def catalog(category_slug=None, item_slug=None):
     db = DB()
     cat = db.get_db('cat')
     items = db.get_db('items')
+    p = db.get_db('pages')
 
     #  Функия для вомзможности множественного вызова внутри страницы.
     def category():
         return cat.find().sort('position')
 
+    def pages():
+        return p.find().sort('position')
     #  Получаем значения
     item_page = items.find_one({'slug': item_slug})
     category_page = cat.find_one({'slug': category_slug})
@@ -32,7 +35,8 @@ def catalog(category_slug=None, item_slug=None):
                                category=category,
                                category_slug=category_slug,
                                category_page=category_page,
-                               item_page=item_page)
+                               item_page=item_page,
+                               pages=pages)
     #  Страница категории?
     elif category_page:
         def items_from_child_category(child):
@@ -50,13 +54,15 @@ def catalog(category_slug=None, item_slug=None):
                                items_from_child_category=
                                items_from_child_category,
                                items_from_main_category=
-                               items_from_main_category)
+                               items_from_main_category,
+                               pages=pages)
     #  Значит catalog/
     else:
         return render_template('catalog.html',
                                category=category,
                                category_slug=category_slug,
-                               category_page=category_page)
+                               category_page=category_page,
+                               pages=pages)
 
 
 @app.route('/img/<path:filename>')
