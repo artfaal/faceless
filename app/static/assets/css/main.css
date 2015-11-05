@@ -299,10 +299,18 @@ body {
     border: 1px solid #FFF;
     border-radius: 5px;
 }
+
 .box-items .wrap-img {
     min-height: 150px;
+}
+
+.box-items .wrap-img img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 
 }
+
 .box-items hr {
     margin: 0;
     padding: 0;
