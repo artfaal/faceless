@@ -42,7 +42,7 @@
             {% endif %}
             <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
         </div>
-        {# Если это Категория
+        {# Если это Категория c дочерними категориями
         ======================================= -#}
         {% elif category_page -%}
             <h1>{{category_page['name']}}</h1>
@@ -67,7 +67,7 @@
                             <div class="list-item-text">
                               <h2>{{ item['name'] }}</h2>
                               <hr>
-                              <p>{{ item['body']|truncate(50) }}</p>
+                              <p>{{ item['body']|truncate(50)|replace('**', '')|replace('*', '')|replace('##', '')|replace('###', '')}}</p>
                             </div>
                         </div></a>
                     {% endfor -%}
@@ -87,14 +87,14 @@
                         <div class="list-item-text">
                           <h2>{{ item['name'] }}</h2>
                           <hr>
-                          <p>{{ item['body']|truncate(40) }}</p>
+                          <p>{{ item['body']|truncate(40)|replace('**', '')|replace('*', '')|replace('##', '')|replace('###', '')}}</p>
                         </div>
                     </div></a>
                 {% endfor -%}
                 <div class="clear"></div>
             {% endif %}
         <hr>
-        <h3>Описание категории:</h3>
+        <h3>Описание категории</h3>
         <p>{{category_page['body']|markdown}}</p>
         {# Если это стартовая страница каталога
         ======================================= -#}
