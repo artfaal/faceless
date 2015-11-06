@@ -11,15 +11,7 @@ class DB:
         self.db = mongo[app.config['DB']]
 
     def get_db(self, param):
-        if param == 'cat':
-            return self.db[app.config['CATEGORY_COLLECTION']]
-
-        elif param == 'items':
-            return self.db[app.config['ITEM_COLLECTION']]
-        elif param == 'pages':
-            return self.db[app.config['PAGES_COLLECTION']]
-        else:
-            raise Exception('Collection "%s" is not registered' % param)
+        return getattr(self.db, param)
 
 
 @mongo.register

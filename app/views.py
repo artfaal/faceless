@@ -15,9 +15,9 @@ def index():
 @app.route('/catalog/<category_slug>/<item_slug>', methods=['GET'])
 def catalog(category_slug=None, item_slug=None):
     db = DB()
-    cat = db.get_db('cat')
-    items = db.get_db('items')
-    p = db.get_db('pages')
+    cat = db.get_db(app.config['CATEGORY_COLLECTION'])
+    items = db.get_db(app.config['ITEM_COLLECTION'])
+    p = db.get_db(app.config['PAGES_COLLECTION'])
 
     #  Функия для вомзможности множественного вызова внутри страницы.
     def category():
