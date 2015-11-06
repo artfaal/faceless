@@ -7,7 +7,20 @@ from models import DB
 @app.route('/', methods=['GET'])
 @app.route('/index/', methods=['GET'])
 def index():
-    return render_template('index.html')
+    db = DB()
+    cat = db.get_db(app.config['CATEGORY_COLLECTION'])
+    p = db.get_db(app.config['PAGES_COLLECTION'])
+
+    #  Функия для вомзможности множественного вызова внутри страницы.
+    def category():
+        return cat.find().sort('position')
+
+    def pages():
+        return p.find().sort('position')
+
+    return render_template('index.html',
+                           category=category,
+                           pages=pages)
 
 
 @app.route('/catalog/', methods=['GET'])
