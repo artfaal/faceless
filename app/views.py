@@ -3,21 +3,25 @@ from app import app
 from flask import render_template, send_from_directory
 from models import DB
 
+# CONSTANT
+db = DB()
+cat = db.get_db(app.config['CATEGORY_COLLECTION'])
+p = db.get_db(app.config['PAGES_COLLECTION'])
+items = db.get_db(app.config['ITEM_COLLECTION'])
+
+
+#  Функия для вомзможности множественного вызова внутри страницы.
+def category():
+    return cat.find().sort('position')
+
+
+def pages():
+    return p.find().sort('position')
+
 
 @app.route('/', methods=['GET'])
 @app.route('/index/', methods=['GET'])
 def index():
-    db = DB()
-    cat = db.get_db(app.config['CATEGORY_COLLECTION'])
-    p = db.get_db(app.config['PAGES_COLLECTION'])
-
-    #  Функия для вомзможности множественного вызова внутри страницы.
-    def category():
-        return cat.find().sort('position')
-
-    def pages():
-        return p.find().sort('position')
-
     return render_template('index.html',
                            category=category,
                            pages=pages)
@@ -27,17 +31,6 @@ def index():
 @app.route('/catalog/<category_slug>', methods=['GET'])
 @app.route('/catalog/<category_slug>/<item_slug>', methods=['GET'])
 def catalog(category_slug=None, item_slug=None):
-    db = DB()
-    cat = db.get_db(app.config['CATEGORY_COLLECTION'])
-    items = db.get_db(app.config['ITEM_COLLECTION'])
-    p = db.get_db(app.config['PAGES_COLLECTION'])
-
-    #  Функия для вомзможности множественного вызова внутри страницы.
-    def category():
-        return cat.find().sort('position')
-
-    def pages():
-        return p.find().sort('position')
     #  Получаем значения
     item_page = items.find_one({'slug': item_slug})
     category_page = cat.find_one({'slug': category_slug})
@@ -80,18 +73,7 @@ def catalog(category_slug=None, item_slug=None):
 
 @app.route('/pages/<slug>', methods=['GET'])
 def page(slug):
-    db = DB()
-    cat = db.get_db(app.config['CATEGORY_COLLECTION'])
-    p = db.get_db(app.config['PAGES_COLLECTION'])
     page = p.find_one({"slug": slug})
-
-    #  Функия для вомзможности множественного вызова внутри страницы.
-    def category():
-        return cat.find().sort('position')
-
-    def pages():
-        return p.find().sort('position')
-
     return render_template('pages.html',
                            category=category,
                            pages=pages,
