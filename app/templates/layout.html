@@ -35,8 +35,8 @@
                 <ul>
                   {# Раскрыващееся меню реализовал через классы css искать строчку в css 'Отдельный стек...'
                   ======================================= -#}
-                  <!-- <li id="NavOfenHover"><a href="#" title="">Ofen-Finder</a></li> -->
-                  <li id="nav-card-menu-hover"><a href="#" title="">Товары</a>
+                  <li><a href="/" title="Главная страница">Главная</a></li>
+                  <li id="nav-card-menu-hover"><a href="{{url_for('catalog')}}" title="Каталог товаров">Товары</a>
                     <div class="second-lvl-nav" id="nav-card-menu">
                       {# Раскрываем пункты навигации
                       ======================================= -#}
@@ -44,13 +44,15 @@
                         {% set path_to_img = 'category/' + c['img'][0]['filename'] %}
                         {% set thumb = path_to_img|thumbnail('70x50') %}
                         <div class="nav-element">
-                          <img src="{{ thumb }}" height="70" width="50">
-                          <div class="body-of-the-element">
-                            <span class=header-of-the-element>{{ c['name'] }}</span>
-                            <br>
-                            <span class=element-description>{{ c['mini_description']|truncate(75) }}
-                            </span>
-                          </div>
+                          <a href="{{url_for('catalog', category_slug=c['slug'])}}" title="{{c['name']}}">
+                            <img src="{{ thumb }}" height="70" width="50">
+                            <div class="body-of-the-element">
+                              <span class=header-of-the-element>{{ c['name'] }}</span>
+                              <br>
+                              <span class=element-description>{{ c['mini_description']|truncate(75) }}
+                              </span>
+                            </div>
+                          </a>
                         </div>
                       {% endfor %}
 
