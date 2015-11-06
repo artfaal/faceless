@@ -65,6 +65,26 @@ def catalog(category_slug=None, item_slug=None):
                                pages=pages)
 
 
+@app.route('/pages/<slug>', methods=['GET'])
+def page(slug):
+    db = DB()
+    cat = db.get_db(app.config['CATEGORY_COLLECTION'])
+    p = db.get_db(app.config['PAGES_COLLECTION'])
+    page = p.find_one({"slug": slug})
+
+    #  Функия для вомзможности множественного вызова внутри страницы.
+    def category():
+        return cat.find().sort('position')
+
+    def pages():
+        return p.find().sort('position')
+
+    return render_template('pages.html',
+                           category=category,
+                           pages=pages,
+                           page=page)
+
+
 @app.route('/img/<path:filename>')
 def img(filename):
     return send_from_directory(app.config['MEDIA_FOLDER'], filename)

@@ -66,15 +66,17 @@
                       ======================================= -#}
                       {% for p in pages() %}
                         {% if p['section'] == 'Сервисное обслуживание'%}
-                        <div class="nav-element">
-                          <img src="holder.js/70x70?random=yes">
-                          <div class="body-of-the-element">
-                            <span class=header-of-the-element>{{p['name']}}</span>
-                            <br>
-                            <span class=element-description>{{p['mini_description']}}
-                            </span>
+                          <div class="nav-element">
+                            <a href="{{url_for('page', slug=p['slug'])}}" title="{{p['name']}}">
+                              <img src="holder.js/70x70?random=yes">
+                              <div class="body-of-the-element">
+                                <span class=header-of-the-element>{{p['name']}}</span>
+                                <br>
+                                <span class=element-description>{{p['mini_description']}}
+                                </span>
+                              </div>
+                            </a>
                           </div>
-                        </div>
                         {% endif %}
                       {% endfor %}
                     </div>
@@ -87,15 +89,17 @@
                       ======================================= -#}
                       {% for p in pages() %}
                         {% if p['section'] == 'Компания'%}
-                        <div class="nav-element">
-                          <img src="holder.js/70x70?random=yes">
-                          <div class="body-of-the-element">
-                            <span class=header-of-the-element>{{p['name']}}</span>
-                            <br>
-                            <span class=element-description>{{p['mini_description']}}
-                            </span>
+                          <div class="nav-element">
+                            <a href="{{url_for('page', slug=p['slug'])}}" title="{{p['name']}}">
+                              <img src="holder.js/70x70?random=yes">
+                              <div class="body-of-the-element">
+                                <span class=header-of-the-element>{{p['name']}}</span>
+                                <br>
+                                <span class=element-description>{{p['mini_description']}}
+                                </span>
+                              </div>
+                            </a>
                           </div>
-                        </div>
                         {% endif %}
                       {% endfor %}
                     </div>
@@ -108,15 +112,17 @@
                       ======================================= -#}
                       {% for p in pages() %}
                         {% if p['section'] == 'Контакты'%}
-                        <div class="nav-element">
-                          <img src="holder.js/70x70?random=yes">
-                          <div class="body-of-the-element">
-                            <span class=header-of-the-element>{{p['name']}}</span>
-                            <br>
-                            <span class=element-description>{{p['mini_description']}}
-                            </span>
+                          <div class="nav-element">
+                            <a href="{{url_for('page', slug=p['slug'])}}" title="{{p['name']}}">
+                              <img src="holder.js/70x70?random=yes">
+                              <div class="body-of-the-element">
+                                <span class=header-of-the-element>{{p['name']}}</span>
+                                <br>
+                                <span class=element-description>{{p['mini_description']}}
+                                </span>
+                              </div>
+                            </a>
                           </div>
-                        </div>
                         {% endif %}
                       {% endfor %}
 
