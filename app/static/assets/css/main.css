@@ -118,6 +118,26 @@ body {
     color: #545454;
     font-size: 1.4em;
 }
+
+.pages-content {
+    background-color: #FFFFFF;
+    color: #545454;
+    font-size: 1.1em;
+    padding: 2em 8em;
+}
+
+.pages-content h1 {
+    font-size: 2.1em;
+}
+
+.pages-content h2 {
+    font-size: 1.9em;
+}
+
+.pages-content h3 {
+    font-size: 1.7em;
+}
+
 .navigation {
     display: block;
     position: absolute;

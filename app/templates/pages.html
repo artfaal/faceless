@@ -1,13 +1,16 @@
 {% extends "layout.html" -%}
 
-{% block title -%} {% endblock -%}
+{% block title -%}{{page['name']}}{% endblock -%}
 
-{% block description -%} {% endblock -%}
+{% block description -%}{{page['meta_description']}}{% endblock -%}
 
-{% block keywords -%} {% endblock -%}
+{% block keywords -%}{{page['meta_keywords']}}{% endblock -%}
 
 {% block content -%}
-    {{page['name']}}
-    <br>
-    {{page['body']|markdown}}
+    <div class="pages-content">
+        {{page['section']}} > {{page['name']}}
+        <hr>
+        {{page['body']|markdown}}
+    </div>
+
 {% endblock -%}
