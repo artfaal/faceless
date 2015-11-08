@@ -1,10 +1,35 @@
 {% extends "layout.html" -%}
+{# TITLE BLOCK -#}
+{% block title -%}
+    {% if item_page -%}
+        {{ item_page['name'] }}
+    {% elif category_page -%}
+        {{ category_page['name'] }}
+    {% else -%}
+        Каталог
+    {% endif -%}
+{% endblock -%}
+{# DESCRIPTION -#}
+{% block description -%}
+    {% if item_page -%}
+        {{ item_page['meta_description'] }}
+    {% elif category_page -%}
+        {{ category_page['meta_description'] }}
+    {% else -%}
+        Каталог компании ЕОС-Премиум-СПА Технологии
+    {% endif -%}
+{% endblock -%}
+{# KEYWORDS -#}
+{% block keywords -%}
+    {% if item_page -%}
+        {{ item_page['meta_keywords'] }}
+    {% elif category_page -%}
+        {{ category_page['meta_keywords'] }}
+    {% else -%}
+        ЕОС-Премиум-СПА Технологии
+    {% endif -%}
+{% endblock -%}
 
-{% block title -%} {% endblock -%}
-
-{% block description -%} {% endblock -%}
-
-{% block keywords -%} {% endblock -%}
 {% block header -%}{{ super() }}{% endblock -%}
 {% block nav -%}{{ super() }}{% endblock -%}
 
@@ -32,14 +57,14 @@
             <h1>{{ item_page['name'] }}</h1>
             {{ item_page['body']|markdown }}
             <hr>
-            {% if item_page['doc'] > 0 %}
-                    {% for i in item_page['doc'] %}
+            {% if item_page['doc'] > 0 -%}
+                    {% for i in item_page['doc'] -%}
                         <p>
                             <a href="{{ url_for('doc', filename=i['filename']) }}">Скачать ></a> {{i['alt']}}
                             <br>
                         </p>
-                    {% endfor %}
-            {% endif %}
+                    {% endfor -%}
+            {% endif -%}
             <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
         </div>
         {# Если это Категория c дочерними категориями
@@ -50,7 +75,7 @@
 
             {# Если это Категория с дочерними
             ======================================= -#}
-            {%if category_page['child_category']|length > 0 %}
+            {%if category_page['child_category']|length > 0 -%}
                 {# Теперь итерируем дочерние категории в ней #}
                 {% for i in category_page['child_category']-%}
                     <h2>{{i['name']}}</h2>
@@ -76,7 +101,7 @@
 
             {# Если это Категория без дочерних
             ======================================= -#}
-            {% else %}
+            {% else -%}
                 {% for item in items_from_main_category() -%}
                     <a href="{{category_page['slug']}}/{{ item['slug'] }}"><div class="box-items">
                         {%set path_to_img = 'items/' + item['img'][0]['filename']%}
@@ -92,7 +117,7 @@
                     </div></a>
                 {% endfor -%}
                 <div class="clear"></div>
-            {% endif %}
+            {% endif -%}
         <hr>
         <h3>Описание категории</h3>
         <p>{{category_page['body']|markdown}}</p>
@@ -112,7 +137,7 @@
                 </div>
                 </div></a>
             {% endfor -%}
-        {% endif %}
+        {% endif -%}
 
     </div>
     {# Main frame end
