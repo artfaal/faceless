@@ -7,7 +7,7 @@ from models import DB
 @app.route('/secret/<token>', methods=['GET'])
 def secret(token):
     db = DB()
-    cat = db.get_db('cat')
+    cat = db.get_db('category')
     items = db.get_db('items')
     pages = db.get_db('pages')
 
