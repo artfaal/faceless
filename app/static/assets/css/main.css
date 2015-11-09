@@ -37,7 +37,7 @@ body {
     min-height: 680px;
     float: left;
     background: url(../img/eos_bg_1400.jpg) repeat-y left bottom;
-    z-index: 3;
+    z-index: 1;
 }
 
 .wrap-main-logo {
@@ -166,7 +166,7 @@ body {
     list-style-type: none;
     float: left;
     border-right: 1px solid #fff;
-    z-index: 1;
+    z-index: 1000;
 }
 
 .navigation li a {
@@ -372,7 +372,7 @@ body {
     line-height: 140%;
     font-size: 0.80em;
     color: #4d4d4d;
-    z-index: 8;
+    z-index: 1;
 }
 
 .footer .left-footer-menu {
