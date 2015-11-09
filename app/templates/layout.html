@@ -19,11 +19,10 @@
   <link rel="icon" type="image/png" href="{{ url_for('static', filename='assets/img/favicon.png') }}">
 </head>
 <body>
-
+<div id="lightbox-shadow"></div>
   {% block header -%}<div class="header"></div>{% endblock-%}
   {% block indexheader -%}<div class="index-header"></div>{% endblock-%}
   <div class="container">
-
       {% block nav -%}
         <div class="row">
           <div class="content-header twelve columns">
@@ -31,7 +30,8 @@
 
             {# Navigation
             ======================================= -#}
-            <div class="navigation">
+
+            <div id="top-line-navigation" class="navigation">
                 <ul>
                   {# Раскрыващееся меню реализовал через классы css искать строчку в css 'Отдельный стек...'
                   ======================================= -#}
@@ -203,8 +203,10 @@
 
   {# Scripts
   ======================================= -#}
+  <!-- Include the jQuery library (local or CDN) -->
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
   <script src="{{ url_for('static', filename='assets/vendor/holder-js/holder.js') }}"></script>
-
+  <script src="{{ url_for('static', filename='assets/js/main.js') }}"></script>
   {# End Docement
   ======================================= -#}
 </body>
