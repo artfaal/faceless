@@ -48,10 +48,22 @@
         {# Если это страница товара
         ======================================= -#}
         {% if item_page -%}
-        <div class="five columns alpha">
+        <div class="four columns alpha">
             {%set path_to_img = 'items/' + item_page['img'][0]['filename']%}
+            {%set alt = item_page['img'][0]['alt'] %}
             {%set thumb = path_to_img|thumbnail('280x417')%}
-            <img src="{{ thumb }}">
+            <a href="{{ url_for('img', filename=path_to_img) }}" data-lightbox="roadtrip" data-title="{{alt}}"><img src="{{ thumb }}" alt="{{alt}}"></a>
+            {# Хитрая проверка. Если в Array есть вторая позиция, то едем дальше #}
+            {% if item_page['img'][1] %}
+                <br>
+                {# А здесь начинаем сразу со второго элемента #}
+                {%for i in item_page['img'][1:] %}
+                    {%set path_to_img = 'items/' + i['filename']%}
+                    {%set alt = i['alt'] %}
+                    {%set mini_thumb = path_to_img|thumbnail('80x80', 'fit')%}
+                    <a href="{{ url_for('img', filename=path_to_img) }}" data-lightbox="roadtrip" data-title="{{alt}}"><img src="{{ mini_thumb }}" alt="{{alt}}"></a>
+                {% endfor %}
+            {% endif %}
         </div>
         <div class="">
             <h1>{{ item_page['name'] }}</h1>
