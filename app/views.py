@@ -80,6 +80,15 @@ def page(slug):
                            page=page)
 
 
+@app.route('/test_img', methods=['GET'])
+def test_img():
+    names = db.get_all_img()
+    return render_template('test_img.html',
+                           category=category,
+                           pages=pages,
+                           names=names)
+
+
 @app.route('/img/<path:filename>')
 def img(filename):
     return send_from_directory(app.config['MEDIA_FOLDER'], filename)

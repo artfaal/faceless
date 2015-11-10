@@ -1,0 +1,19 @@
+{% extends "layout.html" -%}
+
+{% block title -%}{% endblock -%}
+
+{% block description -%}{% endblock -%}
+
+{% block keywords -%}{% endblock -%}
+
+{% block content -%}
+    <div class="pages-content">
+        {% for img in names %}
+            {%set path_to_img = 'items/' + img %}
+            {%set thumb = path_to_img|thumbnail('145x150')%}
+            {{ img }}<img src="{{ thumb }}" alt="">
+        {% endfor %}
+
+    </div>
+
+{% endblock -%}

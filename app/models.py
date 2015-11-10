@@ -13,6 +13,17 @@ class DB:
     def get_db(self, param):
         return getattr(self.db, param)
 
+    def get_all_img(self):
+        f = self.get_db('items').find()
+        img_filenames = []
+        for i in f:
+            for img in i['img']:
+                try:
+                    img_filenames.append(img['filename'])
+                except Exception as e:
+                    print 'Maybe no img in: ', i['name'], e
+        return img_filenames
+
 
 @mongo.register
 class Items(Document):
