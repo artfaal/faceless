@@ -413,3 +413,15 @@ body {
 .clear {
     clear:both;
 }
+
+.btn-category {
+    color: #424242;
+    background: #E4E4E4;
+    padding: 10px 20px 10px 20px;
+    border-radius: 0;
+    text-decoration: none;
+    border: none;
+}
+.btn-category a {
+
+}
