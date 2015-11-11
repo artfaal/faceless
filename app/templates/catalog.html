@@ -84,13 +84,15 @@
         {% elif category_page -%}
             <h1>{{category_page['name']}}</h1>
             <p>{{category_page['mini_description']}}</p>
-
             {# Если это Категория с дочерними
             ======================================= -#}
             {%if category_page['child_category']|length > 0 -%}
                 {# Теперь итерируем дочерние категории в ней #}
+                {% for name in category_page['child_category'] %}
+                <a href="#{{name['name']}}">{{name['name']}}</a>
+                {% endfor %}
                 {% for i in category_page['child_category']-%}
-                    <h2>{{i['name']}}</h2>
+                    <h2><a name="{{i['name']}}"></a>{{i['name']}}</h2>
                     <hr>
                     {# Этот кусок должен фильтровать товары, который есть внутри #}
                     {% for item in items_from_child_category(i['name']) -%}
@@ -137,6 +139,7 @@
         ======================================= -#}
         {% else-%}
             <h1>Каталог</h1>
+            <hr>
             {% for c in category() -%}
                 <a href="{{ c['slug'] }}"><div class="box-category">
                 {%set path_to_img = 'category/' + c['img'][0]['filename']%}
