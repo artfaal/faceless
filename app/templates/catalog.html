@@ -87,10 +87,12 @@
             {# Если это Категория с дочерними
             ======================================= -#}
             {%if category_page['child_category']|length > 0 -%}
-                {# Теперь итерируем дочерние категории в ней #}
+                {# Здесь кнопки #}
                 {% for name in category_page['child_category'] %}
                 <button type="" class="btn-category"><a href="#{{name['name']}}">{{name['name']}}</a></button>
                 {% endfor %}
+                <br><br>
+                {# Теперь итерируем дочерние категории в ней #}
                 {% for i in category_page['child_category']-%}
                     <h2><a name="{{i['name']}}"></a>{{i['name']}}</h2>
                     <hr>
