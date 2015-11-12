@@ -204,8 +204,7 @@
 
   {# Scripts
   ======================================= -#}
-  <!-- Include the jQuery library (local or CDN) -->
-  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <script src="{{ url_for('static', filename='assets/vendor/jQuery/jquery-1.11.3.min.js') }}"></script>
   <script src="{{ url_for('static', filename='assets/vendor/holder-js/holder.js') }}"></script>
   <script src="{{ url_for('static', filename='assets/vendor/lightbox/js/lightbox.js') }}"></script>
   <script src="{{ url_for('static', filename='assets/js/main.js') }}"></script>
