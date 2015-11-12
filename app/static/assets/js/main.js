@@ -8,7 +8,7 @@ $(document).ready(function() {
         $('#lightbox-shadow').css('display', 'block');
       }, function() {
         $('#lightbox-shadow').css('display', 'none');
-      };
+      }
     );
     // Функция, что бы перескакивать на доп. категорию. Показывается только
     // для групп, в которых есть дочерние
