@@ -413,15 +413,22 @@ body {
 .clear {
     clear:both;
 }
-
 .btn-category {
     color: #545454;
     background: #E4E4E4;
-    padding: 10px 20px 10px 20px;
+    /*padding: 10px 20px 10px 20px;*/
+    padding: 0 1em;
+    margin: .25em 0;
     border-radius: 0;
     text-decoration: none;
     border: none;
 }
 .btn-category a {
+    text-decoration: none;
+    color: #545454;
+    text-align: center;
+}
 
+.btn-category a:hover {
+    color: #000000;
 }
