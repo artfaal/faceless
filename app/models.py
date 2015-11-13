@@ -168,13 +168,7 @@ class Pages(Document):
         'body': basestring,
         'date_creation': datetime.datetime,
         'section': basestring,
-        'img': [
-            {
-                'filename': basestring,
-                'alt': basestring,
-                'position': int
-            }
-        ],
+        'thumb': basestring,
     }
 
     required_fields = []

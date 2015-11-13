@@ -109,7 +109,7 @@ def save_pages_to_db():
                 add['meta_keywords'] = row[3]
                 add['meta_description'] = row[4]
                 add['mini_description'] = row[4]
-                add['img'] = pars_img_doc_video(row[5])
+                add['thumb'] = row[5]
                 add['position'] = int_or_0(row[6])
                 add.save()
 

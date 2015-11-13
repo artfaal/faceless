@@ -15,6 +15,7 @@
   <link type="text/css" rel="Stylesheet" href="{{ url_for('static', filename='assets/vendor/lightbox/css/lightbox.css') }}" />
   <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/main.css') }}">
 
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
   <!-- Favicon
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <link rel="icon" type="image/png" href="{{ url_for('static', filename='assets/img/favicon.png') }}">
@@ -69,7 +70,7 @@
                         {% if p['section'] == 'Сервисное обслуживание'%}
                           <div class="nav-element">
                             <a href="{{url_for('page', slug=p['slug'])}}" title="{{p['name']}}">
-                              <img src="holder.js/70x70?random=yes">
+                              <i class='fa {{p['thumb']}} fa-5x'></i>
                               <div class="body-of-the-element">
                                 <span class=header-of-the-element>{{p['name']}}</span>
                                 <br>
@@ -92,7 +93,7 @@
                         {% if p['section'] == 'Компания'%}
                           <div class="nav-element">
                             <a href="{{url_for('page', slug=p['slug'])}}" title="{{p['name']}}">
-                              <img src="holder.js/70x70?random=yes">
+                              <i class='fa {{p['thumb']}} fa-5x'></i>
                               <div class="body-of-the-element">
                                 <span class=header-of-the-element>{{p['name']}}</span>
                                 <br>
@@ -115,7 +116,7 @@
                         {% if p['section'] == 'Контакты'%}
                           <div class="nav-element">
                             <a href="{{url_for('page', slug=p['slug'])}}" title="{{p['name']}}">
-                              <img src="holder.js/70x70?random=yes">
+                              <i class='fa {{p['thumb']}} fa-5x'></i>
                               <div class="body-of-the-element">
                                 <span class=header-of-the-element>{{p['name']}}</span>
                                 <br>
