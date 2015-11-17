@@ -439,3 +439,8 @@ body {
 .btn-category a:hover {
     color: #000000;
 }
+
+.card-details ul {
+    list-style: square;
+    list-style-position: inside;
+}
