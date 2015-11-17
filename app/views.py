@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 from app import app
-from flask import render_template, send_from_directory
+from flask import render_template, send_from_directory, request
 from models import DB
+from forms import FeedbackForm
 
 # CONSTANT
 db = DB()
@@ -29,15 +30,24 @@ def index():
 
 @app.route('/catalog/', methods=['GET'])
 @app.route('/catalog/<category_slug>', methods=['GET'])
-@app.route('/catalog/<category_slug>/<item_slug>', methods=['GET'])
+@app.route('/catalog/<category_slug>/<item_slug>', methods=['GET', 'POST'])
 def catalog(category_slug=None, item_slug=None):
     #  Получаем значения
     item_page = items.find_one({'slug': item_slug})
     category_page = cat.find_one({'slug': category_slug})
+    # Form start
+    form = FeedbackForm(request.form)
 
     # Страница продукта?
     if item_page:
+        # Form start
+        form = FeedbackForm(request.form)
+        if request.method == 'POST':
+            print "OOOOOOOOMG!!!!"
+            print form.name.data
+
         return render_template('catalog.html',
+                               form=form,
                                category=category,
                                category_slug=category_slug,
                                category_page=category_page,

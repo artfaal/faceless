@@ -10,4 +10,4 @@ mongo = Connection()
 thumb = Thumbnail(app)
 Markdown(app)
 
-from app import views, models, utility, evil
+from app import views, models, utility, evil, forms
