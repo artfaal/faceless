@@ -35,7 +35,7 @@ def catalog(category_slug=None, item_slug=None):
     #  Получаем значения
     item_page = items.find_one({'slug': item_slug})
     category_page = cat.find_one({'slug': category_slug})
-    # Form start
+
     form = FeedbackForm(request.form)
 
     # Страница продукта?

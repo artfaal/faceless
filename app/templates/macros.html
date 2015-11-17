@@ -12,22 +12,22 @@
 {% endmacro %}
 
 {% macro def_contact_form() -%}
-    <div class="detail-card-body-prop"><p>Обратная связь:</p></div>
-    <div class="default-form-handler add-bottom">
+    <div class="feedback-title"><p>ОБРАТНАЯ СВЯЗЬ:</p></div>
+    <div class="default-form-handler">
         <form role="form" action="" method="post">
             <div class="comm-form-hold">
-                {{ render_field(form.name, class="animation") }}
+                {{ render_field(form.name) }}
             </div>
             <div class="comm-form-hold">
-                {{ render_field(form.email, class="animation") }}
+                {{ render_field(form.email) }}
             </div>
             <div class="comm-form-hold">
-                {{ render_field(form.phone, class="animation") }}
+                {{ render_field(form.phone) }}
             </div>
             <div class="comm-form-hold">
-                {{ render_field(form.body, class="animation") }}
+                {{ render_field(form.body) }}
             </div>
-            <button type="submit" name="btn" class="animation" value="Send">Отправить</button>
+            <button type="submit" name="send_feedback" value="Send">Отправить</button>
         </form>
     </div>
 {%- endmacro -%}

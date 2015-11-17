@@ -449,3 +449,35 @@ body {
     list-style: square;
     list-style-position: inside;
 }
+
+/* Обратная связь */
+.feedback-title {
+    font-size: 1.3em;
+    font-weight: 600;
+    color: #545454;
+
+}
+
+.default-form-handler {
+}
+.comm-form-hold input, textarea {
+    width: 60%;
+    border-radius: 0;
+}
+.comm-form-hold dd {
+}
+
+
+/* Tablet Portrait size to standard 960 (devices and browsers) */
+@media only screen and (min-width: 768px) and (max-width: 959px) {
+    .comm-form-hold input, textarea {
+        width: 75%;
+    }
+}
+
+/* All Mobile Sizes (devices and browser) */
+@media only screen and (max-width: 767px) {
+    .comm-form-hold input, textarea {
+        width: 98%;
+    }
+    }
