@@ -154,6 +154,11 @@ body {
     font-size: 1.7em;
 }
 
+.pages-content ul {
+    list-style: square;
+    list-style-position: inside;
+}
+
 .navigation {
     display: block;
     position: absolute;
@@ -440,7 +445,7 @@ body {
     color: #000000;
 }
 
-.card-details ul {
+.details ul {
     list-style: square;
     list-style-position: inside;
 }
