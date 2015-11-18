@@ -2,7 +2,7 @@
 from app import app
 from flask import render_template, send_from_directory, request
 from models import DB
-from forms import FeedbackForm
+from forms import FeedbackForm, ServiceRequest
 
 # CONSTANT
 db = DB()
@@ -35,8 +35,6 @@ def catalog(category_slug=None, item_slug=None):
     #  Получаем значения
     item_page = items.find_one({'slug': item_slug})
     category_page = cat.find_one({'slug': category_slug})
-
-    form = FeedbackForm(request.form)
 
     # Страница продукта?
     if item_page:
@@ -84,7 +82,13 @@ def catalog(category_slug=None, item_slug=None):
 @app.route('/pages/<slug>', methods=['GET'])
 def page(slug):
     page = p.find_one({"slug": slug})
+    form = FeedbackForm(request.form)
+    service_form = ServiceRequest(request.form)
+    if request.method == 'POST':
+        print "OOOOOOOOMG!!!!"
     return render_template('pages.html',
+                           form=form,
+                           service_form=service_form,
                            category=category,
                            pages=pages,
                            page=page)

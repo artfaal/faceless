@@ -31,3 +31,30 @@
         </form>
     </div>
 {%- endmacro -%}
+
+{% macro def_servise_request_form() -%}
+    <div class="feedback-title"><p>ЗАЯВКА:</p></div>
+    <div class="default-form-handler">
+        <form role="form" action="" method="post">
+            <div class="comm-form-hold">
+                {{ render_field(service_form.equipment) }}
+            </div>
+            <div class="comm-form-hold">
+                {{ render_field(service_form.body) }}
+            </div>
+            <div class="comm-form-hold">
+                {{ render_field(service_form.name) }}
+            </div>
+            <div class="comm-form-hold">
+                {{ render_field(service_form.phone) }}
+            </div>
+            <div class="comm-form-hold">
+                {{ render_field(service_form.email) }}
+            </div>
+            <div class="comm-form-hold">
+                {{ render_field(service_form.comment) }}
+            </div>
+            <button type="submit" name="send_feedback" value="Send">Отправить</button>
+        </form>
+    </div>
+{%- endmacro -%}

@@ -1,4 +1,5 @@
-{% from "macros.html" import def_contact_form with context -%}
+{% from "macros.html" import def_contact_form, def_servise_request_form with context -%}
+{%set name_of_the_page= request.base_url.split('/')[-1:][0]%}
 <!DOCTYPE html>
 <html lang="ru">
 <head>
