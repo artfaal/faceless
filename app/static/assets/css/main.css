@@ -450,6 +450,15 @@ body {
     list-style-position: inside;
 }
 
+.details .ico-doc {
+    text-decoration: none;
+    color: #545454;
+}
+
+.details .ico-doc:hover {
+    color: #E69000;
+}
+
 /* Обратная связь */
 .feedback-title {
     font-size: 1.3em;
@@ -457,8 +466,12 @@ body {
     color: #545454;
 
 }
-
 .default-form-handler {
+    /* Здесь можно указать поля, границы для заявки */
+}
+
+.default-form-handler dt {
+    color: #545454;
 }
 .comm-form-hold input, textarea {
     width: 60%;

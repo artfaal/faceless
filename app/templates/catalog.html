@@ -72,7 +72,7 @@
             {% if item_page['doc'] > 0 -%}
                     {% for i in item_page['doc'] -%}
                         <p>
-                            <a href="{{ url_for('doc', filename=i['filename']) }}">Скачать ></a> {{i['alt']}}
+                            <a href="{{ url_for('doc', filename=i['filename']) }}" class="ico-doc"><i class="fa fa-file-pdf-o fa-3x"></i>&nbsp;&nbsp;{{i['alt']}}</a>
                             <br>
                         </p>
                     {% endfor -%}
