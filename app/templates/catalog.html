@@ -65,9 +65,12 @@
                 {% endfor %}
             {% endif %}
         </div>
-        <div class="details">
+        <div class="eight columns omega details">
             <h1>{{ item_page['name'] }}</h1>
             {{ item_page['body']|markdown }}
+        </div>
+        <div class="clear">
+        <div class="details">
             <hr>
             {% if item_page['doc'] > 0 -%}
                     {% for i in item_page['doc'] -%}
@@ -77,6 +80,7 @@
                         </p>
                     {% endfor -%}
             {% endif -%}
+        </div>
         </div>
         {{ def_contact_form() }}
         {# Если это Категория c дочерними категориями
