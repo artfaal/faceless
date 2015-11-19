@@ -62,9 +62,9 @@ body {
 .wrap-main-logo {
     position: absolute;
     background: rgba(0, 0, 0, 0.5);
-    top: 6em;
+    top: 4em;
     left: 3em;
-    height: 177px;
+    height: 210px;
     width: 296px;
 }
 
