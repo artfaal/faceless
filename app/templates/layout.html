@@ -16,7 +16,9 @@
   <link type="text/css" rel="Stylesheet" href="{{ url_for('static', filename='assets/vendor/basic-jquery-slider/bjqs.css') }}" />
   <link type="text/css" rel="Stylesheet" href="{{ url_for('static', filename='assets/vendor/lightbox/css/lightbox.css') }}" />
   <link type="text/css" rel="Stylesheet" href="{{ url_for('static', filename='assets/vendor/font-awesome/css/font-awesome.min.css') }}" />
+  <link type="text/css" rel="Stylesheet" href="assets/vendor/basic-jquery-slider/bjqs.css" />
   <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/main.css') }}">
+  {% block user_css%}{% endblock %}
   <!-- Favicon
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <link rel="icon" type="image/png" href="{{ url_for('static', filename='assets/img/favicon.png') }}">
@@ -24,7 +26,6 @@
 <body>
 <div id="lightbox-shadow"></div>
   {% block header -%}<div class="header"></div>{% endblock-%}
-  {% block indexheader -%}<div class="index-header"></div>{% endblock-%}
   <div class="container">
       {% block nav -%}
         <div class="row">
@@ -34,105 +35,8 @@
             {# Navigation
             ======================================= -#}
 
-            <div id="top-line-navigation" class="navigation">
-                <ul>
-                  {# Раскрыващееся меню реализовал через классы css искать строчку в css 'Отдельный стек...'
-                  ======================================= -#}
-                  <li><a href="/" title="Главная страница">Главная</a></li>
-                  <li id="nav-card-menu-hover"><a href="{{url_for('catalog')}}" title="Каталог товаров">Товары</a>
-                    <div class="second-lvl-nav" id="nav-card-menu">
-                      {# Раскрываем пункты навигации
-                      ======================================= -#}
-                      {% for c in category() %}
-                        {% set path_to_img = 'category/' + c['img'][0]['filename'] %}
-                        {% set thumb = path_to_img|thumbnail('70x50') %}
-                        <div class="nav-element">
-                          <a href="{{url_for('catalog', category_slug=c['slug'])}}" title="{{c['name']}}">
-                            <img src="{{ thumb }}" height="70" width="50">
-                            <div class="body-of-the-element">
-                              <span class=header-of-the-element>{{ c['name'] }}</span>
-                              <br>
-                              <span class=element-description>{{ c['mini_description']|truncate(75) }}
-                              </span>
-                            </div>
-                          </a>
-                        </div>
-                      {% endfor %}
+            {% include 'top_nav.html' %}
 
-                    </div>
-
-                  </li>
-
-                  <li id="nav-service-menu-hover"><a href="#" title="">Сервисное обслуживание</a>
-                    <div class="second-lvl-nav" id="nav-service-menu">
-                      {# Пункты навигации
-                      ======================================= -#}
-                      {% for p in pages() %}
-                        {% if p['section'] == 'Сервисное обслуживание'%}
-                          <div class="nav-element">
-                            <a href="{{url_for('page', slug=p['slug'])}}" title="{{p['name']}}">
-                              <i class='fa {{p['thumb']}} fa-5x'></i>
-                              <div class="body-of-the-element">
-                                <span class=header-of-the-element>{{p['name']}}</span>
-                                <br>
-                                <span class=element-description>{{p['mini_description']}}
-                                </span>
-                              </div>
-                            </a>
-                          </div>
-                        {% endif %}
-                      {% endfor %}
-                    </div>
-                  </li>
-
-
-                  <li id="nav-company-menu-hover"><a href="#" title="">Компания</a>
-                    <div class="second-lvl-nav" id="nav-company-menu">
-                      {# Пункты навигации
-                      ======================================= -#}
-                      {% for p in pages() %}
-                        {% if p['section'] == 'Компания'%}
-                          <div class="nav-element">
-                            <a href="{{url_for('page', slug=p['slug'])}}" title="{{p['name']}}">
-                              <i class='fa {{p['thumb']}} fa-5x'></i>
-                              <div class="body-of-the-element">
-                                <span class=header-of-the-element>{{p['name']}}</span>
-                                <br>
-                                <span class=element-description>{{p['mini_description']}}
-                                </span>
-                              </div>
-                            </a>
-                          </div>
-                        {% endif %}
-                      {% endfor %}
-                    </div>
-                  </li>
-
-                  <li id="nav-contacts-menu-hover"><a href="#" title="">Контакты</a>
-                    <div class="second-lvl-nav" id="nav-contacts-menu">
-
-                      {# Пункты навигации
-                      ======================================= -#}
-                      {% for p in pages() %}
-                        {% if p['section'] == 'Контакты'%}
-                          <div class="nav-element">
-                            <a href="{{url_for('page', slug=p['slug'])}}" title="{{p['name']}}">
-                              <i class='fa {{p['thumb']}} fa-5x'></i>
-                              <div class="body-of-the-element">
-                                <span class=header-of-the-element>{{p['name']}}</span>
-                                <br>
-                                <span class=element-description>{{p['mini_description']}}
-                                </span>
-                              </div>
-                            </a>
-                          </div>
-                        {% endif %}
-                      {% endfor %}
-
-                    </div>
-                  </li>
-                </ul>
-            </div>
           </div>
         </div>
       {% endblock-%}
@@ -210,6 +114,8 @@
   <script src="{{ url_for('static', filename='assets/vendor/holder-js/holder.js') }}"></script>
   <script src="{{ url_for('static', filename='assets/vendor/lightbox/js/lightbox.js') }}"></script>
   <script src="{{ url_for('static', filename='assets/js/main.js') }}"></script>
+  <script src="{{ url_for('static', filename='assets/vendor/basic-jquery-slider/js/bjqs-1.3.min.js') }}"></script>
+  {% block user_scripts%}{% endblock %}
   {# End Docement
   ======================================= -#}
 </body>

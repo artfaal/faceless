@@ -5,5 +5,39 @@
 {% block description -%} {% endblock -%}
 
 {% block keywords -%} {% endblock -%}
+{% block header -%}<div class="header-main-page"></div>{% endblock-%}
+{% block content -%}
+<div class="main-page-banner twelve columns">
+    <div class="wrap-main-logo">
+          <img src="{{ url_for('static', filename='assets/img/content-header-eos-logo-rus.png') }}" alt="EOS-Премиум-СПА Технологии" height="127" width="206">
+    </div>
+    {# Поставил здесь пустой блок, что бы не грузить его для главной страницы #}
+    {% block nav%}{% endblock%}
+    {# Подключаем строчку навигации, и за счет того, что она
+    в div  main-page-banner, перезаписывается значение на top и она
+    прилипает в картинке #}
+    {%include 'top_nav.html'%}
+    <div id="slide-banner-main-page">
+        <ul class="bjqs">
+            <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus doloribus ex quo sapiente? Adipisci assumenda aut, deserunt esse ex facilis ipsa labore libero minus nesciunt non qui, saepe voluptates voluptatibus!</li>
+            <li>Тролололо Тролололо Тролололо Тролололо Тролололо Тролололо Тролололо Тролололо Тролололо Тролололо Тролололо Тролололо Тролололо Тролололо </li>
+        </ul>
+    </div>
+</div>
 
-{% block content -%} {% endblock -%}
+{% endblock -%}
+
+{% block user_scripts %}
+    <!-- Include the plugin *after* the jQuery library -->
+      <script>
+          jQuery(document).ready(function($) {
+        $('#slide-banner-main-page').bjqs({
+        'height' : 300,
+        'width' : 296,
+        'responsive' : true,
+        'showcontrols' : false,
+        'showmarkers' : false
+    });
+});
+      </script>
+{% endblock %}

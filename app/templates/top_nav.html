@@ -1,0 +1,94 @@
+<div id="top-line-navigation" class="navigation">
+              <ul>
+                {# Раскрыващееся меню реализовал через классы css искать строчку в css 'Отдельный стек...'
+                ======================================= -#}
+                <li><a href="/" title="Главная страница">Главная</a></li>
+                <li id="nav-card-menu-hover"><a href="{{url_for('catalog')}}" title="Каталог товаров">Товары</a>
+                  <div class="second-lvl-nav" id="nav-card-menu">
+                    {# Раскрываем пункты навигации
+                    ======================================= -#}
+                    {% for c in category() %}
+                      {% set path_to_img = 'category/' + c['img'][0]['filename'] %}
+                      {% set thumb = path_to_img|thumbnail('70x50') %}
+                      <div class="nav-element">
+                        <a href="{{url_for('catalog', category_slug=c['slug'])}}" title="{{c['name']}}">
+                          <img src="{{ thumb }}" height="70" width="50">
+                          <div class="body-of-the-element">
+                            <span class=header-of-the-element>{{ c['name'] }}</span>
+                            <br>
+                            <span class=element-description>{{ c['mini_description']|truncate(75) }}
+                            </span>
+                          </div>
+                        </a>
+                      </div>
+                    {% endfor %}
+                  </div>
+                </li>
+
+                <li id="nav-service-menu-hover"><a href="#" title="">Сервисное обслуживание</a>
+                  <div class="second-lvl-nav" id="nav-service-menu">
+                    {# Пункты навигации
+                    ======================================= -#}
+                    {% for p in pages() %}
+                      {% if p['section'] == 'Сервисное обслуживание'%}
+                        <div class="nav-element">
+                          <a href="{{url_for('page', slug=p['slug'])}}" title="{{p['name']}}">
+                            <i class='fa {{p['thumb']}} fa-5x'></i>
+                            <div class="body-of-the-element">
+                              <span class=header-of-the-element>{{p['name']}}</span>
+                              <br>
+                              <span class=element-description>{{p['mini_description']}}</span>
+                            </div>
+                          </a>
+                        </div>
+                      {% endif %}
+                    {% endfor %}
+                  </div>
+                </li>
+
+                <li id="nav-company-menu-hover"><a href="#" title="">Компания</a>
+                  <div class="second-lvl-nav" id="nav-company-menu">
+                    {# Пункты навигации
+                    ======================================= -#}
+                    {% for p in pages() %}
+                      {% if p['section'] == 'Компания'%}
+                        <div class="nav-element">
+                          <a href="{{url_for('page', slug=p['slug'])}}" title="{{p['name']}}">
+                            <i class='fa {{p['thumb']}} fa-5x'></i>
+                            <div class="body-of-the-element">
+                              <span class=header-of-the-element>{{p['name']}}</span>
+                              <br>
+                              <span class=element-description>{{p['mini_description']}}</span>
+                            </div>
+                          </a>
+                        </div>
+                      {% endif %}
+                    {% endfor %}
+                  </div>
+                </li>
+
+                <li id="nav-contacts-menu-hover"><a href="#" title="">Контакты</a>
+                  <div class="second-lvl-nav" id="nav-contacts-menu">
+
+                    {# Пункты навигации
+                    ======================================= -#}
+                    {% for p in pages() %}
+                      {% if p['section'] == 'Контакты'%}
+                        <div class="nav-element">
+                          <a href="{{url_for('page', slug=p['slug'])}}" title="{{p['name']}}">
+                            <i class='fa {{p['thumb']}} fa-5x'></i>
+                            <div class="body-of-the-element">
+                              <span class=header-of-the-element>{{p['name']}}</span>
+                              <br>
+                              <span class=element-description>{{p['mini_description']}}
+                              </span>
+                            </div>
+                          </a>
+                        </div>
+                      {% endif %}
+                    {% endfor %}
+
+                  </div>
+                </li>
+              </ul>
+            </div>

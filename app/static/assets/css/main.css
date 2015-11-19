@@ -18,7 +18,6 @@ body {
     z-index: 999;
     display: none;
 }
-
 .header {
     /*TODO
     Сделать все в % и EM */
@@ -54,6 +53,10 @@ body {
     float: left;
     background: url(../img/eos_bg_1400.jpg) repeat-y left bottom;
     z-index: 1;
+}
+/*trick for main page banner nav*/
+.main-page-banner .navigation {
+    top: 0;
 }
 
 .wrap-main-logo {
