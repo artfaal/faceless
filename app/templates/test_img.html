@@ -7,13 +7,34 @@
 {% block keywords -%}{% endblock -%}
 
 {% block content -%}
-    <div class="pages-content">
+    <div class="content-box">
+        {% set list=[] %}
         {% for img in names %}
             {%set path_to_img = 'items/' + img %}
             {%set thumb = path_to_img|thumbnail('145x150')%}
-            {{ img }}<img src="{{ thumb }}" alt="">
+            <div class="box-items" style="margin: 0; min-height: 170px; height: 170px; box-shadow: None;">
+                <div class="wrap-img"><img src="{{ thumb }}"></div>
+                <div class="list-item-text"><h2>{{ img }}</h2></div>
+            </div>
+            {% if thumb == None %}
+                {{ list.append(img) }}
+            {% endif %}
+        {% endfor %}
+        <div class="clear"> </div>
+        <br>
+        <hr>
+        <br>
+        <h1>Количество отсутствующих картинок: </h1>
+        <h2>{{list|count}}</h2>
+        Список:
+        <br>
+        {% for i in list %}
+            {{i}}
+            <br>
         {% endfor %}
 
     </div>
-
+    {% block userscripts %}
+        asdasdasd
+    {% endblock %}
 {% endblock -%}
