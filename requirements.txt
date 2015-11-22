@@ -4,7 +4,8 @@ Flask==0.10.1
 Flask-Markdown==0.3
 Flask-thumbnails==0.2.1
 Flask-WTF==0.12
-gnureadline==6.3.3
+# Wierd. Don't work in unix
+#gnureadline==6.3.3
 ipython==4.0.0
 ipython-genutils==0.1.0
 itsdangerous==0.24
