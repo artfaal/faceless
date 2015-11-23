@@ -1,0 +1,35 @@
+sudo apt-get update &&\
+sudo apt-get upgrade -y &&\
+sudo apt-get install -y python-pip python-dev nginx git &&\
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10 &&\
+echo "deb http://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/3.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.0.list &&\
+sudo apt-get update &&\
+sudo apt-get install -y mongodb-org &&\
+mkdir -p /data/db/ &&\
+sudo pip install virtualenv &&\
+
+
+# Для Pillow
+apt-get install -y python-dev libjpeg62 libjpeg62-dev zlib1g-dev libfreetype6 libfreetype6-dev
+# Установить в локальное окружение
+pip install -U Pillow
+
+# На локальном компе
+# tar -cvf faceless.tar faceless
+# scp faceless.tar root@46.101.188.95:/root/
+
+# zvf faceless.tar
+
+#что б не глючил пип
+sudo apt-get install -y libpcre3 libpcre3-dev
+pip install uwsgi
+
+
+cd ~/faceless/
+. ./reload.sh
+
+
+
+deactivate
+
+
