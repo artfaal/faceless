@@ -3,6 +3,7 @@ from mongokit import *
 import datetime
 from app import mongo, app
 from utility.validators import *
+from random import choice as choice
 
 
 class DB:
@@ -176,3 +177,11 @@ class Pages(Document):
         'date_creation': datetime.datetime.utcnow,
         'position': 0
     }
+
+
+def bg_for_index():
+    from os import listdir
+    from os.path import isfile, join
+    onlyfiles = [f for f in listdir(app.config['BG_INDEX'])
+                 if isfile(join(app.config['BG_INDEX'], f))]
+    return str(choice(onlyfiles))

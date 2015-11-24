@@ -51,7 +51,6 @@ body {
     width: 1400px;
     min-height: 680px;
     float: left;
-    background: url(../img/eos_bg_1400.jpg) repeat-y left bottom;
     z-index: 1;
 }
 /*trick for main page banner nav*/

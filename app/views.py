@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from app import app
 from flask import render_template, send_from_directory, request
-from models import DB
+from models import DB, bg_for_index
 from forms import FeedbackForm, ServiceRequest
 
 # CONSTANT
@@ -25,7 +25,8 @@ def pages():
 def index():
     return render_template('index.html',
                            category=category,
-                           pages=pages)
+                           pages=pages,
+                           bg=bg_for_index)
 
 
 @app.route('/catalog/', methods=['GET'])

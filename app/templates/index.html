@@ -3,8 +3,8 @@
 {% block title -%}Главная{% endblock -%}
 
 {% block description -%} {% endblock -%}
-
 {% block keywords -%}печи для саун и бань, парогенераторы для хамамов, влагостойкие панели, eos, еос, оборудование для саун{% endblock -%}
+{% block user_css%}<style type="text/css">.main-page-banner{background: url({{ url_for('static', filename='content/bg_index/'+bg()) }}) repeat-y left bottom;}</style>{% endblock %}
 {% block header -%}<div class="header-main-page"></div>{% endblock-%}
 {% block content -%}
 <div class="main-page-banner twelve columns">
