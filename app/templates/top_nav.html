@@ -2,8 +2,8 @@
               <ul>
                 {# Раскрыващееся меню реализовал через классы css искать строчку в css 'Отдельный стек...'
                 ======================================= -#}
-                <li><a href="/" title="Главная страница">Главная</a></li>
-                <li id="nav-card-menu-hover"><a href="{{url_for('catalog')}}" title="Каталог товаров">Товары</a>
+                <li ><a href="/" class="parent-names" title="Главная страница">Главная</a></li>
+                <li id="nav-card-menu-hover" ><a href="{{url_for('catalog')}}" class="parent-names" title="Каталог товаров">Товары</a>
                   <div class="second-lvl-nav" id="nav-card-menu">
                     {# Раскрываем пункты навигации
                     ======================================= -#}
@@ -25,7 +25,7 @@
                   </div>
                 </li>
 
-                <li id="nav-service-menu-hover"><a href="#" title="">Сервисное обслуживание</a>
+                <li id="nav-service-menu-hover" ><a href="#" class="parent-names" title="">Сервисное обслуживание</a>
                   <div class="second-lvl-nav" id="nav-service-menu">
                     {# Пункты навигации
                     ======================================= -#}
@@ -46,7 +46,7 @@
                   </div>
                 </li>
 
-                <li id="nav-company-menu-hover"><a href="#" title="">Компания</a>
+                <li id="nav-company-menu-hover" ><a href="#" class="parent-names" title="">Компания</a>
                   <div class="second-lvl-nav" id="nav-company-menu">
                     {# Пункты навигации
                     ======================================= -#}
@@ -67,7 +67,7 @@
                   </div>
                 </li>
 
-                <li id="nav-contacts-menu-hover"><a href="#" title="">Контакты</a>
+                <li id="nav-contacts-menu-hover"><a href="#" class="parent-names" title="">Контакты</a>
                   <div class="second-lvl-nav" id="nav-contacts-menu">
 
                     {# Пункты навигации

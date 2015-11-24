@@ -171,7 +171,11 @@ body {
     width: auto;
     line-height: 100%;
 }
-
+.parent-names {
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: .85em;
+}
 .fix-nav-on-main-properties {
     top: 0;
 }
@@ -424,7 +428,13 @@ body {
     text-align: right;
     padding: 2em;
 }
-
+.footer a {
+    text-decoration: none;
+    color: #545454;
+}
+.footer a:hover {
+    text-decoration: underline;
+}
 .clear {
     clear:both;
 }
@@ -437,6 +447,7 @@ body {
     border-radius: 0;
     text-decoration: none;
     border: none;
+
 }
 .btn-category a {
     text-decoration: none;
