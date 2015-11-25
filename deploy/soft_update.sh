@@ -3,6 +3,9 @@
 source "/Users/Artfaal/Dropbox/.faceless_config/VARIABLES"
 
 
+echo 'Чистим от мусора директорию контента'
+cd $share_content_yad
+find . -name '*.DS_Store' -type f -delete
 echo 'Синхронизируем папку контента'
 rsync -avzu --delete --progress -h $share_content_yad/ root@$ip_of_the_server:$path_to_project/
 
