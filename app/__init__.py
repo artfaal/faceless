@@ -5,9 +5,8 @@ from flaskext.markdown import Markdown
 from flask.ext.thumbnails import Thumbnail
 from flask.ext.assets import Environment, Bundle
 
-app = Flask(__name__, instance_relative_config=True)
+app = Flask(__name__)
 app.config.from_object('config')
-app.config.from_pyfile('config.py')
 mongo = Connection()
 thumb = Thumbnail(app)
 assets = Environment(app)
