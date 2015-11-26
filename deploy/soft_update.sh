@@ -23,7 +23,9 @@ cd $path_to_project
 git pull > /dev/null
 
 echo "Качаем базу в виде xlsx"
-mkdir $path_to_project/tmp/ && cd $path_to_project/tmp/ && rm -r *
+mkdir $path_to_project/tmp/
+cd $path_to_project/tmp/
+rm -r *
 curl $link_to_xlsx -o db.xlsx > /dev/null
 
 echo 'Рестартуем сервис'

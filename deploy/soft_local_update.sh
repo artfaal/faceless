@@ -12,7 +12,9 @@ echo 'Синхронизируем папку контента'
 rsync -avzu --delete --progress -h --exclude 'thumb' $share_content_yad/ $local_path_to_project/app/static/content/
 
 echo "Качаем локально базу в виде xlsx"
-mkdir $local_path_to_project/tmp/ && cd $local_path_to_project/tmp/ && rm -r *
+mkdir $local_path_to_project/tmp/
+cd $local_path_to_project/tmp/
+rm -r *
 curl $link_to_xlsx -o db.xlsx > /dev/null
 
 echo 'Запускаем локально'

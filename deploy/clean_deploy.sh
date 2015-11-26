@@ -51,7 +51,8 @@ mkdir $path_to_project/app/static/content/
 tar -xvC $path_to_project/app/static/content/ -f /home/content.tar
 
 echo "Качаем базу в виде xlsx"
-mkdir $path_to_project/tmp/ && cd $path_to_project/tmp/
+mkdir $path_to_project/tmp/
+cd $path_to_project/tmp/
 curl $link_to_xlsx -o db.xlsx
 
 echo "Релоадим проект"

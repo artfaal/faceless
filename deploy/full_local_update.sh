@@ -16,7 +16,9 @@ cd $local_path_to_project
 . ./reload.sh > /dev/null
 
 echo "Качаем локально базу в виде xlsx"
-mkdir $local_path_to_project/tmp/ && cd $local_path_to_project/tmp/ && rm -r *
+mkdir $local_path_to_project/tmp/
+cd $local_path_to_project/tmp/
+rm -r *
 curl $link_to_xlsx -o db.xlsx > /dev/null
 
 echo 'Запускаем локально'
