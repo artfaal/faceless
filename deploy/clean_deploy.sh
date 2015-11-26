@@ -10,7 +10,7 @@ scp $config_folder/config_Prod.py root@$ip_of_the_server:/home/config.py
 echo 'Чистим от мусора директорию контента'
 cd $share_content_yad
 find . -name '*.DS_Store' -type f -delete
-dot_clean ../faceless/
+dot_clean $share_content_yad/
 
 echo 'Пакуем контент из Яндекс.Диска'
 tar -cvf /tmp/content.tar *
