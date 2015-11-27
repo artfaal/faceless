@@ -9,7 +9,7 @@
                     ======================================= -#}
                     {% for c in category() %}
                       {% set path_to_img = 'category/' + c['img'][0]['filename'] %}
-                      {% set thumb = path_to_img|thumbnail('70x50') %}
+                      {% set thumb = path_to_img|thumbnail('50x70') %}
                       <div class="nav-element">
                         <a href="{{url_for('catalog', category_slug=c['slug'])}}" title="{{c['name']}}">
                           <img src="{{ thumb }}" height="70" width="50">

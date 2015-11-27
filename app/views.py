@@ -117,3 +117,14 @@ def doc(filename):
 @app.route('/cache/<path:filename>')
 def cache(filename):
     return send_from_directory(app.config['MEDIA_THUMBNAIL_FOLDER'], filename)
+
+
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html', category=category,
+                           pages=pages,), 404
+
+
+@app.errorhandler(502)
+def page_not_found(e):
+    return render_template('502.html'), 502
