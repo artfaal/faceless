@@ -458,7 +458,8 @@ body {
 
 .details ul {
     list-style: square;
-    list-style-position: inside;
+    list-style-position: outside;
+    padding-left: 1em;
 }
 
 .details .ico-doc {
