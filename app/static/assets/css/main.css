@@ -171,8 +171,6 @@ body {
 }
 .parent-names {
     text-transform: uppercase;
-    font-weight: 600;
-    font-size: .85em;
 }
 .fix-nav-on-main-properties {
     top: 0;
