@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from app import app
 from flask import render_template, send_from_directory, request
-from models import DB, bg_for_index
+from models import DB, MailSend, bg_for_index
 from forms import FeedbackForm, ServiceRequest
 
 # CONSTANT
@@ -9,6 +9,10 @@ db = DB()
 cat = db.get_db(app.config['CATEGORY_COLLECTION'])
 p = db.get_db(app.config['PAGES_COLLECTION'])
 items = db.get_db(app.config['ITEM_COLLECTION'])
+
+
+# Инициализируем классы
+mail = MailSend()
 
 
 #  Функия для вомзможности множественного вызова внутри страницы.
@@ -42,8 +46,9 @@ def catalog(category_slug=None, item_slug=None):
         # Form start
         form = FeedbackForm(request.form)
         if request.method == 'POST':
-            print "OOOOOOOOMG!!!!"
-            print form.name.data
+            mail.send_feedback(request.base_url, form.name.data,
+                               form.email.data, form.phone.data,
+                               form.body.data)
 
         return render_template('catalog.html',
                                form=form,
@@ -80,13 +85,15 @@ def catalog(category_slug=None, item_slug=None):
                                pages=pages)
 
 
-@app.route('/pages/<slug>', methods=['GET'])
+@app.route('/pages/<slug>', methods=['GET', 'POST'])
 def page(slug):
     page = p.find_one({"slug": slug})
     form = FeedbackForm(request.form)
     service_form = ServiceRequest(request.form)
     if request.method == 'POST':
-        print "OOOOOOOOMG!!!!"
+        mail.send_feedback(request.base_url, form.name.data,
+                           form.email.data, form.phone.data,
+                           form.body.data)
     return render_template('pages.html',
                            form=form,
                            service_form=service_form,
@@ -120,11 +127,11 @@ def cache(filename):
 
 
 @app.errorhandler(404)
-def page_not_found(e):
+def page_not_found_404(e):
     return render_template('404.html', category=category,
                            pages=pages,), 404
 
 
 @app.errorhandler(502)
-def page_not_found(e):
+def page_not_found_502(e):
     return render_template('502.html'), 502

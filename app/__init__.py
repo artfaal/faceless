@@ -4,6 +4,7 @@ from mongokit import Connection
 from flaskext.markdown import Markdown
 from flask.ext.thumbnails import Thumbnail
 from flask.ext.assets import Environment, Bundle
+from flask.ext.mail import Mail
 
 app = Flask(__name__)
 app.config.from_object('config')
@@ -11,6 +12,7 @@ mongo = Connection()
 thumb = Thumbnail(app)
 assets = Environment(app)
 Markdown(app)
+mail = Mail(app)
 
 js = Bundle('assets/vendor/jQuery/jquery-1.11.3.min.js',
             'assets/vendor/holder-js/holder.js',

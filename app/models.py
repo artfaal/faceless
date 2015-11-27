@@ -4,6 +4,8 @@ import datetime
 from app import mongo, app
 from utility.validators import *
 from random import choice as choice
+from app import mail
+from flask.ext.mail import Message
 
 
 class DB:
@@ -185,3 +187,22 @@ def bg_for_index():
     onlyfiles = [f for f in listdir(app.config['BG_INDEX'])
                  if isfile(join(app.config['BG_INDEX'], f))]
     return str(choice(onlyfiles))
+
+
+class MailSend:
+    """docstring for Mail"""
+    def __init__(self):
+        self.sender = app.config['MAIL_SENDER']
+        self.recepients = app.config['MAIL_RECEPIENTS']
+        self.title_feedback = app.config['MAIL_FEEDBACK_TITLE']
+        self.body_feedback = app.config['MAIL_FEEDBACK_BODY']
+
+    def send_feedback(self, url_from, name, email=None, phone=None, body=None):
+        msg = Message(
+            self.title_feedback % name,
+            sender=self.sender,
+            recipients=self.recepients)
+        msg.html = self.body_feedback % (name, url_from, email, phone, body)
+        mail.send(msg)
+
+    #TODO ДОДЕЛАТЬ ОТПРАВКУ СЕРВИСНОЙ ФОРМЫ
