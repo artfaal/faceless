@@ -31,4 +31,4 @@ css = Bundle('assets/vendor/skeleton/normalize.css',
              filters='cssmin', output='gen/packed.css')
 assets.register('css_all', css)
 
-from app import views, models, utility, evil, forms
+from app import views, models, utility, auth, evil, forms

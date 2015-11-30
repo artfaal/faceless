@@ -2,6 +2,7 @@
 from app import app
 from flask import render_template, send_from_directory, request, redirect, url_for
 from models import DB, MailSend, bg_for_index
+from app.auth import requires_auth
 from forms import FeedbackForm, ServiceRequest
 
 # CONSTANT
@@ -125,6 +126,14 @@ def news(slug):
                            category=category,
                            pages=pages,
                            news=news)
+
+
+@app.route('/admin', methods=['GET', 'POST'])
+@requires_auth
+def admin():
+    if request.method == 'POST' and request.form['send'] == 'UPD_IMG_DB':
+       print 'УОУ'
+    return render_template('admin.html')
 
 
 @app.route('/test_img', methods=['GET'])
