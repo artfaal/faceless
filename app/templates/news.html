@@ -1,0 +1,15 @@
+{% extends "layout.html" -%}
+
+{% block title -%}{{news['name']}} {% endblock -%}
+
+{% block description -%}{{news['meta_description']}}{% endblock -%}
+
+{% block keywords -%}{{news['meta_keywords']}}{% endblock -%}
+
+{% block content -%}
+    <div class="pages-content">
+        {{news['body']|markdown}}
+        <hr>
+        {{ def_contact_form() }}
+    </div>
+{% endblock -%}

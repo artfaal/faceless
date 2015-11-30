@@ -1,14 +1,15 @@
 # -*- coding: utf-8 -*-
 from app import app
-from flask import render_template, send_from_directory, request
+from flask import render_template, send_from_directory, request, redirect, url_for
 from models import DB, MailSend, bg_for_index
 from forms import FeedbackForm, ServiceRequest
 
 # CONSTANT
 db = DB()
 cat = db.get_db(app.config['CATEGORY_COLLECTION'])
-p = db.get_db(app.config['PAGES_COLLECTION'])
 items = db.get_db(app.config['ITEM_COLLECTION'])
+p = db.get_db(app.config['PAGES_COLLECTION'])
+n = db.get_db(app.config['NEWS_COLLECTION'])
 
 
 # Инициализируем классы
@@ -102,6 +103,30 @@ def page(slug):
                            page=page)
 
 
+@app.route('/news/', methods=['GET'])
+def news_list():
+    news = n.find().sort('position', -1)
+    return render_template('news_list.html',
+                           category=category,
+                           pages=pages,
+                           news=news)
+
+
+@app.route('/news/<slug>', methods=['GET', 'POST'])
+def news(slug):
+    news = n.find_one({"slug": slug})
+    form = FeedbackForm(request.form)
+    if request.method == 'POST':
+        mail.send_feedback(request.base_url, form.name.data,
+                           form.email.data, form.phone.data,
+                           form.body.data)
+    return render_template('news.html',
+                           form=form,
+                           category=category,
+                           pages=pages,
+                           news=news)
+
+
 @app.route('/test_img', methods=['GET'])
 def test_img():
     names = db.get_all_img()
@@ -135,3 +160,8 @@ def page_not_found_404(e):
 @app.errorhandler(502)
 def page_not_found_502(e):
     return render_template('502.html'), 502
+
+
+@app.route('/pages/novosti')
+def r_news():
+    return redirect(url_for('news_list'))

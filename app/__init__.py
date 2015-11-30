@@ -11,7 +11,7 @@ app.config.from_object('config')
 mongo = Connection()
 thumb = Thumbnail(app)
 assets = Environment(app)
-Markdown(app)
+Markdown(app, extensions=['attr_list'])
 mail = Mail(app)
 
 js = Bundle('assets/vendor/jQuery/jquery-1.11.3.min.js',

@@ -181,6 +181,28 @@ class Pages(Document):
     }
 
 
+@mongo.register
+class News(Document):
+    __database__ = app.config['DB']
+    __collection__ = app.config['NEWS_COLLECTION']
+
+    structure = {
+        'name': basestring,
+        'slug': basestring,
+        'position': int,
+        'meta_keywords': basestring,
+        'meta_description': basestring,
+        'body': basestring,
+        'date': basestring,
+    }
+
+    required_fields = []
+    default_values = {}
+
+    required_fields = []
+    default_values = {}
+
+
 def bg_for_index():
     from os import listdir
     from os.path import isfile, join

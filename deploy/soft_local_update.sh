@@ -26,10 +26,4 @@ python run.py &
 sleep 2
 
 echo "Перезаписываем локальную базу"
-curl localhost:5000$xls_to_csv
-curl localhost:5000$rm_cat
-curl localhost:5000$rm_items
-curl localhost:5000$rm_pages
-curl localhost:5000$write_cat
-curl localhost:5000$write_items
-curl localhost:5000$write_pages
+curl localhost:5000/$full_update_db

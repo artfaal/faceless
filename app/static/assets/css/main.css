@@ -160,6 +160,14 @@ body {
     list-style-position: inside;
 }
 
+.pages-content img {
+    padding: .7em;
+}
+
+.pages-content a {
+    color: #ED8C00;
+}
+
 .navigation {
     display: block;
     position: absolute;
@@ -515,4 +523,18 @@ body {
     }
     }
 
+.floatright {
+    display: block;
+    float: right;
+    padding: 30em;
+}
 
+.floatleft {
+    float: left;
+    padding-left: 0;
+}
+
+.small_img {
+    width: 25%;
+    height: auto;
+}

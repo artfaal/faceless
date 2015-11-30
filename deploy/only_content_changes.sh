@@ -28,10 +28,4 @@ exit
 EOF
 
 echo "Удаленно пишем базу"
-curl $ip_of_the_server/$xls_to_csv
-curl $ip_of_the_server/$rm_cat
-curl $ip_of_the_server/$rm_items
-curl $ip_of_the_server/$rm_pages
-curl $ip_of_the_server/$write_cat
-curl $ip_of_the_server/$write_items
-curl $ip_of_the_server/$write_pages
+curl $ip_of_the_server/$full_update_db
