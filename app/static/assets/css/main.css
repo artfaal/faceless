@@ -543,3 +543,13 @@ body {
     width: 15%;
     height: auto;
 }
+
+.flashes {
+    padding: 0 20%;
+    list-style-type: none;
+    text-align: center;
+    color: #545454;
+    font-size: 2em;
+    background-color: #FFF;
+    z-index: 10000;
+}

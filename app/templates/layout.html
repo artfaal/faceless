@@ -18,6 +18,15 @@
   <link rel="icon" type="image/png" href="{{ url_for('static', filename='assets/img/favicon.png') }}?v=4">
 </head>
 <body>
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
 <div id="lightbox-shadow"></div>
   {% block header -%}<div class="header"></div>{% endblock-%}
   <div class="container">

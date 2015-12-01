@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from app import app
 from flask import render_template, send_from_directory, \
-    request, redirect, url_for
+    request, redirect, url_for, flash
 from models import DB, MailSend, bg_for_index
 from app.auth import requires_auth
 from forms import FeedbackForm, ServiceRequest
@@ -52,6 +52,9 @@ def catalog(category_slug=None, item_slug=None):
             mail.send_feedback(request.base_url, form.name.data,
                                form.email.data, form.phone.data,
                                form.body.data)
+            flash(app.config['ANSWER_1'])
+            return redirect(url_for('catalog', category_slug=category_slug,
+                                    item_slug=item_slug))
 
         return render_template('catalog.html',
                                form=form,
@@ -94,10 +97,10 @@ def page(slug):
     form = FeedbackForm(request.form)
     service_form = ServiceRequest(request.form)
     if request.method == 'POST' and request.form['feedback'] == 'Default_Send':
-        print 'RLLY'
         mail.send_feedback(request.base_url, form.name.data,
                            form.email.data, form.phone.data,
                            form.body.data)
+        flash(app.config['ANSWER_1'])
         return redirect(url_for('page', slug=slug))
 
     elif request.method == 'POST' and request.form['feedback'] == 'Service_Send':
@@ -105,6 +108,7 @@ def page(slug):
             service_form.equipment.data, service_form.name.data,
             service_form.email.data, service_form.phone.data,
             service_form.body.data, service_form.comment.data)
+        flash(app.config['ANSWER_2'])
         return redirect(url_for('page', slug=slug))
 
     return render_template('pages.html',
@@ -132,6 +136,8 @@ def news(slug):
         mail.send_feedback(request.base_url, form.name.data,
                            form.email.data, form.phone.data,
                            form.body.data)
+        flash(app.config['ANSWER_1'])
+        return redirect(url_for('news', slug=slug))
     return render_template('news.html',
                            form=form,
                            category=category,
