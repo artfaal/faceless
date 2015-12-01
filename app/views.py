@@ -132,7 +132,7 @@ def news(slug):
 @requires_auth
 def admin():
     if request.method == 'POST' and request.form['send'] == 'UPD_IMG_DB':
-       print 'УОУ'
+        print 'test'
     return render_template('admin.html')
 
 
@@ -174,3 +174,8 @@ def page_not_found_502(e):
 @app.route('/pages/novosti')
 def r_news():
     return redirect(url_for('news_list'))
+
+
+@app.route('/pages/software_downloads')
+def r_soft_d():
+    return redirect(app.config['SOFTWARE_URL'])
