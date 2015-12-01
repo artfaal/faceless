@@ -8,6 +8,7 @@
 
 {% block content -%}
     <div class="pages-content">
+        <h2>{{news['name']}}</h2>
         {{news['body']|markdown}}
         <hr>
         {{ def_contact_form() }}
