@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from app import app
-from flask import render_template, send_from_directory, request, redirect, url_for
+from flask import render_template, send_from_directory, \
+    request, redirect, url_for
 from models import DB, MailSend, bg_for_index
 from app.auth import requires_auth
 from forms import FeedbackForm, ServiceRequest
@@ -92,10 +93,20 @@ def page(slug):
     page = p.find_one({"slug": slug})
     form = FeedbackForm(request.form)
     service_form = ServiceRequest(request.form)
-    if request.method == 'POST':
+    if request.method == 'POST' and request.form['feedback'] == 'Default_Send':
+        print 'RLLY'
         mail.send_feedback(request.base_url, form.name.data,
                            form.email.data, form.phone.data,
                            form.body.data)
+        return redirect(url_for('page', slug=slug))
+
+    elif request.method == 'POST' and request.form['feedback'] == 'Service_Send':
+        mail.send_service_query(
+            service_form.equipment.data, service_form.name.data,
+            service_form.email.data, service_form.phone.data,
+            service_form.body.data, service_form.comment.data)
+        return redirect(url_for('page', slug=slug))
+
     return render_template('pages.html',
                            form=form,
                            service_form=service_form,

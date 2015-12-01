@@ -27,7 +27,7 @@
             <div class="comm-form-hold">
                 {{ render_field(form.body) }}
             </div>
-            <button type="submit" name="send_feedback" value="Send">Отправить</button>
+            <button type="submit" name="feedback" value="Default_Send">Отправить</button>
         </form>
     </div>
 {%- endmacro -%}
@@ -54,7 +54,7 @@
             <div class="comm-form-hold">
                 {{ render_field(service_form.comment) }}
             </div>
-            <button type="submit" name="send_feedback" value="Send">Отправить</button>
+            <button type="submit" name="feedback" value="Service_Send">Отправить</button>
         </form>
     </div>
 {%- endmacro -%}
