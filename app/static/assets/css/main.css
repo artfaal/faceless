@@ -549,6 +549,11 @@ ul {
     height: auto;
 }
 
+.medium_img {
+    width: 45%;
+    height: auto;
+}
+
 .flashes {
     padding: 0 20%;
     list-style-type: none;
