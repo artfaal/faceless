@@ -34,3 +34,23 @@ def install_yad():
     """Установка Yandex.Disk"""
     run('echo "deb http://repo.yandex.ru/yandex-disk/deb/ stable main" | sudo tee -a /etc/apt/sources.list.d/yandex.list > /dev/null && wget http://repo.yandex.ru/yandex-disk/YANDEX-DISK-KEY.GPG -O- | sudo apt-key add - && sudo apt-get update && sudo apt-get install -y yandex-disk')
     run('yandex-disk setup')
+
+
+def base_clean_install(Upgrade=True):
+    """Базовая настрока Ubuntu. Обновление пояса и программ"""
+    # run('sudo apt-get update && \
+    #     sudo /bin/ln -fs /usr/share/zoneinfo/Europe/Moscow /etc/localtime && \
+    #     sudo apt-get install -y language-pack-ru', quiet=True)
+    if Upgrade:
+        print 'LOL'
+        run('sudo apt-get upgrade -y', quiet=True)
+
+
+def install_mongo():
+    """Установка MongoDB и ключей к ней"""
+    run('sudo apt-key adv --keyserver \
+        hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10 &&\
+        echo "deb http://repo.mongodb.org/apt/ubuntu \
+        trusty/mongodb-org/3.0 multiverse" | \
+        sudo tee /etc/apt/sources.list.d/mongodb-org-3.0.list', quiet=True)
+    run('apt-get update, quiet')
