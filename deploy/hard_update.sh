@@ -24,6 +24,10 @@ ssh root@$ip_of_the_server > /dev/null << EOF
 echo "Добавляем конфиг"
 mv /home/config.py $path_to_project/
 
+echo 'Пулим'
+cd $path_to_project
+git pull > /dev/null
+
 cd $path_to_project
 . ./reload.sh > /dev/null
 
