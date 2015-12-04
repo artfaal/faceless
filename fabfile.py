@@ -2,8 +2,8 @@
 from __future__ import with_statement
 from fabric.api import env, put, run, local, cd, settings, prefix
 from fabric.contrib.files import exists
-
-env.hosts = ['root@46.101.135.17']
+env.roledefs['prod'] = ['root@testtesttest']
+env.roledefs['stage'] = ['root@46.101.209.124']
 env.config_local_folder = '/Users/Artfaal/Dropbox/.faceless_config/*'
 env.config_remote_folder = '/home/config'
 env.path_to_content = '/Users/Artfaal/Яндекс.Диск/CONTENT_EOS_SAUNA/content'
@@ -16,9 +16,9 @@ env.full_update = 'secret/nxjQNuiW6E4h8J3z7zJuYJ2KnVnJhs'
 
 def clean_deploy():
     """Полностью чистая установка"""
-    send_configs()
-    clean_dot_DS(env.path_to_content)
     install_yad()
+    send_configs()
+    #clean_dot_DS(env.path_to_content)
     install_common()
     install_mongo()
     install_uwsgi_stuff()
@@ -30,9 +30,9 @@ def clean_deploy():
     download_xlsx()
     create_socket_for_uwsgi()
     update_venv()
-    write_to_base()
     access_right()
     reload_nginx_and_uwsgi()
+    write_to_base()
 
 
 def send_configs():
@@ -58,6 +58,7 @@ def install_yad():
         -O- | sudo apt-key add - && \
         sudo apt-get update && \
         sudo apt-get install -y yandex-disk', quiet=True)
+    print "УКАЗАТЬ ПУТЬ ПО УМОЛЧАНИЮ '/home/YA'"
     run('yandex-disk setup')
 
 
@@ -152,7 +153,7 @@ def update_venv():
     with cd(env.base_dir):
         run('virtualenv env')
         with prefix('source %s/bin/activate' % path):
-            run('pip install -r requirements.txt')
+            run('pip install -r requirements.txt', quiet=True)
 
 
 def access_right():
