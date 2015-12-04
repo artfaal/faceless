@@ -169,3 +169,9 @@ def write_to_base():
 def reload_nginx_and_uwsgi():
     """Перезапуск Nginx & UWSGI"""
     run('service uwsgi restart && service nginx restart')
+
+
+def repo_update():
+    """Pull from repo"""
+    with cd(env.base_dir):
+        run('git pull')

@@ -5,6 +5,7 @@ from flask import render_template, send_from_directory, \
 from models import DB, MailSend, bg_for_index
 from app.auth import requires_auth
 from forms import FeedbackForm, ServiceRequest
+from app.evil import secret
 
 # CONSTANT
 db = DB()
@@ -149,7 +150,9 @@ def news(slug):
 @requires_auth
 def admin():
     if request.method == 'POST' and request.form['send'] == 'UPD_IMG_DB':
-        print 'test'
+        import urllib
+        urllib.urlretrieve (app.config['GOOGLE_BASE'], "%sdb.xlsx" % app.config['TMP_PATH'])
+        secret(app.config['FULL_RM_WRITE'])
     return render_template('admin.html')
 
 
