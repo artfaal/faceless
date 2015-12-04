@@ -4,9 +4,9 @@ from fabric.api import env, put, run, local, cd, settings, prefix
 from fabric.contrib.files import exists
 env.roledefs['prod'] = ['root@testtesttest']
 env.roledefs['stage'] = ['root@46.101.209.124']
-env.config_local_folder = '/Users/Artfaal/Dropbox/.faceless_config/*'
+env.config_local_folder = '~/Dropbox/.faceless_config/*'
 env.config_remote_folder = '/home/config'
-env.path_to_content = '/Users/Artfaal/Яндекс.Диск/CONTENT_EOS_SAUNA/content'
+env.path_to_content = '~/Яндекс.Диск/CONTENT_EOS_SAUNA/content'
 env.path_to_remote_content = '/home/YA/CONTENT_EOS_SAUNA/content'
 env.base_dir = '/var/www/faceless'
 env.repo = 'https://github.com/artfaal/faceless.git'
