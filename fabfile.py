@@ -2,7 +2,7 @@
 from __future__ import with_statement
 from fabric.api import env, put, run, local, cd, settings, prefix
 from fabric.contrib.files import exists
-env.roledefs['prod'] = ['root@testtesttest']
+env.roledefs['prod'] = ['root@46.101.188.95']
 env.roledefs['stage'] = ['root@46.101.209.124']
 env.config_local_folder = '~/Dropbox/.faceless_config/*'
 env.config_remote_folder = '/home/config'
