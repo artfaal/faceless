@@ -186,3 +186,7 @@ def ufw():
          ufw allow http &&\
          ufw allow https &&\
          ufw enable')
+
+
+def just_update():
+    run('apt-get update && apt-get upgrade -y')
