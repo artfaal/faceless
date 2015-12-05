@@ -174,4 +174,15 @@ def reload_nginx_and_uwsgi():
 def repo_update():
     """Pull from repo"""
     with cd(env.base_dir):
-        run('git pull')
+        run('git pull', quiet=True)
+
+
+def ufw():
+    """ Закрываем все порты Firewall, кроме ssh и www"""
+    run('apt-get install ufw', quiet=True)
+    run('ufw default deny incoming &&\
+         ufw default allow outgoing &&\
+         ufw allow ssh &&\
+         ufw allow http &&\
+         ufw allow https &&\
+         ufw enable')
