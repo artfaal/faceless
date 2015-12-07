@@ -563,3 +563,13 @@ ul {
     background-color: #FFF;
     z-index: 10000;
 }
+
+.flags {
+    position: absolute;
+    padding-left: 10%;
+    padding-top: 4px;
+    z-index: 100;
+}
+.flags img {
+    padding-right: .6em;
+}
