@@ -13,7 +13,9 @@
         {% for n in news -%}
             <p><i>{{n['date']}}</i></p>
             <h3>{{n['name']}}</h3>
-<!--             <p>{{n['body']|truncate(350)|replace('**', '')|replace('*', '')|replace('##', '')|replace('###', '')|replace('#', '')}}</p> -->
+            <div class="hide_img">
+                <p>{{n['body']|truncate(400)|replace('**', '')|replace('*', '')|replace('##', '')|replace('###', '')|replace('#', '')|markdown}}</p>
+            </div>
             <p><a href="{{ url_for('news', slug=n['slug']) }}">Читать далее...</a></p>
             <div class= 'clear'></div>
             <hr>

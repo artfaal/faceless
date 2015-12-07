@@ -573,3 +573,6 @@ ul {
 .flags img {
     padding-right: .6em;
 }
+.hide_img img {
+    display: none;
+}
