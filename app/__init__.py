@@ -18,6 +18,7 @@ js = Bundle('assets/vendor/jQuery/jquery-1.11.3.min.js',
             'assets/vendor/holder-js/holder.js',
             'assets/vendor/lightbox/js/lightbox.js',
             'assets/vendor/basic-jquery-slider/js/bjqs-1.3.min.js',
+            'assets/vendor/scroll_top/scroll.js',
             'assets/js/main.js',
             filters='jsmin', output='gen/packed.js')
 assets.register('js_all', js)
@@ -27,7 +28,9 @@ css = Bundle('assets/vendor/skeleton/normalize.css',
              'assets/vendor/basic-jquery-slider/bjqs.css',
              'assets/vendor/lightbox/css/lightbox.css',
              'assets/vendor/font-awesome/css/font-awesome.css',
+             'assets/vendor/scroll_top/style.css',
              'assets/css/main.css',
+
              filters='cssmin', output='gen/packed.css')
 assets.register('css_all', css)
 
