@@ -133,7 +133,7 @@ def link_yad_to_content():
 
 
 def download_xlsx(l=False):
-    """Скачиваем базу в виде xlsx файла"""
+    """Скачиваем базу в виде xlsx файла (можно локально)"""
     if l is False:
         if not exists('%s/tmp' % env.base_dir):
             run('mkdir -p %s/tmp' % env.base_dir)
@@ -152,14 +152,14 @@ def create_socket_for_uwsgi():
 
 
 def update_venv(l=False):
-    """Настройка окружения"""
+    """Настройка окружения (можно локально)"""
     if l is False:
         path = '%s/env' % env.base_dir
         if exists(path):
             run('rm -rf %s' % path)
         with cd(env.base_dir):
             run('virtualenv env')
-            with prefix('source %s/bin/activate' % path):
+            with prefix('. %s/bin/activate' % path):
                 run('pip install -r requirements.txt', quiet=True)
     else:
         path = '%s/env' % env.local_base_dir
@@ -177,7 +177,7 @@ def access_right():
 
 
 def write_to_base(l=False):
-    """Обновление базы"""
+    """Обновление базы (можно локально)"""
     if l is False:
         run('curl %s/%s' % (env.host, env.full_update))
     else:
@@ -207,4 +207,5 @@ def ufw():
 
 
 def just_update():
+    """apt update & upgrade"""
     run('apt-get update && apt-get upgrade -y')
