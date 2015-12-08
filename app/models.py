@@ -28,15 +28,13 @@ class DB:
         return img_filenames
 
 
-@mongo.register
-class Items(Document):
+class _Base(Document):
     """
     Документация по библиотеке
     https://github.com/namlook/mongokit/wiki
+    Базовый класс для создания элементов в базе
     """
-
     __database__ = app.config['DB']
-    __collection__ = app.config['ITEM_COLLECTION']
 
     structure = {
         'name': basestring,
@@ -45,16 +43,25 @@ class Items(Document):
         'meta_keywords': basestring,
         'meta_description': basestring,
         'body': basestring,
-        'date_creation': datetime.datetime,
-        'main_category': basestring,
-        'child_category': basestring,
         'img': [
             {
                 'filename': basestring,
                 'alt': basestring,
                 'position': int
             }
-        ],
+        ]
+    }
+
+
+@mongo.register
+class Items(_Base):
+    """Товары"""
+    __collection__ = app.config['ITEM_COLLECTION']
+
+    structure = {
+        'date_creation': datetime.datetime,
+        'main_category': basestring,
+        'child_category': basestring,
         'doc': [
             {
                 'filename': basestring,
@@ -70,49 +77,20 @@ class Items(Document):
             }
         ]
     }
-    # TODO Индексы не работают, так что пока без них... -_-
-    indexes = [
-        {'fields': ['name'], 'unique': True},
-        {'fields': ['slug'], 'unique': True},
-        {'fields': ['body']},
-    ]
 
-    required_fields = []
     default_values = {
         'date_creation': datetime.datetime.utcnow,
         'position': 0
     }
 
-    # TODO Странная ошибка с валидацией. Нужен юникод?
-    validators = {
-        # 'meta_keywords': max_length(200),
-        # 'meta_description': max_length(200)
-    }
-
 
 @mongo.register
-class Category(Document):
-
-    __database__ = app.config['DB']
+class Category(_Base):
+    """Категории"""
     __collection__ = app.config['CATEGORY_COLLECTION']
 
     structure = {
-        'name': basestring,
-        'slug': basestring,
-        'position': int,
-        'meta_keywords': basestring,
-        'meta_description': basestring,
         'mini_description': basestring,
-        'body': basestring,
-        # 'date_creation': datetime.datetime,
-        'img': [
-            {
-                'filename': basestring,
-                'alt': basestring,
-                'position': int
-            }
-        ],
-
         'child_category': [
             {
                 'name': basestring,
@@ -134,47 +112,18 @@ class Category(Document):
         ],
     }
 
-    indexes = [
-        # TODO Плюс нужно сделать сделать индексы итерабельными
-        # {'fields': ['name'], 'unique': True},
-        # {'fields': ['child_category.name'], 'unique': True},
-        # {'fields': ['slug'], 'unique': True},
-        # {'fields': ['body']},
-
-        # {'fields': ['child_category.name'], 'unique': True},
-        # {'fields': ['child_category.slug'], 'unique': True},
-        # {'fields': ['child_category.body']},
-    ]
-
-    required_fields = []
-
-    default_values = {}
-
-    validators = {
-        # 'meta_keywords': max_length(200),
-        # 'meta_description': max_length(200)
-    }
-
 
 @mongo.register
-class Pages(Document):
-    __database__ = app.config['DB']
+class Pages(_Base):
+    """Страницы"""
     __collection__ = app.config['PAGES_COLLECTION']
 
     structure = {
-        'name': basestring,
-        'slug': basestring,
-        'position': int,
-        'meta_keywords': basestring,
-        'meta_description': basestring,
         'mini_description': basestring,
-        'body': basestring,
         'date_creation': datetime.datetime,
         'section': basestring,
         'thumb': basestring,
     }
-
-    required_fields = []
     default_values = {
         'date_creation': datetime.datetime.utcnow,
         'position': 0
@@ -182,25 +131,13 @@ class Pages(Document):
 
 
 @mongo.register
-class News(Document):
-    __database__ = app.config['DB']
+class News(_Base):
+    """Новости/Блог"""
     __collection__ = app.config['NEWS_COLLECTION']
 
     structure = {
-        'name': basestring,
-        'slug': basestring,
-        'position': int,
-        'meta_keywords': basestring,
-        'meta_description': basestring,
-        'body': basestring,
         'date': basestring,
     }
-
-    required_fields = []
-    default_values = {}
-
-    required_fields = []
-    default_values = {}
 
 
 def bg_for_index():
@@ -212,7 +149,7 @@ def bg_for_index():
 
 
 class MailSend:
-    """docstring for Mail"""
+    """Mail"""
     def __init__(self):
         self.sender = app.config['MAIL_SENDER']
         self.recepients = app.config['MAIL_RECEPIENTS']
