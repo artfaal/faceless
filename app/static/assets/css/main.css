@@ -566,7 +566,7 @@ ul {
 
 .flags {
     position: absolute;
-    padding-left: 10%;
+    padding-left: 15%;
     padding-top: 4px;
     z-index: 100;
 }
@@ -575,4 +575,15 @@ ul {
 }
 .hide_img img {
     display: none;
+}
+.d-cat {
+    background-image: url("/static/assets/img/d-cat-n.png");
+    height: 125px;
+    width: 163px;
+    transition: background 0.4s ease-in-out;
+}
+.d-cat:hover {
+    background-image: url("/static/assets/img/d-cat-h.png");
+    height: 125px;
+    width: 163px;
 }

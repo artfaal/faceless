@@ -1,0 +1,35 @@
+.scroll-top-wrapper {
+    position: fixed;
+    opacity: 0;
+    visibility: hidden;
+    overflow: hidden;
+    text-align: center;
+    z-index: 99999999;
+    color: #ED8C00;
+    width: 50px;
+    height: 48px;
+    line-height: 48px;
+    right: 25px;
+    bottom: 25px;
+    padding-top: 2px;
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -ms-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+}
+
+.scroll-top-wrapper:hover {
+    color: #545454;
+
+}
+
+.scroll-top-wrapper.show {
+    visibility: visible;
+    cursor: pointer;
+    opacity: 1.0;
+}
+
+.scroll-top-wrapper i.fa {
+    line-height: inherit;
+}

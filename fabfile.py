@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 from __future__ import with_statement
-from fabric.api import env, put, run, local, cd, settings, prefix
+from fabric.api import env, put, run, cd, lcd, settings, prefix, local
 from fabric.contrib.files import exists
+import os
 env.roledefs['prod'] = ['root@46.101.188.95']
 env.roledefs['stage'] = ['root@46.101.209.124']
 env.config_local_folder = '~/Dropbox/.faceless_config/*'
@@ -12,6 +13,7 @@ env.base_dir = '/var/www/faceless'
 env.repo = 'https://github.com/artfaal/faceless.git'
 env.link_to_xlsx = 'https://docs.google.com/spreadsheets/d/1prsbNgSkrJ4Wm_Z9CHtisbVrsQ_rc3KJ2zEykJxiPSc/export?format=xlsx'
 env.full_update = 'secret/nxjQNuiW6E4h8J3z7zJuYJ2KnVnJhs'
+env.local_base_dir = os.path.abspath(os.path.dirname(__file__))
 
 
 def clean_deploy():
@@ -130,12 +132,17 @@ def link_yad_to_content():
     run('ln -s %s %s/app/static/' % (env.path_to_remote_content, env.base_dir))
 
 
-def download_xlsx():
-    """Скачиваем базу в виде xlsx файла"""
-    if not exists('%s/tmp' % env.base_dir):
-        run('mkdir -p %s/tmp' % env.base_dir)
-    with cd('%s/tmp' % env.base_dir):
-        run('curl %s  -o db.xlsx' % env.link_to_xlsx, quiet=True)
+def download_xlsx(l=False):
+    """Скачиваем базу в виде xlsx файла (можно локально)"""
+    if l is False:
+        if not exists('%s/tmp' % env.base_dir):
+            run('mkdir -p %s/tmp' % env.base_dir)
+        with cd('%s/tmp' % env.base_dir):
+            run('curl %s  -o db.xlsx' % env.link_to_xlsx, quiet=True)
+    else:
+        print env.local_base_dir
+        with lcd('%s/tmp' % env.local_base_dir):
+            local('curl %s  -o db.xlsx' % env.link_to_xlsx)
 
 
 def create_socket_for_uwsgi():
@@ -144,16 +151,24 @@ def create_socket_for_uwsgi():
     run('chown www-data /tmp/faceless.sock')
 
 
-def update_venv():
-    """Настройка окружения"""
-    path = '%s/env' % env.base_dir
-    if exists(path):
-        print 'есть'
-        run('rm -rf %s' % path)
-    with cd(env.base_dir):
-        run('virtualenv env')
-        with prefix('source %s/bin/activate' % path):
-            run('pip install -r requirements.txt', quiet=True)
+def update_venv(l=False):
+    """Настройка окружения (можно локально)"""
+    if l is False:
+        path = '%s/env' % env.base_dir
+        if exists(path):
+            run('rm -rf %s' % path)
+        with cd(env.base_dir):
+            run('virtualenv env')
+            with prefix('. %s/bin/activate' % path):
+                run('pip install -r requirements.txt', quiet=True)
+    else:
+        path = '%s/env' % env.local_base_dir
+        if os.path.exists(path):
+            local('rm -rf %s' % path)
+        with lcd(env.local_base_dir):
+            local('virtualenv env')
+            with prefix('. %s/bin/activate' % path):
+                local('pip install -r %s/requirements.txt' % env.local_base_dir)
 
 
 def access_right():
@@ -161,9 +176,12 @@ def access_right():
     run('sudo chown -R www-data:www-data %s' % env.base_dir)
 
 
-def write_to_base():
-    """Обновление базы"""
-    run('curl %s/%s' % (env.host, env.full_update))
+def write_to_base(l=False):
+    """Обновление базы (можно локально)"""
+    if l is False:
+        run('curl %s/%s' % (env.host, env.full_update))
+    else:
+        local('curl localhost:5000/%s' % env.full_update)
 
 
 def reload_nginx_and_uwsgi():
@@ -189,4 +207,5 @@ def ufw():
 
 
 def just_update():
+    """apt update & upgrade"""
     run('apt-get update && apt-get upgrade -y')
