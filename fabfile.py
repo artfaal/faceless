@@ -117,13 +117,14 @@ def clone_repo():
 def links_configs():
     """Линкуем 3 конфига"""
     main_config = '%s/config.py' % env.config_remote_folder
-    nginx_config = '%s/faceless.conf' % env.config_remote_folder
     flask_config = '%s/flask.ini' % env.config_remote_folder
-    # Определяем, куда деплоим
+    # Определяем, куда деплоим nginx и instance конфиги
     if env.host_string in env.roledefs['stage']:
         instance_config = '%s/config_Stage.py' % env.config_remote_folder
+        nginx_config = '%s/faceless_Stage.conf' % env.config_remote_folder
     elif env.host_string in env.roledefs['prod']:
         instance_config = '%s/config_Prod.py' % env.config_remote_folder
+        nginx_config = '%s/faceless_Prod.conf' % env.config_remote_folder
     else:
         raise ValueError('No valid role specified!')
 
@@ -131,7 +132,8 @@ def links_configs():
         with settings(warn_only=True):
             run('ln -s %s %s' % (main_config, env.base_dir))
             run('mkdir -p %s/instance' % env.base_dir, quiet=True)
-            run('ln -s %s %s/instance/config.py' % (instance_config, env.base_dir))
+            run('ln -s %s %s/instance/config.py' % (instance_config,
+                                                    env.base_dir))
             run('ln -s %s %s' % (nginx_config, '/etc/nginx/conf.d/'))
             run('ln -s %s %s' % (flask_config, '/etc/uwsgi/apps-enabled/'))
 
