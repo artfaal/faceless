@@ -119,9 +119,15 @@ def links_configs():
     main_config = '%s/config.py' % env.config_remote_folder
     nginx_config = '%s/faceless.conf' % env.config_remote_folder
     flask_config = '%s/flask.ini' % env.config_remote_folder
+    # Определяем, куда деплоим
+    if env.host_string in env.roledefs['stage']:
+        instance_config = '%s/config_Stage.py' % env.config_remote_folder
+    elif env.host_string in env.roledefs['prod']:
+        instance_config = '%s/config_Prod.py' % env.config_remote_folder
     if exists(main_config) and exists(nginx_config) and exists(flask_config):
         with settings(warn_only=True):
             run('ln -s %s %s' % (main_config, env.base_dir))
+            run('ln -s %s %s/instance' % (instance_config, env.base_dir))
             run('ln -s %s %s' % (nginx_config, '/etc/nginx/conf.d/'))
             run('ln -s %s %s' % (flask_config, '/etc/uwsgi/apps-enabled/'))
 
