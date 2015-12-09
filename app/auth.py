@@ -7,7 +7,8 @@ def check_auth(username, password):
     """This function is called to check if a username /
     password combination is valid. Yep
     """
-    return username == app.config['LOGIN'] and password == app.config['PASSWORD']
+    return username == app.config['LOGIN'] \
+        and password == app.config['PASSWORD']
 
 
 def authenticate():

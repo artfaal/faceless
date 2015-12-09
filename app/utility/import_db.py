@@ -9,15 +9,6 @@ import os
 reload(sys)
 sys.setdefaultencoding("utf-8")
 
-# Предобработка csv файлов
-# EXECUTE_FROM_ITEMS = app.config['EXECUTE_FROM_ITEMS']
-
-# FILENAME_CATEGORY = app.config['FILENAME_CATEGORY']
-# FILENAME_PAGES =
-# FILENAME_NEWS =
-
-# TMP_PATH = app.config['TMP_PATH']
-
 
 def save_items_to_db():
     files = get_items_csv()
@@ -150,7 +141,6 @@ def pars_img_doc_video(input):
     # Создаем словарь и добавляем в итог
     for i in l:
         part = i.split('$')
-        # Надо удалять первую строчку и CSV, иначе будет exception
         try:
             result.append({'filename': part[0], 'alt': part[1],
                            'position': position})
@@ -164,7 +154,6 @@ def pars_img_doc_video(input):
 def get_items_csv():
     #  Эта функция собирает все фалы из папки в список, кроме той,
     #  в которой лежат категории.
-    #  TODO Зарефакторить. А то какая-то жесть.
     list_of_files = []
     for file in os.listdir(app.config['TMP_PATH']):
         if file.endswith(".csv") and \
