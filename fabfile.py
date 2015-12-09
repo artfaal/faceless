@@ -62,6 +62,18 @@ def install_yad():
         sudo apt-get install -y yandex-disk', quiet=True)
     print "УКАЗАТЬ ПУТЬ ПО УМОЛЧАНИЮ '/home/YA'"
     run('yandex-disk setup')
+    print "Добавляем в крон. Если уже есть запись. Запишется ещё одна"
+    with settings(warn_only=True):
+        backup_cron = run('crontab -l > mycron')
+        if backup_cron.return_code == 0:
+            run('echo "@reboot yandex-disk start" >> mycron && \
+                crontab mycron && rm mycron')
+        elif backup_cron.return_code == 1:
+            run('echo "@reboot yandex-disk start" >> mycron && \
+                crontab mycron && rm mycron')
+        else:
+            print backup_cron
+            raise SystemExit()
 
 
 def install_common(Upgrade=True):
