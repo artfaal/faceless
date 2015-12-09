@@ -6,8 +6,9 @@ from flask.ext.thumbnails import Thumbnail
 from flask.ext.assets import Environment, Bundle
 from flask.ext.mail import Mail
 
-app = Flask(__name__)
+app = Flask(__name__, instance_relative_config=True)
 app.config.from_object('config')
+app.config.from_pyfile('config.py')
 mongo = Connection()
 thumb = Thumbnail(app)
 assets = Environment(app)

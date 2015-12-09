@@ -9,20 +9,11 @@ import os
 reload(sys)
 sys.setdefaultencoding("utf-8")
 
-# Предобработка csv файлов
-FILE_TO_IMPORT_CATEGORY = app.config['FILE_TO_IMPORT_CATEGORY']
-FILE_TO_IMPORT_PAGES = app.config['FILE_TO_IMPORT_PAGES']
-FILE_TO_IMPORT_NEWS = app.config['FILE_TO_IMPORT_NEWS']
-TMP_PATH = app.config['TMP_PATH']
-NAME_CAT_CSV = app.config['CATEGORY_CSV_FILENAME_END']
-NAME_PAGE_CSV = app.config['NAME_PAGE_CSV']
-NAME_NEWS_CSV = app.config['NAME_NEWS_CSV']
-
 
 def save_items_to_db():
     files = get_items_csv()
     for file in files:
-        with open(os.path.join(TMP_PATH, file), 'rb') as f:
+        with open(os.path.join(app.config['TMP_PATH'], file), 'rb') as f:
             reader = csv.reader(f, dialect='excel', delimiter=';',
                                 escapechar='\\')
             for row in reader:
@@ -58,7 +49,8 @@ def save_category_to_db():
     """
     # Создаем, что бы упорядочить их по мере итерации.
     category_position = 10
-    with open(FILE_TO_IMPORT_CATEGORY, 'rb') as f:
+    with open('%s%s' % (app.config['TMP_PATH'],
+                        app.config['FILENAME_CATEGORY']), 'rb') as f:
         reader = csv.reader(f, dialect='excel', delimiter=';', escapechar='\\')
         for row in reader:
             # Проверяем главная ли это категория. Если - да,
@@ -97,7 +89,8 @@ def save_category_to_db():
 
 
 def save_pages_to_db():
-    with open(FILE_TO_IMPORT_PAGES, 'rb') as f:
+    with open('%s%s' % (app.config['TMP_PATH'],
+                        app.config['FILENAME_PAGES']), 'rb') as f:
         reader = csv.reader(f, dialect='excel', delimiter=';',
                             escapechar='\\')
         for row in reader:
@@ -117,7 +110,8 @@ def save_pages_to_db():
 
 def save_news_to_db():
     position = 0
-    with open(FILE_TO_IMPORT_NEWS, 'rb') as f:
+    with open('%s%s' % (app.config['TMP_PATH'],
+                        app.config['FILENAME_NEWS']), 'rb') as f:
         reader = csv.reader(f, dialect='excel', delimiter=';',
                             escapechar='\\')
         for row in reader:
@@ -147,7 +141,6 @@ def pars_img_doc_video(input):
     # Создаем словарь и добавляем в итог
     for i in l:
         part = i.split('$')
-        # Надо удалять первую строчку и CSV, иначе будет exception
         try:
             result.append({'filename': part[0], 'alt': part[1],
                            'position': position})
@@ -161,9 +154,9 @@ def pars_img_doc_video(input):
 def get_items_csv():
     #  Эта функция собирает все фалы из папки в список, кроме той,
     #  в которой лежат категории.
-    #  TODO Зарефакторить. А то какая-то жесть.
     list_of_files = []
-    for file in os.listdir(TMP_PATH):
-        if file.endswith(".csv") and not file.endswith(NAME_CAT_CSV) and not file.endswith(NAME_PAGE_CSV) and not file.endswith(NAME_NEWS_CSV):
+    for file in os.listdir(app.config['TMP_PATH']):
+        if file.endswith(".csv") and \
+           file not in app.config['EXECUTE_FROM_ITEMS']:
             list_of_files.append(file)
     return list_of_files

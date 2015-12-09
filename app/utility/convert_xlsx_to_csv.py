@@ -99,8 +99,7 @@ def dump_csv(table, outdir, outfilename):
 
 def save_csv_tables(tables, outdir):
     for (sheet_idx, sheet) in enumerate(tables):
-        outfilename = "%d_%s.csv" % (sheet_idx,
-                                     camelize(sheet['sheet_name']))
+        outfilename = "%s.csv" % (camelize(sheet['sheet_name']))
         dump_csv(sheet['sheet_data'], outdir, outfilename)
 
 

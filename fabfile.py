@@ -62,6 +62,18 @@ def install_yad():
         sudo apt-get install -y yandex-disk', quiet=True)
     print "УКАЗАТЬ ПУТЬ ПО УМОЛЧАНИЮ '/home/YA'"
     run('yandex-disk setup')
+    print "Добавляем в крон. Если уже есть запись. Запишется ещё одна"
+    with settings(warn_only=True):
+        backup_cron = run('crontab -l > mycron')
+        if backup_cron.return_code == 0:
+            run('echo "@reboot yandex-disk start" >> mycron && \
+                crontab mycron && rm mycron')
+        elif backup_cron.return_code == 1:
+            run('echo "@reboot yandex-disk start" >> mycron && \
+                crontab mycron && rm mycron')
+        else:
+            print backup_cron
+            raise SystemExit()
 
 
 def install_common(Upgrade=True):
@@ -117,11 +129,23 @@ def clone_repo():
 def links_configs():
     """Линкуем 3 конфига"""
     main_config = '%s/config.py' % env.config_remote_folder
-    nginx_config = '%s/faceless.conf' % env.config_remote_folder
     flask_config = '%s/flask.ini' % env.config_remote_folder
+    # Определяем, куда деплоим nginx и instance конфиги
+    if env.host_string in env.roledefs['stage']:
+        instance_config = '%s/config_Stage.py' % env.config_remote_folder
+        nginx_config = '%s/faceless_Stage.conf' % env.config_remote_folder
+    elif env.host_string in env.roledefs['prod']:
+        instance_config = '%s/config_Prod.py' % env.config_remote_folder
+        nginx_config = '%s/faceless_Prod.conf' % env.config_remote_folder
+    else:
+        raise ValueError('No valid role specified!')
+
     if exists(main_config) and exists(nginx_config) and exists(flask_config):
         with settings(warn_only=True):
             run('ln -s %s %s' % (main_config, env.base_dir))
+            run('mkdir -p %s/instance' % env.base_dir, quiet=True)
+            run('ln -s %s %s/instance/config.py' % (instance_config,
+                                                    env.base_dir))
             run('ln -s %s %s' % (nginx_config, '/etc/nginx/conf.d/'))
             run('ln -s %s %s' % (flask_config, '/etc/uwsgi/apps-enabled/'))
 
@@ -137,11 +161,13 @@ def download_xlsx(l=False):
     if l is False:
         if not exists('%s/tmp' % env.base_dir):
             run('mkdir -p %s/tmp' % env.base_dir)
+        else:
+            run('rm -rf %s/tmp/*' % env.base_dir)
         with cd('%s/tmp' % env.base_dir):
             run('curl %s  -o db.xlsx' % env.link_to_xlsx, quiet=True)
     else:
-        print env.local_base_dir
         with lcd('%s/tmp' % env.local_base_dir):
+            local('rm -rf %s/tmp/*' % env.local_base_dir)
             local('curl %s  -o db.xlsx' % env.link_to_xlsx)
 
 
@@ -190,9 +216,9 @@ def reload_nginx_and_uwsgi():
 
 
 def repo_update():
-    """Pull from repo"""
+    """Hard Pull from repo"""
     with cd(env.base_dir):
-        run('git pull', quiet=True)
+        run('git fetch --all && git reset --hard origin/master')
 
 
 def ufw():
