@@ -20,6 +20,7 @@ js = Bundle('assets/vendor/jQuery/jquery-1.11.3.min.js',
             'assets/vendor/lightbox/js/lightbox.js',
             'assets/vendor/basic-jquery-slider/js/bjqs-1.3.min.js',
             'assets/vendor/scroll_top/scroll.js',
+            'assets/vendor/js.cookie/js.cookie.js',
             'assets/js/main.js',
             filters='jsmin', output='gen/packed.js')
 assets.register('js_all', js)

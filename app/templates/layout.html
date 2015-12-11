@@ -28,28 +28,6 @@
   {% endif %}
 {% endwith %}
 <div id="lightbox-shadow"></div>
-
-
-<style type="text/css">
- .cover {
-  position: absolute;
-  z-index: 101;
-  position: fixed;
-  right: 5px;
-  bottom: 25px;
-  opacity: 0.9;
- }
- .cover span{display: none;}
- .cover img:hover{display: none;}
- .cover span:hover{display: block;}
-
-</style>
-<div class="cover">
-  <img src="{{url_for('static', filename='img/cover.jpg')}}" alt="" height="200px">
-  <span> Скачааааать =)</span>
-</div>
-
-
   {% block header -%}
   <div class="header">
     {% block flags -%}
