@@ -13,6 +13,7 @@ cat = db.get_db(app.config['CATEGORY_COLLECTION'])
 items = db.get_db(app.config['ITEM_COLLECTION'])
 p = db.get_db(app.config['PAGES_COLLECTION'])
 n = db.get_db(app.config['NEWS_COLLECTION'])
+i_n = db.get_db(app.config['INDEX_NEWS_COLLECTION'])
 
 
 # Инициализируем классы
@@ -31,10 +32,12 @@ def pages():
 @app.route('/', methods=['GET'])
 @app.route('/index/', methods=['GET'])
 def index():
+    i_news = i_n.find().sort('position')
     return render_template('index.html',
                            category=category,
                            pages=pages,
-                           bg=bg_for_index)
+                           bg=bg_for_index,
+                           i_news=i_news)
 
 
 @app.route('/catalog/', methods=['GET'])

@@ -140,6 +140,21 @@ class News(_Base):
     }
 
 
+@mongo.register
+class Index_News(Document):
+    """Новости/Блог"""
+    __database__ = app.config['DB']
+    __collection__ = app.config['INDEX_NEWS_COLLECTION']
+
+    structure = {
+        'name': basestring,
+        'img': basestring,
+        'link': basestring,
+        'mini_description': basestring,
+        'position': int,
+    }
+
+
 def bg_for_index():
     from os import listdir
     from os.path import isfile, join

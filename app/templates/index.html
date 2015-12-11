@@ -21,23 +21,20 @@
     прилипает в картинке #}
     {%include 'top_nav.html'%}
     <div class="news-slider">
-    <div>
-        <a href="#"><div class="news-title">
-                    <span>Выставка в Штудгарде ну и конечно длинющий заголовок =(</span>
-                </div>
-                <div class="news-img">
-                <img src="holder.js/190x140?random=yes">
-                </div>
-                <div class="news-text">
-                <p>Такие вот в общем делишки. Ну и думаю, можно обрезать на этом месте уже.. Ибо нехрен.. =)
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                </p>
-                </div></a>
-    </div>
-    <div>
-        Вот
-    </div>
+        {% for n in i_news %}
+        {%set thumb = ('index_news/' + n['img'])|thumbnail('100x280')%}
+            <div>
+                <a href="{{n['link']}}"><div class="news-title">
+                            <span>{{n['name']}}</span>
+                        </div>
+                        <div class="news-img">
+                        <img src="{{thumb}}">
+                        </div>
+                        <div class="news-text">
+                        <p>{{n['mini_description']}}</p>
+                        </div></a>
+            </div>
+        {% endfor %}
     </div>
 </div>
 <div class="prodlight">
@@ -175,7 +172,7 @@
                 arrows: false,
                 dots: true,
                 autoplay: true,
-                autoplaySpeed: 6000,
+                autoplaySpeed: 4000,
             });
             $('.prod-slider').slick({
                 dots: false,
