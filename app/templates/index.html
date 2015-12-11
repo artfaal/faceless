@@ -20,12 +20,31 @@
     в div  main-page-banner, перезаписывается значение на top и она
     прилипает в картинке #}
     {%include 'top_nav.html'%}
-<!--     <div id="slide-banner-main-page">
-        <ul class="bjqs">
-            <li>Запуск нового сайта компании EOS-Премиум-СПА Технологии</li>
-
-        </ul>
-    </div> -->
+    <div class="news-slider">
+    <div>
+        <div class="news-title">
+            <span>Выставка в Штудгарде ну и конечно длинющий заголовок =(</span>
+        </div>
+        <div class="news-img">
+        <img src="holder.js/190x140">
+        </div>
+        <div class="news-text">
+        <p>Такие вот в общем делишки. Ну и думаю, можно обрезать на этом месте уже.. Ибо нехрен.. =)
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        </div>
+    </div>
+    <div>
+        Так
+    </div>
+    <div>
+        Вот
+    </div>
+    </div>
 </div>
 
 {% endblock -%}
@@ -33,14 +52,14 @@
 {% block user_scripts %}
     <!-- Include the plugin *after* the jQuery library -->
       <script>
-          jQuery(document).ready(function($) {
-        $('#slide-banner-main-page').bjqs({
-        'height' : 300,
-        'width' : 296,
-        'responsive' : true,
-        'showcontrols' : false,
-        'showmarkers' : false
-    });
-});
+          $(document).ready(function(){
+            // Слайдер с главной страницы
+            $('.news-slider').slick({
+                arrows: false,
+                dots: true,
+                autoplay: true,
+                autoplaySpeed: 6000,
+            });
+          });
       </script>
 {% endblock %}
