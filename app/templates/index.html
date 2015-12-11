@@ -22,7 +22,7 @@
     {%include 'top_nav.html'%}
     <div class="news-slider">
         {% for n in i_news %}
-        {%set thumb = ('index_news/' + n['img'])|thumbnail('100x280')%}
+        {%set thumb = ('index_news/' + n['img'])|thumbnail('200x200')%}
             <div>
                 <a href="{{n['link']}}"><div class="news-title">
                             <span>{{n['name']}}</span>
@@ -39,126 +39,29 @@
 </div>
 <div class="prodlight">
     <div class="prod-slider">
-        <div>
-            <div class="prod-block">
-                <div class="prod-wrap-img">
-                    <div class="prod-img">
-                        <img src="holder.js/200x200?random=yes">
+        {%for i in slice_items %}
+            {%set thumb = ('items/' + i['img'][0]['filename'])|thumbnail('230x230')%}
+            <div>
+                <div class="prod-block">
+                    <div class="prod-wrap-img">
+                        <div class="prod-img">
+                            <img src="{{ thumb }}">
+                        </div>
                     </div>
-                </div>
-                <div class="prod-text-block">
-                    <div class="prod-text-category">
-                        Печи для саун
-                    </div>
-                    <div class="prod-text-title">
-                        Mythos S-45
-                    </div>
-                    <div class="prod-text-desc">
-                        Ну и собственно такая вот печь. Такие вот тут интереснейшие длиннющие слова.
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div>
-            <div class="prod-block">
-                <div class="prod-wrap-img">
-                    <div class="prod-img">
-                        <img src="holder.js/200x200?random=yes">
-                    </div>
-                </div>
-                <div class="prod-text-block">
-                    <div class="prod-text-category">
-                        Печи для саун
-                    </div>
-                    <div class="prod-text-title">
-                        Mythos S-45
-                    </div>
-                    <div class="prod-text-desc">
-                        Ну и собственно такая вот печь. Такие вот тут интереснейшие длиннющие слова.
+                    <div class="prod-text-block">
+                        <div class="prod-text-category">
+                            {{i['main_category']}}
+                        </div>
+                        <div class="prod-text-title">
+                            {{i['name']}}
+                        </div>
+                        <div class="prod-text-desc">
+                            {{i['body']|truncate(150)|replace('**', '')|replace('*', '')|replace('##', '')|replace('###', '')|replace('#', '')}}
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div>
-            <div class="prod-block">
-                <div class="prod-wrap-img">
-                    <div class="prod-img">
-                        <img src="holder.js/200x200?random=yes">
-                    </div>
-                </div>
-                <div class="prod-text-block">
-                    <div class="prod-text-category">
-                        Печи для саун
-                    </div>
-                    <div class="prod-text-title">
-                        Mythos S-45
-                    </div>
-                    <div class="prod-text-desc">
-                        Ну и собственно такая вот печь. Такие вот тут интереснейшие длиннющие слова.
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div>
-            <div class="prod-block">
-                <div class="prod-wrap-img">
-                    <div class="prod-img">
-                        <img src="holder.js/200x200?random=yes">
-                    </div>
-                </div>
-                <div class="prod-text-block">
-                    <div class="prod-text-category">
-                        Печи для саун
-                    </div>
-                    <div class="prod-text-title">
-                        Mythos S-45
-                    </div>
-                    <div class="prod-text-desc">
-                        Ну и собственно такая вот печь. Такие вот тут интереснейшие длиннющие слова.
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div>
-            <div class="prod-block">
-                <div class="prod-wrap-img">
-                    <div class="prod-img">
-                        <img src="holder.js/200x200?random=yes">
-                    </div>
-                </div>
-                <div class="prod-text-block">
-                    <div class="prod-text-category">
-                        Печи для саун
-                    </div>
-                    <div class="prod-text-title">
-                        Mythos S-45
-                    </div>
-                    <div class="prod-text-desc">
-                        Ну и собственно такая вот печь. Такие вот тут интереснейшие длиннющие слова.
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div>
-            <div class="prod-block">
-                <div class="prod-wrap-img">
-                    <div class="prod-img">
-                        <img src="holder.js/200x200?random=yes">
-                    </div>
-                </div>
-                <div class="prod-text-block">
-                    <div class="prod-text-category">
-                        Печи для саун
-                    </div>
-                    <div class="prod-text-title">
-                        Mythos S-45
-                    </div>
-                    <div class="prod-text-desc">
-                        Ну и собственно такая вот печь. Такие вот тут интереснейшие длиннющие слова.
-                    </div>
-                </div>
-            </div>
-        </div>
+        {% endfor %}
     </div>
 </div>
 {% endblock -%}

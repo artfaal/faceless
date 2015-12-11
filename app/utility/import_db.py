@@ -146,6 +146,21 @@ def save_index_news_to_db():
                 add.save()
 
 
+def save_index_slider_to_db():
+    position = 0
+    with open('%s%s' % (app.config['TMP_PATH'],
+                        app.config['FILENAME_INDEX_SLIDER']), 'rb') as f:
+        reader = csv.reader(f, dialect='excel', delimiter=';',
+                            escapechar='\\')
+        for row in reader:
+            if row[0][:1] != '^':  # Проверка на первую линию.
+                add = mongo.Index_Slider()
+                add['name'] = row[0]
+                add['position'] = position
+                position += 1
+                add.save()
+
+
 def pars_img_doc_video(input):
     # ex = "34_a.jpg$печь для сауны EOS 34 A&thermat.jpg$Для сауны EOS Thermat&"
     # Парсим участки с изображениями, видео и документами

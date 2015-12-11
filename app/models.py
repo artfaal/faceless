@@ -142,7 +142,7 @@ class News(_Base):
 
 @mongo.register
 class Index_News(Document):
-    """Новости/Блог"""
+    """Слайдер с новостями на фоне"""
     __database__ = app.config['DB']
     __collection__ = app.config['INDEX_NEWS_COLLECTION']
 
@@ -151,6 +151,18 @@ class Index_News(Document):
         'img': basestring,
         'link': basestring,
         'mini_description': basestring,
+        'position': int,
+    }
+
+
+@mongo.register
+class Index_Slider(Document):
+    """Слайдер на главный с товарами под фоном"""
+    __database__ = app.config['DB']
+    __collection__ = app.config['INDEX_SLIDER_COLLECTION']
+
+    structure = {
+        'name': basestring,
         'position': int,
     }
 

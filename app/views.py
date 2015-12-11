@@ -14,6 +14,7 @@ items = db.get_db(app.config['ITEM_COLLECTION'])
 p = db.get_db(app.config['PAGES_COLLECTION'])
 n = db.get_db(app.config['NEWS_COLLECTION'])
 i_n = db.get_db(app.config['INDEX_NEWS_COLLECTION'])
+i_s = db.get_db(app.config['INDEX_SLIDER_COLLECTION'])
 
 
 # Инициализируем классы
@@ -33,11 +34,18 @@ def pages():
 @app.route('/index/', methods=['GET'])
 def index():
     i_news = i_n.find().sort('position')
+    i_slider = i_s.find().sort('position')
+    list_best = []
+    for i in i_slider:
+        list_best.append(i['name'])
+    slice_items = items.find({'name': {'$in': list_best}})
+
     return render_template('index.html',
                            category=category,
                            pages=pages,
                            bg=bg_for_index,
-                           i_news=i_news)
+                           i_news=i_news,
+                           slice_items=slice_items)
 
 
 @app.route('/catalog/', methods=['GET'])
