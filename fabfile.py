@@ -169,6 +169,7 @@ def download_xlsx(l=False):
         with lcd('%s/tmp' % env.local_base_dir):
             local('rm -rf %s/tmp/*' % env.local_base_dir)
             local('curl %s  -o db.xlsx' % env.link_to_xlsx)
+            access_right()
 
 
 def create_socket_for_uwsgi():
@@ -206,6 +207,7 @@ def write_to_base(l=False):
     """Обновление базы (можно локально)"""
     if l is False:
         run('curl %s/%s' % (env.host, env.full_update))
+        access_right()
     else:
         local('curl localhost:5000/%s' % env.full_update)
 
