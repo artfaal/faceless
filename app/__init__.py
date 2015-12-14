@@ -25,6 +25,11 @@ js = Bundle('assets/vendor/jQuery/jquery-1.11.3.min.js',
             filters='jsmin', output='gen/packed.js')
 assets.register('js_all', js)
 
+scss = Bundle('assets/scss/*',
+
+              filters='pyscss', output='gen/packed_scss.css')
+assets.register('scss_all', scss)
+
 css = Bundle('assets/vendor/skeleton/normalize.css',
              'assets/vendor/skeleton/skeleton.css',
              'assets/vendor/lightbox/css/lightbox.css',
