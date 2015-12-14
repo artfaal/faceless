@@ -161,6 +161,14 @@ def news(slug):
 @requires_auth
 def admin():
     if request.method == 'POST' and request.form['send'] == 'UPD_IMG_DB':
+        import os
+        for the_file in os.listdir(app.config['TMP_PATH']):
+            file_path = os.path.join(app.config['TMP_PATH'], the_file)
+            try:
+                if os.path.isfile(file_path):
+                    os.unlink(file_path)
+            except Exception, e:
+                print e
         import urllib
         urllib.urlretrieve (app.config['GOOGLE_BASE'], "%sdb.xlsx" % app.config['TMP_PATH'])
         secret(app.config['FULL_RM_WRITE'])
