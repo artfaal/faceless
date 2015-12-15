@@ -22,6 +22,7 @@ def save_items_to_db():
                     add['name'] = row[0]
                     add['slug'] = transliterate(row[0])
                     add['main_category'] = row[1]
+                    add['slug_category'] = transliterate(row[1])
                     add['child_category'] = row[2]
                     add['body'] = row[3]
                     add['meta_keywords'] = row[4]
