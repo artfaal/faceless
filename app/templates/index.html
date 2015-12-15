@@ -41,24 +41,27 @@
     <div class="prod-slider">
         {%for i in slice_items %}
             {%set thumb = ('items/' + i['img'][0]['filename'])|thumbnail('230x230')%}
+            {% set link = url_for('catalog', category_slug=i['slug_category'], item_slug=i['slug']) %}
             <div>
                 <div class="prod-block">
-                    <div class="prod-wrap-img">
-                        <div class="prod-img">
-                            <img src="{{ thumb }}">
+                    <a href="{{ link }}">
+                        <div class="prod-wrap-img">
+                            <div class="prod-img">
+                                <img src="{{ thumb }}">
+                            </div>
                         </div>
-                    </div>
-                    <div class="prod-text-block">
-                        <div class="prod-text-category">
-                            {{i['main_category']}}
+                        <div class="prod-text-block">
+                            <div class="prod-text-category">
+                                {{i['main_category']}}
+                            </div>
+                            <div class="prod-text-title">
+                                {{i['name']}}
+                            </div>
+                            <div class="prod-text-desc">
+                                {{i['body']|truncate(150)|replace('**', '')|replace('*', '')|replace('##', '')|replace('###', '')|replace('#', '')}}
+                            </div>
                         </div>
-                        <div class="prod-text-title">
-                            {{i['name']}}
-                        </div>
-                        <div class="prod-text-desc">
-                            {{i['body']|truncate(150)|replace('**', '')|replace('*', '')|replace('##', '')|replace('###', '')|replace('#', '')}}
-                        </div>
-                    </div>
+                    </a>
                 </div>
             </div>
         {% endfor %}

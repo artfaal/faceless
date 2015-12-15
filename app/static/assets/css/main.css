@@ -636,6 +636,10 @@ ul {
     padding: 1em;
     margin: 2em auto;
 }
+.prod-block a {
+    color: #545454;
+}
+
 .prod-wrap-img {
     height: 100%;
     float: left;
