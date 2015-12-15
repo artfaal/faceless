@@ -21,3 +21,8 @@ $(document).ready(function() {
     $('html, body').animate({scrollTop:target_top}, 'slow');
   });
 })
+
+// Трюк, что бы боковое меню шло до конца страницы
+$(document).ready(function() {
+    $('.matchheight').matchHeight();
+});
