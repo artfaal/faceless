@@ -37,7 +37,7 @@
 
 <div class="row">
 
-    {# Здесь сайдбар #}
+    {# Здесь сайдбар -#}
     {% block sidebar_item -%}{{ super() }}{% endblock -%}
     {# Конец сайдбара -#}
 
@@ -50,20 +50,20 @@
         {% if item_page -%}
         <div class="four columns alpha">
             {%set path_to_img = 'items/' + item_page['img'][0]['filename']%}
-            {%set alt = item_page['img'][0]['alt'] %}
+            {%set alt = item_page['img'][0]['alt'] -%}
             {%set thumb = path_to_img|thumbnail('280x417')%}
             <a href="{{ url_for('img', filename=path_to_img) }}" data-lightbox="roadtrip" data-title="{{alt}}"><img src="{{ thumb }}" alt="{{alt}}"></a>
-            {# Хитрая проверка. Если в Array есть вторая позиция, то едем дальше #}
-            {% if item_page['img'][1] %}
+            {# Хитрая проверка. Если в Array есть вторая позиция, то едем дальше -#}
+            {% if item_page['img'][1] -%}
                 <br>
-                {# А здесь начинаем сразу со второго элемента #}
-                {%for i in item_page['img'][1:] %}
+                {# А здесь начинаем сразу со второго элемента -#}
+                {%for i in item_page['img'][1:] -%}
                     {%set path_to_img = 'items/' + i['filename']%}
-                    {%set alt = i['alt'] %}
+                    {%set alt = i['alt'] -%}
                     {%set mini_thumb = path_to_img|thumbnail('80x80', 'fit')%}
                     <a href="{{ url_for('img', filename=path_to_img) }}" data-lightbox="roadtrip" data-title="{{alt}}"><img src="{{ mini_thumb }}" alt="{{alt}}"></a>
-                {% endfor %}
-            {% endif %}
+                {% endfor -%}
+            {% endif -%}
         </div>
         <div class="eight columns omega details">
             <h1>{{ item_page['name'] }}</h1>
@@ -91,16 +91,16 @@
             {# Если это Категория с дочерними
             ======================================= -#}
             {%if category_page['child_category']|length > 0 -%}
-                {# Здесь кнопки #}
-                {% for name in category_page['child_category'] %}
+                {# Здесь кнопки -#}
+                {% for name in category_page['child_category'] -%}
                 <a href="#{{name['name']}}"><button type="" class="btn-category">{{name['name']}}</button></a>
-                {% endfor %}
+                {% endfor -%}
                 <br><br>
-                {# Теперь итерируем дочерние категории в ней #}
+                {# Теперь итерируем дочерние категории в ней -#}
                 {% for i in category_page['child_category']-%}
                     <h2><a name="{{i['name']}}"></a>{{i['name']}}</h2>
                     <hr>
-                    {# Этот кусок должен фильтровать товары, который есть внутри #}
+                    {# Этот кусок должен фильтровать товары, который есть внутри -#}
                     {% for item in items_from_child_category(i['name']) -%}
                         <a href="{{category_page['slug']}}/{{ item['slug'] }}"><div class="box-items">
 

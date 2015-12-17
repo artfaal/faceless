@@ -1,142 +1,148 @@
 {% from "macros.html" import def_contact_form, def_servise_request_form with context -%}
-{%set name_of_the_page= request.base_url.split('/')[-1:][0]%}
+{%
+  set name_of_the_page = request.base_url.split('/')[-1:][0]
+%}
 <!DOCTYPE html>
 <html lang="ru">
 <head>
 
   <meta charset="utf-8">
-  <title>{% block title -%}{% endblock -%} | ЕОС-Премиум. Оборудование для саун, хамамов и СПА</title>
-  <meta name="description" content="{% block description -%}{% endblock -%}">
+  <title>
+    {% block title -%}{% endblock -%} | ЕОС-Премиум. Оборудование для саун, хамамов и СПА
+  </title>
+  <meta name="description" content= "{% block description -%}{% endblock -%}">
   <meta name="keywords" content="{% block keywords -%}{% endblock -%}">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  {% assets "css_all" %}
-      <link rel="stylesheet" href="{{ ASSET_URL }}">{% endassets %}
-
-  {% assets "scss_all" %}
-      <link rel="stylesheet" href="{{ ASSET_URL }}">{% endassets %}
-  {% block user_css%}{% endblock %}
-  <!-- Favicon
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  {% assets "css_all" -%}
+    <link rel="stylesheet" href="{{ ASSET_URL }}">
+  {% endassets -%}
+  {% assets "scss_all" -%}
+    <link rel="stylesheet" href="{{ ASSET_URL }}">
+  {% endassets -%}
+  {% block user_css%}
+  {% endblock -%}
   <link rel="icon" type="image/png" href="{{ url_for('static', filename='assets/img/favicon.png') }}?v=4">
 </head>
 <body>
-{% with messages = get_flashed_messages() %}
-  {% if messages %}
-    <ul class=flashes>
-    {% for message in messages %}
+  {% with messages = get_flashed_messages() -%}
+    {% if messages -%}
+      <ul class=flashes>
+      {% for message in messages -%}
       <li>{{ message }}</li>
-    {% endfor %}
-    </ul>
-  {% endif %}
-{% endwith %}
-<div id="lightbox-shadow"></div>
+      {% endfor -%}
+      </ul>
+    {% endif -%}
+  {% endwith -%}
+  <div id="lightbox-shadow"></div>
   {% block header -%}
-  <div class="header">
-    {% block flags -%}
-    <div class="container">
-        <div class="flags twelve columns">
-              <a href="{{config['EOS_DE_URL']}}" title=""><img src="{{url_for('static', filename='assets/img/de.gif')}}" alt=""></a>
-              <a href="{{config['EOS_EN_URL']}}" title=""><img src="{{url_for('static', filename='assets/img/en.gif')}}" alt=""></a>
+    <div class="header">
+      {% block flags -%}
+        <div class="container">
+          <div class="flags twelve columns">
+            <a href="{{config['EOS_DE_URL']}}" title="">
+              <img src="{{url_for('static', filename='assets/img/de.gif')}}" alt="">
+            </a>
+            <a href="{{config['EOS_EN_URL']}}" title="">
+              <img src="{{url_for('static', filename='assets/img/en.gif')}}" alt="">
+            </a>
+          </div>
         </div>
+      {% endblock -%}
     </div>
-    {% endblock %}
-    </div>
-  {% endblock-%}
-  <div class="container">
+  {% endblock -%}
+    <div class="container">
       {% block nav -%}
         <div class="row">
           <div class="content-header twelve columns">
-            <a href="{{url_for('catalog')}}" title="Каталог продукции"><img class="logo-content-header" src="{{ url_for('static', filename='assets/img/content-header-eos-logo-rus.png') }}" alt="EOS-Премиум-СПА Технологии" height="167" width="270"></a>
-
-            {# Navigation
-            ======================================= -#}
-
-            {% include 'top_nav.html' %}
-
+              <a href="{{url_for('catalog')}}" title="Каталог продукции">
+                <img class="logo-content-header" src="{{ url_for('static', filename='assets/img/content-header-eos-logo-rus.png') }}"
+                alt="EOS-Премиум-СПА Технологии" height="167" width="270">
+              </a>
+              {# Navigation
+              ======================================= -#}
+              {% include 'top_nav.html' -%}
           </div>
         </div>
       {% endblock-%}
 
-    {% block content -%}
-      {# Sidebar begin
+      {% block content -%}
+        {# Sidebar begin
+        ======================================= -#}
+        {% block sidebar_item -%}
+          <div class="side-menu three columns">
+            <div class="side-search">
+              <input class="search-field" id="" name="" value="Поиск" onfocus="" type="text">
+              <input class="search-submit"
+                src="{{ url_for('static', filename='assets/img/find-ico.gif') }}" alt="Найти" type="image">
+            </div>
+            <ul>
+              {% for c in category() -%}
+              <li><a href="{{url_for('catalog', category_slug=c['slug'])}}">{{ c['name'] }}</a></li>
+              {% endfor -%}
+            </ul>
+          </div>
+        {% endblock-%}
+        {# Sidebar End
+        ======================================= -#}
+      {% endblock -%}
+
+      <div class= 'clear'></div>
+
+      {# Footer begin
       ======================================= -#}
-      {% block sidebar_item -%}
-        <div class="side-menu three columns">
-
-        <div class="side-search">
-          <input class="search-field" id="" name="" value="Поиск" onfocus="" type="text">
-          <input class="search-submit" src="{{ url_for('static', filename='assets/img/find-ico.gif') }}" alt="Найти" type="image">
+      <div class="footer row">
+        <div class="left-footer-menu two columns">
+          <ul>
+            <li><a href="/catalog/">Обзор продуктов</a></li>
+            <li><a href="/pages/servisnyi_centr">Сервисный центр</a></li>
+            <li><a href="/pages/software_downloads" target="_blank">Загрузка ПО</a></li>
+            <li><a href="/pages/o_kompanii">О компании</a></li>
+          </ul>
         </div>
-        <ul>
-          {% for c in category() -%}
-
-          <li><a href="{{url_for('catalog', category_slug=c['slug'])}}">{{ c['name'] }}</a></li>
-          {% endfor -%}
-        </ul>
+        <div class="left-footer-menu two columns">
+          <ul>
+            <li><a href="/pages/novosti">Новости</a></li>
+            <li><a href="/pages/sotrudniki">Сотрудники</a></li>
+            <li><a href="/pages/sotrudniczestvo">Сотрудничество</a></li>
+            <li><a href="/pages/obratnaja_svjaz">Обратная связь</a></li>
+          </ul>
         </div>
-      {% endblock-%}
-      {# Sidebar End
-      ======================================= -#}
-    {% endblock -%}
-    <div class= 'clear'></div>
-
-  {# Footer begin
-  ======================================= -#}
-  <div class="footer row">
-      <div class="left-footer-menu two columns">
-      <ul>
-        <li><a href="/catalog/">Обзор продуктов</a></li>
-        <li><a href="/pages/servisnyi_centr">Сервисный центр</a></li>
-        <li><a href="/pages/software_downloads" target="_blank">Загрузка ПО</a></li>
-        <li><a href="/pages/o_kompanii">О компании</a></li>
-      </ul>
+        <div class="one column">&nbsp;</div>
+        <div class="one column">
+          <img src="{{ url_for('static', filename='assets/img/eos-made-in-germany.png') }}">
+        </div>
+        <div class="one column">&nbsp;</div>
+        <div class="two columns">
+          <a href="{{url_for('doc', filename='2015.pdf')}}" title="Скачать каталог"><div class="d-cat">&nbsp;</div></a>
+        </div>
+        <div class="three columns">
+          <p>
+            ООО "ЕОС Премиум-СПА-Технологии"<br>
+            Россия, г. Москва,<br>
+            Киевское шоссе, БП Румянцево<br>
+            Строение 1, корп. Г, оф. 928<br>
+            <a target="_blank" href="tel:+74956655192">+7 (495) 66 55 192</a><br>
+            <a target="_blank" href="tel:88001000539"> 8 800 1000 539 <br>(звонок бесплатный)</a><br>
+            <a href="mailto:info@eos-sauna.ru">info@eos-sauna.ru</a>
+          </p>
+        </div>
       </div>
-      <div class="left-footer-menu two columns">
-      <ul>
-        <li><a href="/pages/novosti">Новости</a></li>
-        <li><a href="/pages/sotrudniki">Сотрудники</a></li>
-        <li><a href="/pages/sotrudniczestvo">Сотрудничество</a></li>
-        <li><a href="/pages/obratnaja_svjaz">Обратная связь</a></li>
-      </ul>
-      </div>
-      <div class="one column">&nbsp;</div>
-      <div class="one column">
-        <img src="{{ url_for('static', filename='assets/img/eos-made-in-germany.png') }}">
-      </div>
-      <div class="one column">&nbsp;</div>
-      <div class="two columns">
-        <a href="{{url_for('doc', filename='2015.pdf')}}" title="Скачать каталог"><div class="d-cat">&nbsp;</div></a>
-      </div>
-      <div class="three columns">
-        <p>
-          ООО "ЕОС Премиум-СПА-Технологии"<br>
-          Россия, г. Москва,<br>
-          Киевское шоссе, БП Румянцево<br>
-          Строение 1, корп. Г, оф. 928<br>
-          <a target="_blank" href="tel:+74956655192">+7 (495) 66 55 192</a><br>
-          <a target="_blank" href="tel:88001000539"> 8 800 1000 539 <br>(звонок бесплатный)</a><br>
-          <a href="mailto:info@eos-sauna.ru">info@eos-sauna.ru</a>
-        </p>
-      </div>
+    {# Footer end
+    ======================================= -#}
+    {# Scroll top! -#}
+    <div class="scroll-top-wrapper ">
+      <span class="scroll-top-inner">
+        <i class="fa fa-2x fa-arrow-up"></i>
+      </span>
     </div>
-  {# Footer end
-  ======================================= -#}
-  {# Scroll top! -#}
-  <div class="scroll-top-wrapper ">
-    <span class="scroll-top-inner">
-      <i class="fa fa-2x fa-arrow-up"></i>
-    </span>
+  {# End big container -#}
   </div>
-  {# End big container #}
-  </div>
-
-
   {# Scripts
   ======================================= -#}
-  {% assets "js_all" %}
-     <script type="text/javascript" src="{{ ASSET_URL }}"></script>{% endassets %}
-  {% block user_scripts%}{% endblock %}
+  {% assets "js_all" -%}
+     <script type="text/javascript" src="{{ ASSET_URL }}"></script>{% endassets -%}
+  {% block user_scripts%}{% endblock -%}
   {# End Docement
   ======================================= -#}
 </body>

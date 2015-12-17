@@ -1,76 +1,91 @@
 {% extends "layout.html" -%}
-
-{% block title -%}Главная {% endblock -%}
-
-{% block description -%} {% endblock -%}
-{% block keywords -%}печи для саун и бань, парогенераторы для хамамов, влагостойкие панели, eos, еос, оборудование для саун{% endblock -%}
-{% block user_css %} <style type="text/css"> .main-page-banner{background: url({{ url_for('static', filename='content/bg_index/'+bg()) }}) repeat-y left bottom;}</style>{% endblock %}</style>
+{% block title -%}Главная
+{% endblock -%}
+{% block description -%}{% endblock -%}
+{% block keywords -%}
+    печи для саун и бань, парогенераторы для хамамов, влагостойкие панели, eos, еос, оборудование для саун
+{% endblock -%}
+{% block user_css -%}
+    <style type="text/css">
+        .main-page-banner {
+            background: url({{ url_for("static", filename="content/bg_index/"+ bg()) }})repeat-y left bottom;
+        }
+    </style>
+{% endblock -%}
+</style>
 {% block header -%}
     <div class="header-main-page">
-        {%block flags -%}{{super()}}{% endblock %}
-    </div>{% endblock-%}
-{% block content -%}
-<div class="main-page-banner twelve columns">
-    <div class="wrap-main-logo">
-          <img src="{{ url_for('static', filename='assets/img/content-header-eos-logo-rus.png') }}" alt="EOS-Премиум-СПА Технологии" height="167" width="270">
+        {%block flags -%}
+            {{super()}}
+        {% endblock -%}
     </div>
-    {# Поставил здесь пустой блок, что бы не грузить его для главной страницы #}
-    {% block nav%}{% endblock%}
-    {# Подключаем строчку навигации, и за счет того, что она
-    в div  main-page-banner, перезаписывается значение на top и она
-    прилипает в картинке #}
-    {%include 'top_nav.html'%}
-    <div class="news-slider">
-        {% for n in i_news %}
-        {%set thumb = ('index_news/' + n['img'])|thumbnail('200x200')%}
-            <div>
-                <a href="{{n['link']}}"><div class="news-title">
+{% endblock -%}
+{% block content -%}
+    <div class="main-page-banner twelve columns">
+        <div class="wrap-main-logo">
+              <img src="{{ url_for('static', filename='assets/img/content-header-eos-logo-rus.png') }}"
+                alt="EOS-Премиум-СПА Технологии" height="167" width="270">
+        </div>
+        {# Поставил здесь пустой блок, что бы не грузить его для главной страницы -#}
+        {% block nav%}{% endblock%}
+        {# Подключаем строчку навигации, и за счет того, что она
+        в div  main-page-banner, перезаписывается значение на top и она
+        прилипает в картинке -#}
+        {%include 'top_nav.html'%}
+        <div class="news-slider">
+            {% for n in i_news -%}
+            {%set thumb = ('index_news/' + n['img'])|thumbnail('200x200')%}
+                <div>
+                    <a href="{{n['link']}}">
+                        <div class="news-title">
                             <span>{{n['name']}}</span>
                         </div>
-                        <div class="news-img">
-                        <img src="{{thumb}}">
-                        </div>
+                            <div class="news-img">
+                                <img src="{{thumb}}">
+                            </div>
                         <div class="news-text">
-                        <p>{{n['mini_description']}}</p>
-                        </div></a>
-            </div>
-        {% endfor %}
+                            <p>{{n['mini_description']}}</p>
+                        </div>
+                    </a>
+                </div>
+            {% endfor -%}
+        </div>
     </div>
-</div>
-<div class="prodlight">
-    <div class="prod-slider">
-        {%for i in slice_items %}
-            {%set thumb = ('items/' + i['img'][0]['filename'])|thumbnail('230x230')%}
-            <div>
-                <div class="prod-block">
-                    <div class="prod-wrap-img">
-                        <div class="prod-img">
-                            <img src="{{ thumb }}">
+    <div class="prodlight">
+        <div class="prod-slider">
+            {%for i in slice_items -%}
+                {%set thumb = ('items/' + i['img'][0]['filename'])|thumbnail('230x230')%}
+                <div>
+                    <div class="prod-block">
+                        <div class="prod-wrap-img">
+                            <div class="prod-img">
+                                <img src="{{ thumb }}">
+                            </div>
                         </div>
-                    </div>
-                    <div class="prod-text-block">
-                        <div class="prod-text-category">
-                            {{i['main_category']}}
-                        </div>
-                        <div class="prod-text-title">
-                            {{i['name']}}
-                        </div>
-                        <div class="prod-text-desc">
-                            {{i['body']|truncate(150)|replace('**', '')|replace('*', '')|replace('##', '')|replace('###', '')|replace('#', '')}}
+                        <div class="prod-text-block">
+                            <div class="prod-text-category">
+                                {{i['main_category']}}
+                            </div>
+                            <div class="prod-text-title">
+                                {{i['name']}}
+                            </div>
+                            <div class="prod-text-desc">
+                                {{i['body']|truncate(150)|replace('**', '')|replace('*', '')
+                                    |replace('##', '')|replace('###', '')|replace('#', '')}}
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        {% endfor %}
+            {% endfor -%}
+        </div>
     </div>
-</div>
 {% endblock -%}
 
-{% block user_scripts %}
+{% block user_scripts -%}
     <!-- Include the plugin *after* the jQuery library -->
-      <script>
-          $(document).ready(function(){
-            // Слайдер с главной страницы
+    <script>
+        $(document).ready(function(){
+        // Слайдер с главной страницы
             $('.news-slider').slick({
                 arrows: false,
                 dots: true,
@@ -89,6 +104,6 @@
                 cssEase: 'linear',
                 pauseOnHover: true,
             });
-          });
-      </script>
-{% endblock %}
+        });
+    </script>
+{% endblock -%}
