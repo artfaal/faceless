@@ -1,10 +1,14 @@
 @import 'const', 'media', 'tricks';
 
+  ////////
+ //BASE//
+////////
+
 body {
     background-color: $light-gray;
     font-family: Helvetica,Arial,sans-serif;
     color: $text;
-    @include media_XL { display: none; }
+    // @include media_XL { display: none; }
 }
 
 ul {
@@ -28,6 +32,10 @@ ul {
     display: none;
 }
 
+  //////////
+ //HEADER//
+//////////
+
 .header-main-page {
     background-color: $dark-gray;
     position: relative;
@@ -36,7 +44,6 @@ ul {
     border-width: .2em;
     border-bottom: solid $orange;
 }
-
 
 .header {
     background-color: $dark-gray;
@@ -54,6 +61,19 @@ ul {
     background-size: 1400px 14em;
 }
 
+.flags {
+    position: absolute;
+    padding-left: 5%;
+    padding-top: 4px;
+    z-index: 100;
+}
+.flags img {
+    padding-right: .6em;
+}
+
+  /////////
+ //INDEX//
+/////////
 .main-page-banner {
     width: 1400px;
     min-height: 680px;
@@ -73,6 +93,7 @@ ul {
     left: 3em;
     height: 210px;
     width: 296px;
+    @include media_S { display: none; }
 }
 
 .wrap-main-logo img {
@@ -84,12 +105,34 @@ ul {
     bottom: 0;
 }
 
+  /////////////
+ //SIDE MENU//
+/////////////
+
 .side-menu {
     position: relative;
     margin-top: .3em;
     background-color: #FFFFFF;
     padding: 2em;
-    /*height: 1000px;*/
+    @include media_S_L {
+        padding: .3em;
+        line-height: 1.1;
+        font-size: .85em;
+    }
+    ul {
+        list-style-type: none;
+        padding-top: 2em;
+
+        a {
+            text-decoration: none;
+            text-align: left;
+            color: #000000;
+        }
+
+        a:hover {
+            color: $orange;
+        }
+    }
 }
 
 .side-search {
@@ -106,22 +149,6 @@ ul {
     position: absolute;
     right: 1%;
     top: .45em;
-}
-
-.side-menu ul {
-    list-style-type: none;
-    padding-left: 1em;
-    padding-top: 2em;
-}
-
-.side-menu ul a {
-    text-decoration: none;
-    text-align: left;
-    color: #000000;
-}
-
-.side-menu ul a:hover {
-    color: #ED8C00;
 }
 
 .content-box {
@@ -568,15 +595,6 @@ ul {
     z-index: 10000;
 }
 
-.flags {
-    position: absolute;
-    padding-left: 5%;
-    padding-top: 4px;
-    z-index: 100;
-}
-.flags img {
-    padding-right: .6em;
-}
 .hide_img img {
     display: none;
 }
