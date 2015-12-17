@@ -60,6 +60,7 @@ class Items(_Base):
 
     structure = {
         'date_creation': datetime.datetime,
+        'slug_category': basestring,
         'main_category': basestring,
         'child_category': basestring,
         'doc': [

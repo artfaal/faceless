@@ -21,6 +21,7 @@ js = Bundle('assets/vendor/jQuery/jquery-1.11.3.min.js',
             'assets/vendor/scroll_top/scroll.js',
             'assets/vendor/js.cookie/js.cookie.js',
             'assets/vendor/slick/slick.min.js',
+            'assets/vendor/match-height/match-height-min.js',
             'assets/js/main.js',
             filters='jsmin', output='gen/packed.js')
 assets.register('js_all', js)
