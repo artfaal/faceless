@@ -1,8 +1,10 @@
-@import 'const', 'media', 'tricks'
+@import 'const', 'media', 'tricks';
+
 body {
     background-color: $light-gray;
     font-family: Helvetica,Arial,sans-serif;
     color: $text;
+    @include respond-to(mobile) { display: none ;}
 }
 ul {
     list-style: square;
@@ -41,7 +43,6 @@ ul {
     width: 100%;
     height: 14em;
     border-width: .2em;
-    border-bottom: solid $orange;
 }
 
 .content-header {
@@ -61,6 +62,7 @@ ul {
 /*trick for main page banner nav*/
 .main-page-banner .navigation {
     top: 0;
+
 }
 
 .wrap-main-logo {
