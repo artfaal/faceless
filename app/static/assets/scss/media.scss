@@ -1,0 +1,25 @@
+$small: 320px;
+$large: 1024px;
+
+@mixin respond-to($media) {
+  @if $media == mobile {
+    @media only screen and (max-width: $small) { @content; }
+  }
+  @else if $media == tablets {
+    @media only screen and (min-width: $small + 1) and (max-width: $large - 1) { @content; }
+  }
+  @else if $media == device {
+    @media only screen and (min-width: 1) and (max-width: $large - 1) { @content; }
+  }
+  @else if $media == pc {
+    @media only screen and (min-width: $large) { @content; }
+  }
+}
+
+.block {
+  float: left;
+  width: 250px;
+  @include respond-to(mobile) { width: 100% ;}
+  @include respond-to(tablets) { width: 125px; }
+  @include respond-to(pc) { float: none; }
+}​
