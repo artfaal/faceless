@@ -4,8 +4,9 @@ body {
     background-color: $light-gray;
     font-family: Helvetica,Arial,sans-serif;
     color: $text;
-    @include respond-to(mobile) { display: none ;}
+    @include media_XL { display: none; }
 }
+
 ul {
     list-style: square;
     list-style-position: outside;

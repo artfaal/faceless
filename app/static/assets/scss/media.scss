@@ -1,25 +1,17 @@
-$small: 320px;
+$small: 400px;
+$b_small: $small + 1;
 $large: 1024px;
-
-@mixin respond-to($media) {
-  @if $media == mobile {
+$l_large: $large - 1;
+@mixin media_S {
     @media only screen and (max-width: $small) { @content; }
-  }
-  @else if $media == tablets {
-    @media only screen and (min-width: $small + 1) and (max-width: $large - 1) { @content; }
-  }
-  @else if $media == device {
-    @media only screen and (min-width: 1) and (max-width: $large - 1) { @content; }
-  }
-  @else if $media == pc {
-    @media only screen and (min-width: $large) { @content; }
-  }
 }
-
-.block {
-  float: left;
-  width: 250px;
-  @include respond-to(mobile) { width: 100% ;}
-  @include respond-to(tablets) { width: 125px; }
-  @include respond-to(pc) { float: none; }
-}​
+@mixin media_S_L(){
+    @media only screen and (max-width: $l_large) { @content; }
+}
+@mixin media_L {
+    @media only screen and (min-width: $b_small) and (max-width: $l_large) { @content; }
+}
+@mixin media_XL {
+    @media only screen and (min-width: $large) { @content; }
+}
+// @include media_XL { display: none; }
