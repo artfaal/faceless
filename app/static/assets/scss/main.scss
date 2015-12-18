@@ -486,6 +486,7 @@ ul {
     font-size: 1em;
     font-weight: 400;
     &:hover {color: $orange;}
+    @include media_S_L {width: 100%;}
 }
 
   //////////////
@@ -545,7 +546,7 @@ ul {
 .details {
     .ico-doc {
         text-decoration: none;
-        color: $light-gray;
+        color: $gray_0;
         &:hover { color: $orange; }
     }
 }
