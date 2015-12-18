@@ -159,6 +159,9 @@ ul {
 
 .prodlight {
     .prod-slider {
+        a {
+            color: $gray_0;
+        }
         .prod-block {
             border: 1px solid $light-gray;
             background-color: white;
