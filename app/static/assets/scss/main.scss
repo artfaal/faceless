@@ -7,8 +7,7 @@
 body {
     background-color: $light-gray;
     font-family: Helvetica,Arial,sans-serif;
-    color: $text;
-    // @include media_XL { display: none; }
+    color: $gray_0;
 }
 
 ul {
@@ -23,7 +22,7 @@ ul {
     left: 0;
     width: 100%;
     height: 100%;
-    background: #000000;
+    background: black;
     filter: alpha(opacity=35);
     -moz-opacity: 0.45;
     -khtml-opacity: 0.45;
@@ -37,7 +36,7 @@ ul {
 //////////
 
 .header-main-page {
-    background-color: $dark-gray;
+    background-color: $gray_1;
     position: relative;
     width: 100%;
     height: 2em;
@@ -46,7 +45,7 @@ ul {
 }
 
 .header {
-    background-color: $dark-gray;
+    background-color: $gray_1;
     position: absolute;
     width: 100%;
     height: 14em;
@@ -118,7 +117,7 @@ ul {
 .news-slider {
     position: absolute;
     box-shadow: 0 0 .3em rgba(0,0,0,1);
-    background-color: #FFF;
+    background-color: white;
     opacity: 0.9;
     top: 20em;
     left: 3em;
@@ -127,10 +126,10 @@ ul {
     padding: 1em;
     line-height: 1.3;
     overflow: hidden;
-    z-index: 1;
+    z-index: 100;
     a {
         text-decoration: none;
-        color: #545454;
+        color: $gray_0;
     }
     .news-title {
         font-weight: 700;
@@ -161,9 +160,9 @@ ul {
 .prodlight {
     .prod-slider {
         .prod-block {
-            border: 1px solid #e4e4e4;
-            background-color: #FFFFFF;
-            color: #545454;
+            border: 1px solid $light-gray;
+            background-color: white;
+            color: $gray_0;
             height: 250px;
             width: 480px;
             padding: 1em;
@@ -184,7 +183,7 @@ ul {
                 padding-top: 1.2em;
                 .prod-text-category {
                     float: left;
-                    color: #E69000;
+                    color: $orange;
                     text-align: left;
                     font-weight: 700;
                     font-size: 1em;
@@ -212,7 +211,7 @@ ul {
 .side-menu {
     position: relative;
     margin-top: .3em;
-    background-color: #FFFFFF;
+    background-color: white;
     padding: 2em;
     @include media_S_L {
         padding: .3em;
@@ -242,7 +241,7 @@ ul {
         a {
             text-decoration: none;
             text-align: left;
-            color: $deep-gray;
+            color: $gray_0;
             &:hover { color: $orange;}
         }
 
@@ -259,15 +258,15 @@ ul {
     background-color: white;
     padding: 2em;
     h1 {
-        color: $deep-gray;
+        color: $gray_0;
         font-size: 2.1em;
     }
     h2 {
-        color: $deep-gray;
+        color: $gray_0;
         font-size: 1.8em;
     }
     h3 {
-        color: $deep-gray;
+        color: $gray_0;
         font-size: 1.4em;
     }
     ul {
@@ -283,7 +282,7 @@ ul {
 
 .pages-content {
     background-color: white;
-    color: $deep-gray;
+    color: $gray_0;
     font-size: 1.1em;
     padding: 2em 8em;
     h1 {
@@ -338,7 +337,7 @@ ul {
             a {
                 text-decoration: none;
                 float: left;
-                color: $deep-gray;
+                color: $gray_0;
             }
         }
 
@@ -363,13 +362,13 @@ ul {
                 display: block;
                 float: left;
                 padding-right: .3em;
-                color: $dark-gray;
+                color: $gray_1;
             }
             .body-of-the-element {
                 .header-of-the-element {
                     font-size: .8em;
                     font-weight: 700;
-                    color: $deep-gray;
+                    color: $gray_0;
 
                 }
                 .element-description {
@@ -445,11 +444,11 @@ ul {
     margin: 0 40px 20px 0;
     padding: 5px;
     position: relative;
-    border: 1px solid #FFFFFF;
+    border: 1px solid white;
     border-radius: 5px;
     &:hover { box-shadow: 0 0 .3em rgba(0,0,0,0.3); }
     h2 {
-        color: #545454;
+        color: $gray_0;
         font-size: 1.15em;
         font-weight: normal;
         margin: .35em 0 .1em 0;
@@ -459,7 +458,7 @@ ul {
         font-size: .78em;
         margin-bottom: 0;
         padding-bottom: 0;
-        color: #000000;
+        color: black;
     }
     .list-item-text {
         vertical-align: bottom;
@@ -468,6 +467,25 @@ ul {
         margin: 0;
         padding: 0;
     }
+}
+
+  //////////////////////
+ //CATALOG BTN ON TOP//
+//////////////////////
+
+.btn-category {
+    color: $gray_0;
+    background: $light-gray;
+    padding: 0 1em;
+    margin: .25em .25em;
+    width: 48%;
+    border-radius: 0;
+    text-decoration: none;
+    border: none;
+    text-transform: none;
+    font-size: 1em;
+    font-weight: 400;
+    &:hover {color: $orange;}
 }
 
   //////////////
@@ -482,11 +500,11 @@ ul {
     margin: 0 40px 20px 0;
     padding: 5px;
     position: relative;
-    border: 1px solid #FFFFFF;
+    border: 1px solid white;
     border-radius: 5px;
     &:hover { box-shadow: 0 0 .3em rgba(0,0,0,0.3); }
     h2 {
-        color: #545454;
+        color: $gray_0;
         font-size: 1.15em;
         font-weight: normal;
         margin: .35em 0 .1em 0;
@@ -496,7 +514,7 @@ ul {
         font-size: .78em;
         margin-bottom: 0;
         padding-bottom: 0;
-        color: #000000;
+        color: black;
     }
     hr {
         margin: 0;
@@ -518,25 +536,6 @@ ul {
         margin: 0;
         padding: 0;
     }
-}
-
-  //////////////////////
- //CATALOG BTN ON TOP//
-//////////////////////
-
-.btn-category {
-    color: #545454;
-    background: #E4E4E4;
-    padding: 0 1em;
-    margin: .25em .25em;
-    width: 48%;
-    border-radius: 0;
-    text-decoration: none;
-    border: none;
-    text-transform: none;
-    font-size: 1em;
-    font-weight: 400;
-    &:hover {color: #E69000;}
 }
 
   /////////////
@@ -562,7 +561,7 @@ ul {
     .default-form-handler {
         /* Здесь можно указать поля, границы для заявки */
         dt {
-            color: $dark-gray;
+            color: $gray_1;
         }
         dd {
             margin-left: 0;
@@ -592,8 +591,8 @@ ul {
     background: url(/static/assets/img/bg-footer.jpg) repeat-x;
     line-height: 140%;
     font-size: 0.80em;
-    color: #545454;
-    z-index: 1;
+    color: $gray_0;
+    z-index: 100;
     p {
         text-align: right;
         padding: 2em;
@@ -605,7 +604,7 @@ ul {
     }
     a {
         text-decoration: none;
-        color: #545454;
+        color: $gray_0;
         &:hover { text-decoration: underline; }
     }
     img {
@@ -634,7 +633,7 @@ ul {
 
 .error-page {
     text-align: center;
-    color: #a0a0a6;
+    color: $gray_1;
     .title {
         font: 4em sans-serif;
     }
