@@ -13,23 +13,25 @@
 
 {% macro def_contact_form() -%}
     <div class= 'clear'></div>
-    <div class="feedback-title"><p>ОБРАТНАЯ СВЯЗЬ:</p></div>
-    <div class="default-form-handler">
-        <form role="form" action="" method="post">
-            <div class="comm-form-hold">
-                {{ render_field(form.name) }}
-            </div>
-            <div class="comm-form-hold">
-                {{ render_field(form.email) }}
-            </div>
-            <div class="comm-form-hold">
-                {{ render_field(form.phone) }}
-            </div>
-            <div class="comm-form-hold">
-                {{ render_field(form.body) }}
-            </div>
-            <button type="submit" name="feedback" value="Default_Send">Отправить</button>
-        </form>
+    <div class="feedback">
+        <div class="feedback-title"><p>ОБРАТНАЯ СВЯЗЬ:</p></div>
+        <div class="default-form-handler">
+            <form role="form" action="" method="post">
+                <div class="comm-form-hold">
+                    {{ render_field(form.name) }}
+                </div>
+                <div class="comm-form-hold">
+                    {{ render_field(form.email) }}
+                </div>
+                <div class="comm-form-hold">
+                    {{ render_field(form.phone) }}
+                </div>
+                <div class="comm-form-hold">
+                    {{ render_field(form.body) }}
+                </div>
+                <button type="submit" name="feedback" value="Default_Send">Отправить</button>
+            </form>
+        </div>
     </div>
 {%- endmacro -%}
 

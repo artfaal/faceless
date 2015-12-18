@@ -1,0 +1,42 @@
+.flashes {
+    padding: 0 20%;
+    list-style-type: none;
+    text-align: center;
+    color: #545454;
+    font-size: 2em;
+    background-color: #FFF;
+    z-index: 10000;
+}
+
+.floatright {
+    display: block;
+    float: right;
+    padding: 30em;
+}
+
+.floatleft {
+    float: left;
+    padding-left: 0;
+}
+
+.small_img {
+    width: 25%;
+    height: auto;
+}
+.lite_img {
+    width: 15%;
+    height: auto;
+}
+
+.medium_img {
+    width: 45%;
+    height: auto;
+}
+
+.hide_img img {
+    display: none;
+}
+
+.clear {
+    clear:both;
+}
