@@ -38,7 +38,6 @@ css = Bundle('assets/vendor/skeleton/normalize.css',
              'assets/vendor/scroll_top/style.css',
              'assets/vendor/slick/slick.css',
              'assets/vendor/slick/slick-theme.css',
-             'assets/css/main.css',
 
              filters='cssmin', output='gen/packed.css')
 assets.register('css_all', css)
