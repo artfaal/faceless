@@ -1,23 +1,40 @@
-@mixin animation ($delay, $duration, $animation) {
-    -webkit-animation-delay: $delay;
-    -webkit-animation-duration: $duration;
-    -webkit-animation-name: $animation;
-    -webkit-animation-fill-mode: forwards; /* this prevents the animation from restarting! */
+/*
+    Example usage:
+    @include animation(10s, 5s, changecolour)
+ */
+// @mixin animation ($delay, $duration, $animation) {
+//     -webkit-animation-delay: $delay;
+//     -webkit-animation-duration: $duration;
+//     -webkit-animation-name: $animation;
+//     -webkit-animation-fill-mode: forwards; /* this prevents the animation from restarting! */
 
-    -moz-animation-delay: $delay;
-    -moz-animation-duration: $duration;
-    -moz-animation-name: $animation;
-    -moz-animation-fill-mode: forwards; /* this prevents the animation from restarting! */
+//     -moz-animation-delay: $delay;
+//     -moz-animation-duration: $duration;
+//     -moz-animation-name: $animation;
+//     -moz-animation-fill-mode: forwards; /* this prevents the animation from restarting! */
 
-    -o-animation-delay: $delay;
-    -o-animation-duration: $duration;
-    -o-animation-name: $animation;
-    -o-animation-fill-mode: forwards; /* this prevents the animation from restarting! */
+//     -o-animation-delay: $delay;
+//     -o-animation-duration: $duration;
+//     -o-animation-name: $animation;
+//     -o-animation-fill-mode: forwards; /* this prevents the animation from restarting! */
 
-    animation-delay: $delay;
-    animation-duration: $duration;
-    animation-name: $animation;
-    animation-fill-mode: forwards; /* this prevents the animation from restarting! */
+//     animation-delay: $delay;
+//     animation-duration: $duration;
+//     animation-name: $animation;
+//     animation-fill-mode: forwards; /* this prevents the animation from restarting! */
+// }
+
+
+/*
+    Example usage:
+    @include animation(.4s, .2s, .5s);
+ */
+@mixin animation($delay, $duration, $opacity) {
+    -webkit-transition: all $delay, color $duration, opacity $opacity;
+    -ms-transition: all $delay, color $duration, opacity $opacity;
+    -o-transition: all $delay, color $duration, opacity $opacity;
+    -moz-transition: all $delay, color $duration, opacity $opacity;
+    transition: all $delay, color $duration, opacity $opacity;
 }
 
 .flashes {
