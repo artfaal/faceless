@@ -166,6 +166,7 @@ def dealers():
     for i in dealers:
         for k in i:
             city.append(i[k])
+            # TODO СДЕЛАТЬ ПРОВЕРКУ ЛИСТА!
 
     def get_dealers(c):
         sort_d = d.find({'city': c})
