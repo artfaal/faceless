@@ -102,7 +102,7 @@
                     <hr>
                     {# Этот кусок должен фильтровать товары, который есть внутри -#}
                     {% for item in items_from_child_category(i['name']) -%}
-                        <a href="{{category_page['slug']}}/{{ item['slug'] }}"><div class="box-items">
+                        <a href="{{category_page['slug']}}/{{ item['slug'] }}" title="{{item['name']}}"><div class="box-items">
 
                             {%set path_to_img = 'items/' + item['img'][0]['filename']%}
                             {%set thumb = path_to_img|thumbnail('190x190')%}
@@ -110,7 +110,7 @@
                                 <img src="{{ thumb }}">
                             </div>
                             <div class="list-item-text">
-                              <h2>{{ item['name'] }}</h2>
+                              <h2>{{ item['name']|truncate(33) }}</h2>
                               <hr>
                               <p>{{ item['body']|truncate(50)|replace('**', '')|replace('*', '')|replace('##', '')|replace('###', '')}}</p>
                             </div>
@@ -123,14 +123,14 @@
             ======================================= -#}
             {% else -%}
                 {% for item in items_from_main_category() -%}
-                    <a href="{{category_page['slug']}}/{{ item['slug'] }}"><div class="box-items">
+                    <a href="{{category_page['slug']}}/{{ item['slug'] }}" title="{{item['name']}}"><div class="box-items">
                         {%set path_to_img = 'items/' + item['img'][0]['filename']%}
                         {%set thumb = path_to_img|thumbnail('145x150')%}
                         <div class="wrap-img">
                             <img src="{{ thumb }}">
                         </div>
                         <div class="list-item-text">
-                          <h2>{{ item['name'] }}</h2>
+                          <h2>{{ item['name']|truncate(33) }}</h2>
                           <hr>
                           <p>{{ item['body']|truncate(40)|replace('**', '')|replace('*', '')|replace('##', '')|replace('###', '')}}</p>
                         </div>
