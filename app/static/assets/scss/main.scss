@@ -561,20 +561,34 @@ ul {
   ///////
  //BUY//
 ///////
+
 .wrapper-company-holder {
     text-align: center;
+    h3 {
+        text-align: left;
+        a {
+            text-decoration: none;
+            color: $gray_0;
+        }
+    }
 }
+
 .company-holder {
     display: inline-block;
-    vertical-align: center;
+    vertical-align: middle;
     margin: 1em;
     padding: 1em;
     width: 40%;
-    border: 1px dotted $gray_0;
+    border: 1px solid $gray_2;
     .title {
-            text-transform: uppercase;
-            text-align: center;
-        }
+        display: flex;
+        justify-content:center;
+        align-content:center;
+        flex-direction:column; /* column | row */
+        text-transform: uppercase;
+        // text-align: center;
+        min-height: 4em;
+    }
     hr {
         margin: .5em;
     }
@@ -584,6 +598,11 @@ ul {
             color: $gray_2;
             text-align: left;
         }
+        a {
+            text-decoration: none;
+            &:hover {text-decoration: underline;}
+        }
+
     }
 }
 

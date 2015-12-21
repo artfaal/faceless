@@ -26,3 +26,11 @@ $(document).ready(function() {
 $(document).ready(function() {
     $('.matchheight').matchHeight();
 });
+
+$(function accordion() {
+  $( "#accordion" ).accordion({
+    collapsible: true,
+    active: false,
+    animate: 200
+  });
+});

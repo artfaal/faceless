@@ -16,6 +16,7 @@ Markdown(app, extensions=['attr_list'])
 mail = Mail(app)
 
 js = Bundle('assets/vendor/jQuery/jquery-1.11.3.min.js',
+            'assets/vendor/jQueryUI/jquery-ui.min.js',
             'assets/vendor/holder-js/holder.js',
             'assets/vendor/lightbox/js/lightbox.js',
             'assets/vendor/scroll_top/scroll.js',
