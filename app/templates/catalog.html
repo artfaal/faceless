@@ -146,18 +146,20 @@
         {% else-%}
             <h1>Каталог</h1>
             <hr>
-            {% for c in category() -%}
-                <a href="{{ c['slug'] }}"><div class="box-category">
-                {%set path_to_img = 'category/' + c['img'][0]['filename']%}
-                {%set thumb = path_to_img|thumbnail('170x245')%}
-                <img src="{{ thumb }}">
+            <div class="wrapper-for-cards">
+                {% for c in category() -%}
+                    <a href="{{ c['slug'] }}"><div class="box-category">
+                    {%set path_to_img = 'category/' + c['img'][0]['filename']%}
+                    {%set thumb = path_to_img|thumbnail('170x245')%}
+                    <img src="{{ thumb }}">
 
-                <div class="list-item-text">
-                  <h2>{{ c['name'] }}</h2>
-                  <p>{{ c['mini_description']|truncate(75) }}</p>
-                </div>
-                </div></a>
-            {% endfor -%}
+                    <div class="list-item-text">
+                      <h2>{{ c['name'] }}</h2>
+                      <p>{{ c['mini_description']|truncate(75) }}</p>
+                    </div>
+                    </div></a>
+                {% endfor -%}
+            </div>
         {% endif -%}
 
     </div>

@@ -445,15 +445,17 @@ ul {
   ////////////////
  //CATALOG MAIN//
 ////////////////
+.wrapper-for-cards {
+    text-align: center;
+}
 
 .box-category {
+    display: inline-block;
+    vertical-align: middle;
     width: 172px;
     min-height: 320px;
     height: 360px;
-    float: left;
-    margin: 0 40px 20px 0;
-    padding: 5px;
-    position: relative;
+    padding: 1em 1.5em;
     border: 1px solid white;
     &:hover { box-shadow: 0 0 .3em rgba(0,0,0,0.3); @include animation(.4s, .2s, .5s);}
     h2 {
