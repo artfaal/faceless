@@ -455,7 +455,7 @@ ul {
     padding: 5px;
     position: relative;
     border: 1px solid white;
-    &:hover { box-shadow: 0 0 .3em rgba(0,0,0,0.3); @include animation(.4s, .2s, .5s);}
+    &:hover { зbox-shadow: 0 0 .3em rgba(0,0,0,0.3); @include animation(.4s, .2s, .5s);}
     h2 {
         color: $gray_0;
         font-size: 1.15em;
@@ -567,10 +567,24 @@ ul {
 .company-holder {
     display: inline-block;
     vertical-align: center;
-    padding: 1em 2em;
+    margin: 1em;
+    padding: 1em;
     width: 40%;
     border: 1px dotted $gray_0;
-
+    .title {
+            text-transform: uppercase;
+            text-align: center;
+        }
+    hr {
+        margin: .5em;
+    }
+    .wrapper-body-company {
+        text-align: right;
+        .lable {
+            color: $gray_2;
+            text-align: left;
+        }
+    }
 }
 
   ////////////
