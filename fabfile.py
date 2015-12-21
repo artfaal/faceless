@@ -165,11 +165,11 @@ def download_xlsx(l=False):
             run('rm -rf %s/tmp/*' % env.base_dir)
         with cd('%s/tmp' % env.base_dir):
             run('curl %s  -o db.xlsx' % env.link_to_xlsx, quiet=True)
+        access_right()
     else:
         with lcd('%s/tmp' % env.local_base_dir):
             local('rm -rf %s/tmp/*' % env.local_base_dir)
             local('curl %s  -o db.xlsx' % env.link_to_xlsx)
-            access_right()
 
 
 def create_socket_for_uwsgi():
