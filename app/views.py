@@ -157,6 +157,21 @@ def news(slug):
                            news=news)
 
 
+@app.route('/buy/', methods=['GET', 'POST'])
+def buy():
+    form = FeedbackForm(request.form)
+    if request.method == 'POST':
+        mail.send_feedback(request.base_url, form.name.data,
+                           form.email.data, form.phone.data,
+                           form.body.data)
+        flash(app.config['ANSWER_1'])
+        return redirect(url_for('buy'))
+    return render_template('buy.html',
+                           category=category,
+                           pages=pages,
+                           form=form)
+
+
 @app.route('/admin', methods=['GET', 'POST'])
 @requires_auth
 def admin():
@@ -202,7 +217,7 @@ def cache(filename):
 @app.errorhandler(404)
 def page_not_found_404(e):
     return render_template('404.html', category=category,
-                           pages=pages,), 404
+                           pages=pages), 404
 
 
 @app.errorhandler(502)
