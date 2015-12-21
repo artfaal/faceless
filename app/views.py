@@ -15,6 +15,7 @@ p = db.get_db(app.config['PAGES_COLLECTION'])
 n = db.get_db(app.config['NEWS_COLLECTION'])
 i_n = db.get_db(app.config['INDEX_NEWS_COLLECTION'])
 i_s = db.get_db(app.config['INDEX_SLIDER_COLLECTION'])
+d = db.get_db(app.config['DEALERS_COLLECTION'])
 
 
 # Инициализируем классы
@@ -157,16 +158,28 @@ def news(slug):
                            news=news)
 
 
-@app.route('/buy/', methods=['GET', 'POST'])
-def buy():
+@app.route('/dealers/', methods=['GET', 'POST'])
+def dealers():
     form = FeedbackForm(request.form)
+    dealers = d.find({}, {'city': 1, '_id': 0})
+    city = []
+    for i in dealers:
+        for k in i:
+            city.append(i[k])
+
+    def get_dealers(c):
+        sort_d = d.find({'city': c})
+        return sort_d
+
     if request.method == 'POST':
         mail.send_feedback(request.base_url, form.name.data,
                            form.email.data, form.phone.data,
                            form.body.data)
         flash(app.config['ANSWER_1'])
-        return redirect(url_for('buy'))
-    return render_template('buy.html',
+        return redirect(url_for('dealers'))
+    return render_template('dealers.html',
+                           city=city,
+                           d=get_dealers,
                            category=category,
                            pages=pages,
                            form=form)

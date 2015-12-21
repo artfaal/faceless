@@ -1,0 +1,49 @@
+    {% extends "layout.html" -%}
+
+{% block title -%}Где купить? {% endblock -%}
+
+{% block description -%}{% endblock -%}
+
+{% block keywords -%}{% endblock -%}
+
+{% block content -%}
+    <div class="pages-content content-wrapper">
+        <h2>Наши дилеры</h2>
+        <hr>
+        <div class="wrapper-company-holder" id="accordion">
+            {% for c in city %}
+                <h3><a href="#">{{ c }}</a></h3>
+                <div>
+                    {% for i in d(c) %}
+                        <div class="company-holder matchheight">
+                            <div class="title-wrapper">
+                                <div class='title'>{{i['name']}}</div>
+                            </div>
+                            <hr>
+                            <div class="wrapper-body-company">
+                                <span class="lable"><i>Сайт:</i></span>
+                                <a href="САЙТ" target="_blank">{{ i['site'] }}</a>
+                                <br>
+                                <span class="lable"><i>Телефон:</i></span>
+                                {% for t in i['tel'] %}
+                                <a target="_blank" href="tel:+{{t}}">+{{t}}</a>
+                                {% endfor %}
+                                <br>
+                                <span class="lable"><i>E-mail:</i></span>
+                                <a href="mailto:info@eos-sauna.ru">{{ i['email'] }}</a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
+        <div class="clear"></div>
+        <hr>
+            {{ def_contact_form() }}
+    </div>
+    {% block user_scripts%}
+        <script>
+        accordion;
+        </script>
+    {% endblock -%}
+{% endblock -%}

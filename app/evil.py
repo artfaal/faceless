@@ -13,6 +13,7 @@ def secret(token):
     news = db.get_db('news')
     i_news = db.get_db('index_news')
     i_slider = db.get_db('index_slider')
+    dealers = db.get_db('dealers')
 
     if token == app.config['FULL_RM_WRITE']:
         run_convert()
@@ -22,12 +23,14 @@ def secret(token):
         news.drop()
         i_news.drop()
         i_slider.drop()
+        dealers.drop()
         utility.import_db.save_category_to_db()
         utility.import_db.save_items_to_db()
         utility.import_db.save_pages_to_db()
         utility.import_db.save_news_to_db()
         utility.import_db.save_index_news_to_db()
         utility.import_db.save_index_slider_to_db()
+        utility.import_db.save_dealers_to_db()
         return 'Full RM/WRITE BASE \n'
     else:
         return 'your token - \'%s\' didn\'t pass' % token

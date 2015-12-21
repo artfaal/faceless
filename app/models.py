@@ -178,7 +178,8 @@ class Dealers(Document):
         'city': basestring,
         'name': basestring,
         'site': basestring,
-        'tel': basestring
+        'tel':  list,
+        'email': basestring
     }
 
 
