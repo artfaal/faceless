@@ -392,6 +392,8 @@ ul {
     margin-top: .3em;
     background-color: white;
     padding: 2em;
+    @include media_L { padding: .5em; };
+    @include media_S { padding: .1em; };
     h1 {
         color: $gray_0;
         font-size: 2.1em;
@@ -420,6 +422,7 @@ ul {
     color: $gray_0;
     font-size: 1.1em;
     padding: 2em 8em;
+    @include media_S_L { padding: .5em 1em; };
     h1 {
         font-size: 2.1em;
     }
@@ -457,7 +460,7 @@ ul {
     height: 360px;
     padding: 1em 1.5em;
     border: 1px solid white;
-    &:hover { зbox-shadow: 0 0 .3em rgba(0,0,0,0.3); @include animation(.4s, .2s, .5s);}
+    &:hover { box-shadow: 0 0 .3em rgba(0,0,0,0.3); @include animation(.4s, .2s, .5s);}
     h2 {
         color: $gray_0;
         font-size: 1.15em;
@@ -504,12 +507,12 @@ ul {
 //////////////
 
 .box-items {
+    display: inline-block;
+    vertical-align: middle;
     width: 185px;
     min-height: 240px;
     height: 260px;
-    float: left;
-    margin: 0 40px 20px 0;
-    padding: 5px;
+    padding: 1em 1.5em;
     position: relative;
     border: 1px solid white;
     &:hover { box-shadow: 0 0 .3em rgba(0,0,0,0.3); @include animation(.4s, .2s, .5s);}

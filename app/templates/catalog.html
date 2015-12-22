@@ -1,11 +1,11 @@
 {% extends "layout.html" -%}
 {# TITLE BLOCK -#}
 {%- block title -%}
-    {%- if item_page -%}
+    {% if item_page -%}
         {{ item_page['name'] }}
-    {%- elif category_page -%}
+    {% elif category_page -%}
         {{ category_page['name'] }}
-    {%- else -%} Каталог {% endif -%}
+    {% else -%} Каталог {% endif -%}
 {%- endblock -%}
 {# DESCRIPTION -#}
 {%- block description -%}
@@ -99,41 +99,45 @@
                     <h2><a name="{{i['name']}}"></a>{{i['name']}}</h2>
                     <hr>
                     {# Этот кусок должен фильтровать товары, который есть внутри -#}
-                    {% for item in items_from_child_category(i['name']) -%}
-                        <a href="{{category_page['slug']}}/{{ item['slug'] }}" title="{{item['name']}}"><div class="box-items">
+                    <div class="wrapper-for-cards">
+                        {% for item in items_from_child_category(i['name']) -%}
+                            <a href="{{category_page['slug']}}/{{ item['slug'] }}" title="{{item['name']}}"><div class="box-items">
 
-                            {%set path_to_img = 'items/' + item['img'][0]['filename']%}
-                            {%set thumb = path_to_img|thumbnail('190x190')%}
-                            <div class="wrap-img">
-                                <img src="{{ thumb }}">
-                            </div>
-                            <div class="list-item-text">
-                              <h2>{{ item['name']|truncate(33) }}</h2>
-                              <hr>
-                              <p>{{ item['body']|truncate(50)|replace('**', '')|replace('*', '')|replace('##', '')|replace('###', '')}}</p>
-                            </div>
-                        </div></a>
-                    {% endfor -%}
+                                {%set path_to_img = 'items/' + item['img'][0]['filename']%}
+                                {%set thumb = path_to_img|thumbnail('190x190')%}
+                                <div class="wrap-img">
+                                    <img src="{{ thumb }}">
+                                </div>
+                                <div class="list-item-text">
+                                  <h2>{{ item['name']|truncate(33) }}</h2>
+                                  <hr>
+                                  <p>{{ item['body']|truncate(50)|replace('**', '')|replace('*', '')|replace('##', '')|replace('###', '')}}</p>
+                                </div>
+                            </div></a>
+                        {% endfor -%}
+                    </div>
                     <div class="clear"></div>
                 {% endfor-%}
 
             {# Если это Категория без дочерних
             ======================================= -#}
             {% else -%}
-                {% for item in items_from_main_category() -%}
-                    <a href="{{category_page['slug']}}/{{ item['slug'] }}" title="{{item['name']}}"><div class="box-items">
-                        {%set path_to_img = 'items/' + item['img'][0]['filename']%}
-                        {%set thumb = path_to_img|thumbnail('145x150')%}
-                        <div class="wrap-img">
-                            <img src="{{ thumb }}">
-                        </div>
-                        <div class="list-item-text">
-                          <h2>{{ item['name']|truncate(33) }}</h2>
-                          <hr>
-                          <p>{{ item['body']|truncate(40)|replace('**', '')|replace('*', '')|replace('##', '')|replace('###', '')}}</p>
-                        </div>
-                    </div></a>
-                {% endfor -%}
+                <div class="wrapper-for-cards">
+                    {% for item in items_from_main_category() -%}
+                        <a href="{{category_page['slug']}}/{{ item['slug'] }}" title="{{item['name']}}"><div class="box-items">
+                            {%set path_to_img = 'items/' + item['img'][0]['filename']%}
+                            {%set thumb = path_to_img|thumbnail('145x150')%}
+                            <div class="wrap-img">
+                                <img src="{{ thumb }}">
+                            </div>
+                            <div class="list-item-text">
+                              <h2>{{ item['name']|truncate(33) }}</h2>
+                              <hr>
+                              <p>{{ item['body']|truncate(40)|replace('**', '')|replace('*', '')|replace('##', '')|replace('###', '')}}</p>
+                            </div>
+                        </div></a>
+                    {% endfor -%}
+                </div>
                 <div class="clear"></div>
             {% endif -%}
         <hr>
