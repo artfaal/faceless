@@ -46,7 +46,7 @@
         {# Если это страница товара
         ======================================= -#}
         {% if item_page -%}
-        <div class="four columns alpha">
+        <div class="img-detail four columns alpha">
             {%set path_to_img = 'items/' + item_page['img'][0]['filename']%}
             {%set alt = item_page['img'][0]['alt'] -%}
             {%set thumb = path_to_img|thumbnail('280x417')%}

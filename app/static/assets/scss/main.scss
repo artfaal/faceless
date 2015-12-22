@@ -9,6 +9,9 @@ body {
     font-family: Helvetica,Arial,sans-serif;
     color: $gray_0;
 }
+.container {
+    width: 100%;
+}
 
 ul {
     list-style: square;
@@ -554,6 +557,9 @@ ul {
   /////////////
  //ITEM PAGE//
 /////////////
+.img-detail img {
+    max-width: 100%;
+}
 
 .details {
     .ico-doc {
