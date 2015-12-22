@@ -8,10 +8,9 @@
 
   <meta charset="utf-8">
   <title>
-    {% block title -%}{% endblock -%} | ЕОС-Премиум. Оборудование для саун, хамамов и СПА
-  </title>
+    {%- block title -%}{%- endblock -%} | ЕОС-Премиум. Оборудование для саун, хамамов и СПА</title>
   <meta name="description" content= "{% block description -%}{% endblock -%}">
-  <meta name="keywords" content="{% block keywords -%}{% endblock -%}">
+  <meta name="keywords" content="{%- block keywords -%}{%- endblock -%}">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   {% assets "css_all" -%}

@@ -1,33 +1,33 @@
 {% extends "layout.html" -%}
 {# TITLE BLOCK -#}
-{% block title -%}
-    {% if item_page -%}
+{%- block title -%}
+    {%- if item_page -%}
         {{ item_page['name'] }}
-    {% elif category_page -%}
+    {%- elif category_page -%}
         {{ category_page['name'] }}
-    {% else -%}
+    {%- else -%}
         Каталог
-    {% endif -%}
-{% endblock -%}
+    {%- endif -%}
+{%- endblock -%}
 {# DESCRIPTION -#}
-{% block description -%}
-    {% if item_page -%}
+{%- block description -%}
+    {%- if item_page -%}
         {{ item_page['meta_description'] }}
-    {% elif category_page -%}
+    {%- elif category_page -%}
         {{ category_page['meta_description'] }}
-    {% else -%}
-        Каталог компании ЕОС-Премиум-СПА Технологии
-    {% endif -%}
+    {%- else -%}
+        Печи для саун, парогенераторы для хамама, оборудование для СПА и валлнесс зоны премиум класса из Германии, описание, фото, инструкции.
+    {%- endif -%}
 {% endblock -%}
 {# KEYWORDS -#}
-{% block keywords -%}
-    {% if item_page -%}
+{%- block keywords -%}
+    {%- if item_page -%}
         {{ item_page['meta_keywords'] }}
-    {% elif category_page -%}
+    {%- elif category_page -%}
         {{ category_page['meta_keywords'] }}
-    {% else -%}
-        печи для саун, бань, парогенератор, хамам, lux elements, eos, еос, оборудование для саун,
-    {% endif -%}
+    {%- else -%}
+        печи для саун, бань, парогенератор, хамам, lux elements, eos, еос, оборудование для саун
+    {%- endif -%}
 {% endblock -%}
 
 {% block header -%}{{ super() }}{% endblock -%}
