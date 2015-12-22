@@ -146,6 +146,7 @@
   {% assets "js_all" -%}
      <script type="text/javascript" src="{{ ASSET_URL }}"></script>{% endassets -%}
   {% block user_scripts%}{% endblock -%}
+  {{ config['METRICS']|safe}}
   {# End Docement
   ======================================= -#}
 </body>
