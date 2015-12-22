@@ -81,7 +81,7 @@ ul {
 /////////
 
 .main-page-banner {
-    width: 1400px;
+    min-width: 100%;
     min-height: 680px;
     float: left;
     z-index: 1;
@@ -159,6 +159,7 @@ ul {
 /////////////////////////
 
 .prodlight {
+    @include media_S_L { display: none; }
     .prod-slider {
         a {
             color: $gray_0;
@@ -660,9 +661,11 @@ ul {
     color: $gray_0;
     z-index: 100;
     border-top: 1px solid $orange;
+    @include media_S { text-align: center; float: none; line-height: 110%; font-size: 1em; }
     p {
         text-align: right;
         padding: 2em;
+        @include media_S { text-align: center; }
     }
     ul {
         padding: 2em;
@@ -680,17 +683,17 @@ ul {
     .left-footer-menu {
         float: left;
     }
+    .footer-img {
+        text-align: center;
+    }
     .d-cat {
-        background-image: url("/static/assets/img/d-cat-n.png");
-        height: 125px;
-        width: 163px;
-        // transition: all 0.7s, color 1s, opacity 0.5s;
-        &:hover {
-            background-image: url("/static/assets/img/d-cat-h.png");
-            height: 125px;
-            width: 163px;
-            @include animation(.7s, 1s, 1s);
+        img {
+            padding: 0;
+            max-width: 150%;
         }
+    }
+    .footer-adress {
+
     }
 }
 
