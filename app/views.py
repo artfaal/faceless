@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
 from app import app
 from flask import render_template, send_from_directory, \
-    request, redirect, url_for, flash
+    request, redirect, url_for, flash, make_response
 from models import DB, MailSend, bg_for_index
 from app.auth import requires_auth
 from forms import FeedbackForm, ServiceRequest
 from app.evil import secret
+import datetime
 
 # CONSTANT
 db = DB()
@@ -213,6 +214,49 @@ def test_img():
                            names=names)
 
 
+@app.route('/sitemap.xml', methods=['GET'])
+def sitemap():
+    """Generate sitemap.xml """
+    pages = []
+    site = app.config['SITE_URL']
+    ten_days_ago = datetime.datetime.now() - datetime.timedelta(days=10)
+    ten_days_ago = datetime.datetime.date(ten_days_ago)
+    # All pages registed with flask apps
+    for rule in app.url_map.iter_rules():
+        if "GET" in rule.methods and len(rule.arguments) == 0:
+            if not any(rule.rule[0:] in s for s in
+                       app.config['EXCEPT_SITEMAP']):
+                pages.append((site + rule.rule, ten_days_ago))
+    # Категории
+    all_cat = cat.find({}, {'slug': 1})
+    for i in all_cat:
+        if i['slug']:
+            pages.append((('%s/catalog/%s' % (site, i['slug'])), ten_days_ago))
+    # Товары
+    all_items = items.find({}, {'slug_category': 1, 'slug': 1})
+    for i in all_items:
+        if i['slug']:
+            pages.append((('%s/catalog/%s/%s' %
+                          (site, i['slug_category'], i['slug'])), ten_days_ago))
+    # Статика
+    all_pages = p.find({}, {"slug": 1})
+    for i in all_pages:
+        if not any(rule.rule[0:] in s for s in
+                   app.config['EXCEPT_SITEMAP']):
+            if i['slug']:
+                pages.append((('%s/pages/%s' % (site, i['slug'])),
+                              ten_days_ago))
+    # Новости
+    all_news = n.find({}, {'slug': 1}).sort('position', -1)
+    for i in all_news:
+        if i['slug']:
+            pages.append((('%s/news/%s' % (site, i['slug'])), ten_days_ago))
+    sitemap_xml = render_template('sitemap.xml', pages=pages)
+    response = make_response(sitemap_xml)
+    response.headers["Content-Type"] = "application/xml"
+    return response
+
+
 @app.route('/img/<path:filename>')
 def img(filename):
     return send_from_directory(app.config['MEDIA_FOLDER'], filename)
@@ -237,6 +281,11 @@ def page_not_found_404(e):
 @app.errorhandler(502)
 def page_not_found_502(e):
     return render_template('502.html'), 502
+
+
+@app.route('/robots.txt')
+def robots_from_root():
+    return send_from_directory(app.static_folder, request.path[1:])
 
 
 @app.route('/pages/novosti')
