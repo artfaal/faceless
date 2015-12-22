@@ -5,9 +5,7 @@
         {{ item_page['name'] }}
     {%- elif category_page -%}
         {{ category_page['name'] }}
-    {%- else -%}
-        Каталог
-    {%- endif -%}
+    {%- else -%} Каталог {% endif -%}
 {%- endblock -%}
 {# DESCRIPTION -#}
 {%- block description -%}
