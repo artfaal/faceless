@@ -79,3 +79,6 @@
 .clear {
     clear:both;
 }
+
+// fix for Jquery accord
+.ui-state-focus { outline: none; }

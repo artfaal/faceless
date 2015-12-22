@@ -457,7 +457,7 @@ ul {
     height: 360px;
     padding: 1em 1.5em;
     border: 1px solid white;
-    &:hover { box-shadow: 0 0 .3em rgba(0,0,0,0.3); @include animation(.4s, .2s, .5s);}
+    &:hover { зbox-shadow: 0 0 .3em rgba(0,0,0,0.3); @include animation(.4s, .2s, .5s);}
     h2 {
         color: $gray_0;
         font-size: 1.15em;
@@ -557,6 +557,54 @@ ul {
         text-decoration: none;
         color: $gray_0;
         &:hover { color: $orange; @include animation(.4s, .2s, .5s);}
+    }
+}
+
+  ///////
+ //BUY//
+///////
+
+.wrapper-company-holder {
+    text-align: center;
+    h3 {
+        text-align: left;
+        a {
+            text-decoration: none;
+            color: $gray_0;
+        }
+    }
+}
+
+.company-holder {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 1em;
+    padding: 1em;
+    width: 40%;
+    border: 1px solid $gray_2;
+    .title {
+        display: flex;
+        justify-content:center;
+        align-content:center;
+        flex-direction:column; /* column | row */
+        text-transform: uppercase;
+        // text-align: center;
+        min-height: 4em;
+    }
+    hr {
+        margin: .5em;
+    }
+    .wrapper-body-company {
+        text-align: right;
+        .lable {
+            color: $gray_2;
+            text-align: left;
+        }
+        a {
+            text-decoration: none;
+            &:hover {text-decoration: underline;}
+        }
+
     }
 }
 

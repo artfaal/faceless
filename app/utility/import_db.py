@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import csv
+import re
 import sys
 from app import mongo, app
 from validators import *
@@ -159,6 +160,22 @@ def save_index_slider_to_db():
                 add['name'] = row[0]
                 add['position'] = position
                 position += 1
+                add.save()
+
+
+def save_dealers_to_db():
+    with open('%s%s' % (app.config['TMP_PATH'],
+                        app.config['FILENAME_DEALERS']), 'rb') as f:
+        reader = csv.reader(f, dialect='excel', delimiter=';',
+                            escapechar='\\')
+        for row in reader:
+            if row[0][:1] != '^':  # Проверка на первую линию.
+                add = mongo.Dealers()
+                add['city'] = row[0]
+                add['name'] = row[1]
+                add['site'] = row[2]
+                add['tel'] = re.findall(r'\d+', row[3])
+                add['email'] = row[4]
                 add.save()
 
 

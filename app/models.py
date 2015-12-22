@@ -168,6 +168,21 @@ class Index_Slider(Document):
     }
 
 
+@mongo.register
+class Dealers(Document):
+    """Страница дилеров"""
+    __database__ = app.config['DB']
+    __collection__ = app.config['DEALERS_COLLECTION']
+
+    structure = {
+        'city': basestring,
+        'name': basestring,
+        'site': basestring,
+        'tel':  list,
+        'email': basestring
+    }
+
+
 def bg_for_index():
     from os import listdir
     from os.path import isfile, join

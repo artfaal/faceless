@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
 from app import app
 from flask import render_template, send_from_directory, \
-    request, redirect, url_for, flash
+    request, redirect, url_for, flash, make_response
 from models import DB, MailSend, bg_for_index
 from app.auth import requires_auth
 from forms import FeedbackForm, ServiceRequest
 from app.evil import secret
+import datetime
 
 # CONSTANT
 db = DB()
@@ -15,6 +16,7 @@ p = db.get_db(app.config['PAGES_COLLECTION'])
 n = db.get_db(app.config['NEWS_COLLECTION'])
 i_n = db.get_db(app.config['INDEX_NEWS_COLLECTION'])
 i_s = db.get_db(app.config['INDEX_SLIDER_COLLECTION'])
+d = db.get_db(app.config['DEALERS_COLLECTION'])
 
 
 # Инициализируем классы
@@ -157,6 +159,34 @@ def news(slug):
                            news=news)
 
 
+@app.route('/dealers/', methods=['GET', 'POST'])
+def dealers():
+    form = FeedbackForm(request.form)
+    dealers = d.find({}, {'city': 1, '_id': 0})
+    city = []
+    for i in dealers:
+        for k in i:
+            if i[k] not in city:
+                city.append(i[k])
+
+    def get_dealers(c):
+        sort_d = d.find({'city': c})
+        return sort_d
+
+    if request.method == 'POST':
+        mail.send_feedback(request.base_url, form.name.data,
+                           form.email.data, form.phone.data,
+                           form.body.data)
+        flash(app.config['ANSWER_1'])
+        return redirect(url_for('dealers'))
+    return render_template('dealers.html',
+                           city=city,
+                           d=get_dealers,
+                           category=category,
+                           pages=pages,
+                           form=form)
+
+
 @app.route('/admin', methods=['GET', 'POST'])
 @requires_auth
 def admin():
@@ -184,6 +214,49 @@ def test_img():
                            names=names)
 
 
+@app.route('/sitemap.xml', methods=['GET'])
+def sitemap():
+    """Generate sitemap.xml """
+    pages = []
+    site = app.config['SITE_URL']
+    ten_days_ago = datetime.datetime.now() - datetime.timedelta(days=10)
+    ten_days_ago = datetime.datetime.date(ten_days_ago)
+    # All pages registed with flask apps
+    for rule in app.url_map.iter_rules():
+        if "GET" in rule.methods and len(rule.arguments) == 0:
+            if not any(rule.rule[0:] in s for s in
+                       app.config['EXCEPT_SITEMAP']):
+                pages.append((site + rule.rule, ten_days_ago))
+    # Категории
+    all_cat = cat.find({}, {'slug': 1})
+    for i in all_cat:
+        if i['slug']:
+            pages.append((('%s/catalog/%s' % (site, i['slug'])), ten_days_ago))
+    # Товары
+    all_items = items.find({}, {'slug_category': 1, 'slug': 1})
+    for i in all_items:
+        if i['slug']:
+            pages.append((('%s/catalog/%s/%s' %
+                          (site, i['slug_category'], i['slug'])), ten_days_ago))
+    # Статика
+    all_pages = p.find({}, {"slug": 1})
+    for i in all_pages:
+        if not any(rule.rule[0:] in s for s in
+                   app.config['EXCEPT_SITEMAP']):
+            if i['slug']:
+                pages.append((('%s/pages/%s' % (site, i['slug'])),
+                              ten_days_ago))
+    # Новости
+    all_news = n.find({}, {'slug': 1}).sort('position', -1)
+    for i in all_news:
+        if i['slug']:
+            pages.append((('%s/news/%s' % (site, i['slug'])), ten_days_ago))
+    sitemap_xml = render_template('sitemap.xml', pages=pages)
+    response = make_response(sitemap_xml)
+    response.headers["Content-Type"] = "application/xml"
+    return response
+
+
 @app.route('/img/<path:filename>')
 def img(filename):
     return send_from_directory(app.config['MEDIA_FOLDER'], filename)
@@ -202,12 +275,17 @@ def cache(filename):
 @app.errorhandler(404)
 def page_not_found_404(e):
     return render_template('404.html', category=category,
-                           pages=pages,), 404
+                           pages=pages), 404
 
 
 @app.errorhandler(502)
 def page_not_found_502(e):
     return render_template('502.html'), 502
+
+
+@app.route('/robots.txt')
+def robots_from_root():
+    return send_from_directory(app.static_folder, request.path[1:])
 
 
 @app.route('/pages/novosti')
