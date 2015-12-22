@@ -31,6 +31,7 @@ $(function accordion() {
   $( "#accordion" ).accordion({
     collapsible: true,
     active: false,
-    animate: 200
+    animate: 200,
+    heightStyle: "content"
   });
 });
