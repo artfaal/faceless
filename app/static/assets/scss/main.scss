@@ -11,6 +11,7 @@ body {
 }
 .container {
     width: 100%;
+    @include media_S { margin: 0; padding: 0; }
 }
 
 ul {
@@ -128,6 +129,15 @@ ul {
     line-height: 1.3;
     overflow: hidden;
     z-index: 100;
+    @include media_S {
+        position: absolute;
+        width: 100%;
+        left: auto;
+        top: auto;
+        bottom: 0;
+        margin-bottom: 0;
+        opacity: 1;
+    }
     a {
         text-decoration: none;
         color: $gray_0;
@@ -397,18 +407,21 @@ ul {
     background-color: white;
     padding: 2em;
     @include media_L { padding: .5em; };
-    @include media_S { padding: .1em; };
+    @include media_S { padding: 1em; };
     h1 {
         color: $gray_0;
         font-size: 2.1em;
+        @include media_S { text-align: center; }
     }
     h2 {
         color: $gray_0;
         font-size: 1.8em;
+        @include media_S {text-align: center;}
     }
     h3 {
         color: $gray_0;
         font-size: 1.4em;
+        @include media_S { text-align: center; }
     }
     ul {
         list-style: square;
@@ -464,26 +477,45 @@ ul {
     height: 360px;
     padding: 1em 1.5em;
     border: 1px solid white;
-    &:hover { box-shadow: 0 0 .3em rgba(0,0,0,0.3); @include animation(.4s, .2s, .5s);}
-    h2 {
-        color: $gray_0;
-        font-size: 1.15em;
-        font-weight: normal;
-        margin: .35em 0 .1em 0;
+    @include media_S {
+        width: 90%;
+        min-height: none;
+        height: none;
+        border: none;
+    }
+    &:hover {
+        box-shadow: 0 0 .3em rgba(0,0,0,0.3); @include animation(.4s, .2s, .5s);
+        @include media_S { box-shadow: none;}
+    }
 
-    }
-    p {
-        font-size: .78em;
-        margin-bottom: 0;
-        padding-bottom: 0;
-        color: black;
-    }
     .list-item-text {
         vertical-align: bottom;
         position: relative;
         text-align: left;
         margin: 0;
         padding: 0;
+        @include media_S {
+            text-align: center;
+        }
+    }
+    h2 {
+        color: $gray_0;
+        font-size: 1.15em;
+        font-weight: normal;
+        margin: .35em 0 .1em 0;
+        @include media_S {
+            font-size: 1.5em;
+        }
+
+    }
+    p {
+        font-size: .78em;
+        margin-bottom: 0;
+        padding-bottom: 0;
+        color: $gray_0;
+        @include media_S {
+            font-size: 1.2em;
+        }
     }
 }
 
@@ -519,19 +551,44 @@ ul {
     padding: 1em 1.5em;
     position: relative;
     border: 1px solid white;
-    &:hover { box-shadow: 0 0 .3em rgba(0,0,0,0.3); @include animation(.4s, .2s, .5s);}
+    @include media_S {
+        width: 90%;
+        min-height: none;
+        border: none;
+    }
+    &:hover { box-shadow: 0 0 .3em rgba(0,0,0,0.3); @include animation(.4s, .2s, .5s);
+        @include media_S { box-shadow: none;}
+    }
+
+    .list-item-text {
+        vertical-align: bottom;
+        position: relative;
+        text-align: left;
+        margin: 0;
+        padding: 0;
+        @include media_S {
+            text-align: center;
+        }
+    }
+
     h2 {
         color: $gray_0;
         font-size: 1.15em;
         font-weight: normal;
         margin: .35em 0 .1em 0;
+        @include media_S {
+            font-size: 1.4em;
+        }
 
     }
     p {
         font-size: .78em;
         margin-bottom: 0;
         padding-bottom: 0;
-        color: black;
+        color: $gray_0;
+        @include media_S {
+            font-size: 1em;
+        }
     }
     hr {
         margin: 0;
@@ -546,13 +603,6 @@ ul {
         }
     }
 
-    .list-item-text {
-        vertical-align: bottom;
-        position: relative;
-        text-align: left;
-        margin: 0;
-        padding: 0;
-    }
 }
 
   /////////////
@@ -560,6 +610,7 @@ ul {
 /////////////
 .img-detail img {
     max-width: 100%;
+
 }
 
 .details {
