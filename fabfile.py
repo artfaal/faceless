@@ -3,8 +3,8 @@ from __future__ import with_statement
 from fabric.api import env, put, run, cd, lcd, settings, prefix, local
 from fabric.contrib.files import exists
 import os
-env.roledefs['prod'] = ['root@46.101.188.95']
-env.roledefs['stage'] = ['root@46.101.209.124']
+env.roledefs['prod'] = ['root@eos-sauna.ru']
+env.roledefs['stage'] = ['root@test.eos-sauna.ru']
 env.config_local_folder = '~/Dropbox/.faceless_config/*'
 env.config_remote_folder = '/home/config'
 env.path_to_content = '~/Яндекс.Диск/CONTENT_EOS_SAUNA/content'
