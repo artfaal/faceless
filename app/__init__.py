@@ -27,13 +27,8 @@ js = Bundle('assets/vendor/jQuery/jquery-1.11.3.min.js',
             filters='jsmin', output='gen/packed.js')
 assets.register('js_all', js)
 
-scss = Bundle('assets/scss/*',
-
-              filters='pyscss', output='gen/packed_scss.css')
-assets.register('scss_all', scss)
-
-css = Bundle('assets/vendor/skeleton/normalize.css',
-             'assets/vendor/skeleton/skeleton.css',
+css = Bundle('assets/vendor/skeleton/skeleton.css',
+             'assets/vendor/skeleton/normalize.css',
              'assets/vendor/lightbox/css/lightbox.css',
              'assets/vendor/font-awesome/css/font-awesome.css',
              'assets/vendor/scroll_top/style.css',
@@ -42,5 +37,9 @@ css = Bundle('assets/vendor/skeleton/normalize.css',
 
              filters='cssmin', output='gen/packed.css')
 assets.register('css_all', css)
+
+scss = Bundle('assets/scss/*',
+              filters='pyscss', output='gen/packed_scss.css')
+assets.register('scss_all', scss)
 
 from app import views, models, utility, auth, evil, forms
