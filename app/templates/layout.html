@@ -123,14 +123,17 @@
             <a href="{{url_for('doc', filename='2015.pdf')}}" title="Скачать каталог"><img src="{{url_for('static', filename='assets/img/d-cat.png')}}" alt=""></a>
           </div>
           <div class="three columns footer-adress">
-            <p>
-              ООО "ЕОС Премиум-СПА-Технологии"<br>
-              Россия, г. Москва, м. Румянцево,<br>
-              Киевское шоссе, БП Румянцево<br>
-              Строение 1, корп. Г, оф. 928<br>
-              <a target="_blank" href="tel:+74956655192">+7 (495) 66 55 192</a><br>
-              <a target="_blank" href="tel:88001000539"> 8 800 1000 539 <br>(звонок бесплатный)</a><br>
-              <a href="mailto:info@eos-sauna.ru">info@eos-sauna.ru</a>
+            <p itemscope itemtype="http://schema.org/Organization">
+              <span itemprop="name">ООО "ЕОС Премиум-СПА-Технологии"</span><br>
+
+              <span itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+                <span itemprop="addressCountry">Россия</span>, <span itemprop="addressLocality">г. Москва</span>, м. Румянцево,<br>
+                <span itemprop="streetAddress">Киевское шоссе, БП Румянцево<br>
+                Строение 1, корп. Г</span>, оф. 928<br></span>
+
+              <a target="_blank" href="tel:+74956655192"><span itemprop="telephone">+7 (495) 66 55 192</span></a><br>
+              <a target="_blank" href="tel:88001000539"><span itemprop="telephone">8 800 1000 539</span><br>(звонок бесплатный)</a><br>
+              <a href="mailto:info@eos-sauna.ru"><span itemprop="email">info@eos-sauna.ru</span></a>
             </p>
           </div>
         </div>
