@@ -46,11 +46,12 @@
         {# Если это страница товара
         ======================================= -#}
         {% if item_page -%}
+        <span itemscope itemtype="http://schema.org/Product">
         <div class="img-detail four columns alpha">
             {%set path_to_img = 'items/' + item_page['img'][0]['filename']%}
             {%set alt = item_page['img'][0]['alt'] -%}
             {%set thumb = path_to_img|thumbnail('280x417')%}
-            <a href="{{ url_for('img', filename=path_to_img) }}" data-lightbox="roadtrip" data-title="{{alt}}"><img src="{{ thumb }}" alt="{{alt}}"></a>
+            <a href="{{ url_for('img', filename=path_to_img) }}" data-lightbox="roadtrip" data-title="{{alt}}" itemprop="image"><img src="{{ thumb }}" alt="{{alt}}"></a>
             {# Хитрая проверка. Если в Array есть вторая позиция, то едем дальше -#}
             {% if item_page['img'][1] -%}
                 <br>
@@ -59,14 +60,15 @@
                     {%set path_to_img = 'items/' + i['filename']%}
                     {%set alt = i['alt'] -%}
                     {%set mini_thumb = path_to_img|thumbnail('80x80', 'fit')%}
-                    <a href="{{ url_for('img', filename=path_to_img) }}" data-lightbox="roadtrip" data-title="{{alt}}"><img src="{{ mini_thumb }}" alt="{{alt}}"></a>
+                    <a href="{{ url_for('img', filename=path_to_img) }}" data-lightbox="roadtrip" data-title="{{alt}}" itemprop="image"><img src="{{ mini_thumb }}" alt="{{alt}}"></a>
                 {% endfor -%}
             {% endif -%}
         </div>
         <div class="eight columns omega details">
-            <h1>{{ item_page['name'] }}</h1>
-            {{ item_page['body']|markdown }}
+            <h1 itemprop="name">{{ item_page['name'] }}</h1>
+            <span itemprop="description">{{ item_page['body']|markdown }}</span>
         </div>
+        </span>
         <div class="clear">
         <div class="details">
             <hr>
