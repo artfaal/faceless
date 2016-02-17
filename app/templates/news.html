@@ -7,9 +7,9 @@
 {% block keywords -%}{{news['meta_keywords']}}{% endblock -%}
 
 {% block content -%}
-    <div class="pages-content content-wrapper">
-        <h2>{{news['name']}}</h2>
-        {{news['body']|markdown}}
+    <div class="pages-content content-wrapper" itemscope itemtype="http://schema.org/Article">
+        <h2 itemprop="name">{{news['name']}}</h2>
+        <span itemprop="articleBody">{{news['body']|markdown}}</span>
         <div class= 'clear'></div>
         <hr>
         {{ def_contact_form() }}
