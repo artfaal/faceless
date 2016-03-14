@@ -117,7 +117,16 @@
             </ul>
           </div>
           <div class="three columns footer-img">
-            <img src="{{ url_for('static', filename='assets/img/eos-made-in-germany.png') }}">
+            <img id="img-map" src="{{ url_for('static', filename='assets/img/social.png') }}" border="0" width="172" height="110" orgWidth="172" orgHeight="110" usemap="#img-map-social" alt="" />
+            <map name="img-map-social" id="ImageMapsCom-img-map-social">
+            <area  alt="" title="Вконтакте" href="https://vk.com/eospremium" shape="rect" coords="0,0,60,54" style="outline:none;" target="_blank"     />
+            <area  alt="" title="Facebook" href="https://www.facebook.com/eospremium" shape="rect" coords="60,0,119,54" style="outline:none;" target="_blank"     />
+            <area  alt="" title="Twitter" href="https://twitter.com/eospremium" shape="rect" coords="120,0,172,54" style="outline:none;" target="_blank"     />
+            <area  alt="" title="Youtube" href="https://www.youtube.com/channel/UCam9iA-0PIkgU-HlvQLLnfA" shape="rect" coords="0,55,60,119" style="outline:none;" target="_blank"     />
+            <area  alt="" title="Google +" href="https://plus.google.com/u/0/+EOSPremiumspa/posts" shape="rect" coords="60,55,117,110" style="outline:none;" target="_blank"     />
+            <area  alt="" title="Instagram" href="https://www.instagram.com/eospremium/" shape="rect" coords="118,55,172,110" style="outline:none;" target="_blank"     />
+            <area shape="rect" coords="170,108,172,110" alt="Image Map" style="outline:none;" title="Image Map" href="http://www.image-maps.com/index.php?aff=mapped_users_0" />
+            </map>
           </div>
           <div class="two columns d-cat">
             <a href="{{url_for('doc', filename='2015.pdf')}}" title="Скачать каталог"><img src="{{url_for('static', filename='assets/img/d-cat.png')}}" alt=""></a>
