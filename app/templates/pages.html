@@ -11,10 +11,12 @@
         {{page['section']}} > {{page['name']}}
         <hr>
         {{page['body']|markdown}}
-        {% if name_of_the_page != 'servisnyi_centr' %}
-            {{ def_contact_form() }}
-        {% else %}
+        {% if name_of_the_page == 'servisnyi_centr' %}
             {{ def_servise_request_form() }}
+        {% elif name_of_the_page == 'zapros_na_stroitelstvo' %}
+            {{ def_build_request_form() }}
+        {% else %}
+            {{ def_contact_form() }}
         {% endif %}
     </div>
 {% endblock -%}

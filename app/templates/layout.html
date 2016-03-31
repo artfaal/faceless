@@ -1,4 +1,4 @@
-{% from "macros.html" import def_contact_form, def_servise_request_form with context -%}
+{% from "macros.html" import def_contact_form, def_servise_request_form, def_build_request_form with context -%}
 {%
   set name_of_the_page = request.base_url.split('/')[-1:][0]
 %}
@@ -130,6 +130,8 @@
           </div>
           <div class="two columns d-cat">
             <a href="{{url_for('doc', filename='2016.pdf')}}" title="Скачать каталог"><img src="{{url_for('static', filename='assets/img/d-cat.png')}}" alt=""></a>
+            <br>
+            <a href="/pages/zapros_na_stroitelstvo"><img src="{{ url_for('static', filename='assets/img/banner_stroi.png') }}" alt=""></a>
           </div>
           <div class="three columns footer-adress">
             <p itemscope itemtype="http://schema.org/Organization">

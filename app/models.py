@@ -196,7 +196,9 @@ class MailSend:
     def __init__(self):
         self.sender = app.config['MAIL_SENDER']
         self.recepients = app.config['MAIL_RECEPIENTS']
+        self.boss_email = app.config['BOSS_EMAIL']
         self.title_feedback = app.config['MAIL_FEEDBACK_TITLE']
+        self.title_build_query = app.config['MAIL_STROITELSTVO_TITLE']
         self.body_feedback = app.config['MAIL_FEEDBACK_BODY']
         self.title_service_query = app.config['MAIL_SERVICE_QUERY_TITLE']
         self.body_service_query = app.config['MAIL_SERVICE_QUERY_BODY']
@@ -206,6 +208,14 @@ class MailSend:
             self.title_feedback % name,
             sender=self.sender,
             recipients=self.recepients)
+        msg.html = self.body_feedback % (name, url_from, email, phone, body)
+        mail.send(msg)
+
+    def send_build_query(self, url_from, name, email=None, phone=None, body=None):
+        msg = Message(
+            self.title_build_query % name,
+            sender=self.sender,
+            recipients=self.boss_email)
         msg.html = self.body_feedback % (name, url_from, email, phone, body)
         mail.send(msg)
 

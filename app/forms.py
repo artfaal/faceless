@@ -13,6 +13,15 @@ class FeedbackForm(Form):
                                      Length(min='5', max='5000')])
 
 
+class BuildRequest(Form):
+    name = StringField(u'Имя*:', validators=[DataRequired()])
+    email = StringField(u'E-mail:', validators=[Email()])
+    phone = StringField(u'Телефон:')
+    body = TextAreaField(u'Сообщение*:',
+                         validators=[DataRequired(),
+                                     Length(min='5', max='5000')])
+
+
 class ServiceRequest(Form):
     '''
     Форма для страницы: "Он-лайн заявка на проведение Сервисного обслуживания"

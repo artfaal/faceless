@@ -4,7 +4,7 @@ from flask import render_template, send_from_directory, \
     request, redirect, url_for, flash, make_response
 from models import DB, MailSend, bg_for_index
 from app.auth import requires_auth
-from forms import FeedbackForm, ServiceRequest
+from forms import FeedbackForm, ServiceRequest, BuildRequest
 from app.evil import secret
 import datetime
 
@@ -110,6 +110,7 @@ def page(slug):
     page = p.find_one({"slug": slug})
     form = FeedbackForm(request.form)
     service_form = ServiceRequest(request.form)
+    build_form = BuildRequest(request.form)
     if request.method == 'POST' and request.form['feedback'] == 'Default_Send':
         mail.send_feedback(request.base_url, form.name.data,
                            form.email.data, form.phone.data,
@@ -123,6 +124,12 @@ def page(slug):
             service_form.email.data, service_form.phone.data,
             service_form.body.data, service_form.comment.data)
         flash(app.config['ANSWER_2'])
+        return redirect(url_for('page', slug=slug))
+    elif request.method == 'POST' and request.form['feedback'] == 'Build_Send':
+        mail.send_build_query(request.base_url, build_form.name.data,
+                              build_form.email.data, build_form.phone.data,
+                              build_form.body.data)
+        flash(app.config['ANSWER_3'])
         return redirect(url_for('page', slug=slug))
 
     return render_template('pages.html',
