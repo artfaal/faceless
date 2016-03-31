@@ -39,7 +39,7 @@
                 <div class="body-of-the-element">
                   <span class="header-of-the-element">{{p['name']}}</span>
                   <br>
-                  <span class="element-description">{{p['mini_description']}}</span>
+                  <p class="element-description">{{p['mini_description']}}</p>
                 </div>
               </a>
             </div>
@@ -60,7 +60,7 @@
                 <div class="body-of-the-element">
                   <span class="header-of-the-element">{{p['name']}}</span>
                   <br>
-                  <span class=element-description>{{p['mini_description']}}</span>
+                  <p class=element-description>{{p['mini_description']}}</p>
                 </div>
               </a>
             </div>
@@ -76,12 +76,11 @@
           {% if p['section'] == 'Контакты'%}
             <div class="nav-element">
               <a href="{{url_for('page', slug=p['slug'])}}" title="{{p['name']}}">
-                <i class='fa {{p['thumb']}} fa-3x'></i>
+                <i class='fa {{p['thumb']}} fa-4x'></i>
                 <div class="body-of-the-element">
                   <span class="header-of-the-element">{{p['name']}}</span>
-                  <br>
-                  <span class=element-description>{{p['mini_description']}}
-                  </span>
+                  <p class=element-description>{{p['mini_description']}}
+                  </p>
                 </div>
               </a>
             </div>
