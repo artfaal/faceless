@@ -7,15 +7,15 @@
 {% block keywords -%}где купить оборудование eos, eos, eos premium, еос премиум, где купить оборудование для саун и хамамов из Германии.{% endblock -%}
 
 {% block content -%}
-    <div class="pages-content content-wrapper">
+    <div class="pages-content content-wrapper dealers-page">
         <h1>Где купить</h1>
         <hr>
         <div class="wrapper-company-holder" id="accordion">
             {% for c in city %}
-                <h3><a href="#">{{ c }}</a></h3>
+                <h3 {{loop.cycle('style="background-color: lightblue;"', 'style="background-color: red;"')}}><a href="#">{{ c }}</a></h3>
                 <div>
                     {% for i in d(c) %}
-                        <div class="company-holder matchheight">
+                        <div class="company-holder matchheight" >
                             <div class="title-wrapper">
                                 <div class='title'>{{i['name']}}</div>
                             </div>

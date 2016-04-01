@@ -626,6 +626,13 @@ ul {
  //BUY//
 ///////
 
+.dealers-page {
+    background-image: url(/static/assets/img/back-for-dillers.png);
+    background-repeat: no-repeat;
+    // background-attachment: fixed;
+    background-position: right top;
+}
+
 .wrapper-company-holder {
     text-align: center;
     h3 {
@@ -640,6 +647,7 @@ ul {
 .company-holder {
     display: inline-block;
     vertical-align: middle;
+    background-color: white;
     margin: 1em;
     padding: 1em;
     width: 40%;
@@ -697,7 +705,6 @@ ul {
         }
     }
 }
-
   //////////
  //FOOTER//
 //////////
