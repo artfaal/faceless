@@ -169,7 +169,7 @@ def news(slug):
 @app.route('/dealers/', methods=['GET', 'POST'])
 def dealers():
     form = FeedbackForm(request.form)
-    dealers = d.find({}, {'city': 1, '_id': 0})
+    dealers = d.find({}, {'city': 1, '_id': 0}).sort('city', 1)
     city = []
     for i in dealers:
         for k in i:
