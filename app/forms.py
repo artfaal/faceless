@@ -6,20 +6,20 @@ from wtforms.validators import DataRequired, Length,  Email
 
 class FeedbackForm(Form):
     name = StringField(u'Имя*:', validators=[DataRequired()])
-    email = StringField(u'E-mail:', validators=[Email()])
+    email = StringField(u'E-mail*:', validators=[Email()])
     phone = StringField(u'Телефон:')
     body = TextAreaField(u'Сообщение*:',
                          validators=[DataRequired(),
-                                     Length(min='5', max='5000')])
+                                     Length(min=5, max=5000)])
 
 
 class BuildRequest(Form):
     name = StringField(u'Имя*:', validators=[DataRequired()])
-    email = StringField(u'E-mail:', validators=[Email()])
+    email = StringField(u'E-mail*:', validators=[Email()])
     phone = StringField(u'Телефон:')
     body = TextAreaField(u'Сообщение*:',
                          validators=[DataRequired(),
-                                     Length(min='5', max='5000')])
+                                     Length(min=5, max=5000)])
 
 
 class ServiceRequest(Form):
@@ -29,8 +29,8 @@ class ServiceRequest(Form):
     equipment = StringField(u'Оборудование*:', validators=[DataRequired()])
     body = TextAreaField(u'Описание неисправности*:',
                          validators=[DataRequired(),
-                                     Length(min='5', max='5000')])
+                                     Length(min=5, max=5000)])
     name = StringField(u'Имя*:', validators=[DataRequired()])
     phone = StringField(u'Телефон:')
-    email = StringField(u'E-mail:', validators=[Email()])
+    email = StringField(u'E-mail*:', validators=[Email()])
     comment = StringField(u'Комментарий:')

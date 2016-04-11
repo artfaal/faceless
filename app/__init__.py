@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -
 from flask import Flask
+from flask_wtf.csrf import CsrfProtect
 from mongokit import Connection
 from flaskext.markdown import Markdown
 from flask.ext.thumbnails import Thumbnail
@@ -14,6 +15,7 @@ thumb = Thumbnail(app)
 assets = Environment(app)
 Markdown(app, extensions=['attr_list'])
 mail = Mail(app)
+CsrfProtect(app)
 
 js = Bundle('assets/vendor/jQuery/jquery-1.11.3.min.js',
             'assets/vendor/jQueryUI/jquery-ui.min.js',

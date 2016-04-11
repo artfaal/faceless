@@ -62,14 +62,13 @@ def catalog(category_slug=None, item_slug=None):
     if item_page:
         # Form start
         form = FeedbackForm(request.form)
-        if request.method == 'POST':
+        if request.method == 'POST' and form.validate():
             mail.send_feedback(request.base_url, form.name.data,
                                form.email.data, form.phone.data,
                                form.body.data)
             flash(app.config['ANSWER_1'])
             return redirect(url_for('catalog', category_slug=category_slug,
                                     item_slug=item_slug))
-
         return render_template('catalog.html',
                                form=form,
                                category=category,
@@ -111,21 +110,21 @@ def page(slug):
     form = FeedbackForm(request.form)
     service_form = ServiceRequest(request.form)
     build_form = BuildRequest(request.form)
-    if request.method == 'POST' and request.form['feedback'] == 'Default_Send':
+    if request.method == 'POST' and request.form['feedback'] == 'Default_Send' and form.validate():
         mail.send_feedback(request.base_url, form.name.data,
                            form.email.data, form.phone.data,
                            form.body.data)
         flash(app.config['ANSWER_1'])
         return redirect(url_for('page', slug=slug))
 
-    elif request.method == 'POST' and request.form['feedback'] == 'Service_Send':
+    elif request.method == 'POST' and request.form['feedback'] == 'Service_Send' and form.validate():
         mail.send_service_query(
             service_form.equipment.data, service_form.name.data,
             service_form.email.data, service_form.phone.data,
             service_form.body.data, service_form.comment.data)
         flash(app.config['ANSWER_2'])
         return redirect(url_for('page', slug=slug))
-    elif request.method == 'POST' and request.form['feedback'] == 'Build_Send':
+    elif request.method == 'POST' and request.form['feedback'] == 'Build_Send' and form.validate():
         mail.send_build_query(request.base_url, build_form.name.data,
                               build_form.email.data, build_form.phone.data,
                               build_form.body.data)
