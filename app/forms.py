@@ -34,3 +34,6 @@ class ServiceRequest(Form):
     phone = StringField(u'Телефон:')
     email = StringField(u'E-mail*:', validators=[Email()])
     comment = StringField(u'Комментарий:')
+
+class Empty(Form):
+    pass

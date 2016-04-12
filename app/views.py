@@ -4,7 +4,7 @@ from flask import render_template, send_from_directory, \
     request, redirect, url_for, flash, make_response
 from models import DB, MailSend, bg_for_index
 from app.auth import requires_auth
-from forms import FeedbackForm, ServiceRequest, BuildRequest
+from forms import FeedbackForm, ServiceRequest, BuildRequest, Empty
 from app.evil import secret
 import datetime
 
@@ -152,7 +152,7 @@ def news_list():
 def news(slug):
     news = n.find_one({"slug": slug})
     form = FeedbackForm(request.form)
-    if request.method == 'POST':
+    if request.method == 'POST' and form.validate():
         mail.send_feedback(request.base_url, form.name.data,
                            form.email.data, form.phone.data,
                            form.body.data)
@@ -179,7 +179,7 @@ def dealers():
         sort_d = d.find({'city': c})
         return sort_d
 
-    if request.method == 'POST':
+    if request.method == 'POST' and form.validate():
         mail.send_feedback(request.base_url, form.name.data,
                            form.email.data, form.phone.data,
                            form.body.data)
@@ -196,6 +196,7 @@ def dealers():
 @app.route('/admin', methods=['GET', 'POST'])
 @requires_auth
 def admin():
+    form = Empty(request.form)
     if request.method == 'POST' and request.form['send'] == 'UPD_IMG_DB':
         import os
         for the_file in os.listdir(app.config['TMP_PATH']):
@@ -208,7 +209,7 @@ def admin():
         import urllib
         urllib.urlretrieve (app.config['GOOGLE_BASE'], "%sdb.xlsx" % app.config['TMP_PATH'])
         secret(app.config['FULL_RM_WRITE'])
-    return render_template('admin.html')
+    return render_template('admin.html', form=form)
 
 
 @app.route('/test_img', methods=['GET'])
