@@ -179,7 +179,11 @@ class Dealers(Document):
         'name': basestring,
         'site': basestring,
         'tel':  list,
-        'email': basestring
+        'email': basestring,
+        'position': basestring
+    }
+    default_values = {
+        'position': 1000
     }
 
 

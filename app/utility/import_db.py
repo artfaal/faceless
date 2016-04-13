@@ -176,6 +176,7 @@ def save_dealers_to_db():
                 add['site'] = row[2]
                 add['tel'] = re.findall(r'\d+', row[3])
                 add['email'] = row[4]
+                add['position'] = row[5]
                 add.save()
 
 

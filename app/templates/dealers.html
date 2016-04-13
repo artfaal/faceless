@@ -14,7 +14,7 @@
             {% for c in city %}
                 <h3 {{loop.cycle('style="background-color: lightblue;"', 'style="background-color: red;"')}}><a href="#">{{ c }}</a></h3>
                 <div>
-                    {% for i in d(c) %}
+                    {% for i in d(c)|sort(attribute='position') %}
                         <div class="company-holder matchheight" >
                             <div class="title-wrapper">
                                 <div class='title'>{{i['name']}}</div>
