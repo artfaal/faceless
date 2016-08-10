@@ -35,7 +35,7 @@ def pages():
 @app.route('/', methods=['GET'])
 @app.route('/index/', methods=['GET'])
 def index():
-    i_news = i_n.find().sort('position')
+    i_news = i_n.find().sort('position', -1)
     i_slider = i_s.find().sort('position')
     list_best = []
     for i in i_slider:
