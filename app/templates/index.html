@@ -33,7 +33,7 @@
         {%include 'top_nav.html'%}
         <div class="news-slider">
             {% for n in i_news -%}
-            {%set thumb = ('index_news/' + n['img'])|thumbnail('200x200')%}
+            {%set thumb = ('index_news/' + n['img'])|thumbnail('300x200')%}
                 <div>
                     <a href="{{n['link']}}">
                         <div class="news-title">
