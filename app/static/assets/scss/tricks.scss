@@ -85,5 +85,17 @@
     clear:both;
 }
 
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  td {
+    border-color: grey;
+    padding:10px 5px;
+    border-style:solid;
+    border-width:1px;
+    overflow:hidden;
+    word-break:normal;
+  }
+}
 // fix for Jquery accord
 .ui-state-focus { outline: none; }
