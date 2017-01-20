@@ -35,3 +35,16 @@ $(function accordion() {
     heightStyle: "content"
   });
 });
+
+// Не грузить скрытые изображения
+$(function () {
+   $("#no-img img").not(":visible").each(function () {
+       $(this).data("src", this.src);
+       this.src = "";
+   });
+
+   var reveal = function (selector) {
+       var img = $(selector);
+       img[0].src = img.data("src");
+   }
+});
