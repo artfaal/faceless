@@ -70,11 +70,11 @@
         ======================================= -#}
         {% block sidebar_item -%}
           <div class="side-menu three columns matchheight">
-            <div class="side-search">
+            <!-- <div class="side-search">
               <input class="search-field" id="" name="" value="Поиск" onfocus="" type="text">
               <input class="search-submit"
                 src="{{ url_for('static', filename='assets/img/find-ico.gif') }}" alt="Найти" type="image">
-            </div>
+            </div> -->
             <ul>
               {% for c in category() -%}
               <li><a href="{{url_for('catalog', category_slug=c['slug'])}}">{{ c['name'] }}</a></li>
