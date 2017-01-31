@@ -67,7 +67,8 @@ def save_category_to_db():
                     add['position'] = category_position
                     category_position += 10
                     if row[1] != '':
-                        print 'Ошибка. В Родительской категории, кусок дочерней'
+
+                        print 'Ошибка. В Родительской категории, кусок дочерней. Искать проблему в "%s"' % row[1]
                         sys.exit(1)
                     add['mini_description'] = row[2]
                     add['body'] = row[3]
