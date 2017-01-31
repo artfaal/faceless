@@ -6,6 +6,9 @@ git pull --all &> /dev/null
 echo 'Remove env'
 rm -r env
 
+echo 'install virtualenv in system'
+sudo pip install virtualenv
+
 echo 'Create virtualenv'
 virtualenv env
 
