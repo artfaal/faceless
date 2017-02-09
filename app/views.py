@@ -7,6 +7,7 @@ from app.auth import requires_auth
 from forms import FeedbackForm, ServiceRequest, BuildRequest, Empty
 from app.evil import secret
 import datetime
+from app import recaptcha
 
 # CONSTANT
 db = DB()
@@ -62,7 +63,7 @@ def catalog(category_slug=None, item_slug=None):
     if item_page:
         # Form start
         form = FeedbackForm(request.form)
-        if request.method == 'POST' and form.validate():
+        if request.method == 'POST' and form.validate() and recaptcha.verify():
             mail.send_feedback(request.base_url, form.name.data,
                                form.email.data, form.phone.data,
                                form.body.data)
@@ -110,21 +111,21 @@ def page(slug):
     form = FeedbackForm(request.form)
     service_form = ServiceRequest(request.form)
     build_form = BuildRequest(request.form)
-    if request.method == 'POST' and request.form['feedback'] == 'Default_Send' and form.validate():
+    if request.method == 'POST' and request.form['feedback'] == 'Default_Send' and form.validate() and recaptcha.verify():
         mail.send_feedback(request.base_url, form.name.data,
                            form.email.data, form.phone.data,
                            form.body.data)
         flash(app.config['ANSWER_1'])
         return redirect(url_for('page', slug=slug))
 
-    elif request.method == 'POST' and request.form['feedback'] == 'Service_Send' and form.validate():
+    elif request.method == 'POST' and request.form['feedback'] == 'Service_Send' and form.validate() and recaptcha.verify():
         mail.send_service_query(
             service_form.equipment.data, service_form.name.data,
             service_form.email.data, service_form.phone.data,
             service_form.body.data, service_form.comment.data)
         flash(app.config['ANSWER_2'])
         return redirect(url_for('page', slug=slug))
-    elif request.method == 'POST' and request.form['feedback'] == 'Build_Send' and form.validate():
+    elif request.method == 'POST' and request.form['feedback'] == 'Build_Send' and form.validate() and recaptcha.verify():
         mail.send_build_query(request.base_url, build_form.name.data,
                               build_form.email.data, build_form.phone.data,
                               build_form.body.data)
@@ -152,7 +153,7 @@ def news_list():
 def news(slug):
     news = n.find_one({"slug": slug})
     form = FeedbackForm(request.form)
-    if request.method == 'POST' and form.validate():
+    if request.method == 'POST' and form.validate() and recaptcha.verify():
         mail.send_feedback(request.base_url, form.name.data,
                            form.email.data, form.phone.data,
                            form.body.data)
@@ -179,7 +180,7 @@ def dealers():
         sort_d = d.find({'city': c})
         return sort_d
 
-    if request.method == 'POST' and form.validate():
+    if request.method == 'POST' and form.validate() and recaptcha.verify():
         mail.send_feedback(request.base_url, form.name.data,
                            form.email.data, form.phone.data,
                            form.body.data)

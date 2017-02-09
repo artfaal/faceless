@@ -6,6 +6,7 @@ from flaskext.markdown import Markdown
 from flask.ext.thumbnails import Thumbnail
 from flask.ext.assets import Environment, Bundle
 from flask.ext.mail import Mail
+from flask_recaptcha import ReCaptcha
 
 app = Flask(__name__, instance_relative_config=True)
 app.config.from_object('config')
@@ -16,6 +17,7 @@ assets = Environment(app)
 Markdown(app, extensions=['attr_list'])
 mail = Mail(app)
 CsrfProtect(app)
+recaptcha = ReCaptcha(app=app)
 
 js = Bundle('assets/vendor/jQuery/jquery-1.11.3.min.js',
             'assets/vendor/jQueryUI/jquery-ui.min.js',
