@@ -76,7 +76,7 @@
               <input class="search-submit"
                 src="{{ url_for('static', filename='assets/img/find-ico.gif') }}" alt="Найти" type="image">
             </div> -->
-            <a href="/doc/2016.pdf" target="_blank"><div class="catalog-banner">Открыть каталог EOS 2017</div></a>
+            <a href="/doc/2017.pdf" target="_blank"><div class="catalog-banner">Открыть каталог EOS 2017</div></a>
             <ul>
               {% for c in category() -%}
               <li><a href="{{url_for('catalog', category_slug=c['slug'])}}">{{ c['name'] }}</a></li>
@@ -132,7 +132,7 @@
             <a style="padding-left: 3px;"href="http://signup.weg.ru/login.php?idExh=7" target="_blank" title="Выставка «Aqua Salon: Wellness & Spa. Бассейны и сауны – 2017»"><img src="http://www.aquasalon-expo.ru/upload/iblock/322/as17_130x130.gif" alt="Выставка «Aqua Salon: Wellness & Spa. Бассейны и сауны – 2017»" width="110" height="110"/></a>
           </div>
           <div class="two columns d-cat">
-            <a href="{{url_for('doc', filename='2016.pdf')}}" title="Скачать каталог"><img src="{{url_for('static', filename='assets/img/d-cat.png')}}" alt=""></a>
+            <a href="{{url_for('doc', filename='2017.pdf')}}" target="_blank" title="Скачать каталог"><img src="{{url_for('static', filename='assets/img/d-cat.png')}}" alt=""></a>
             <br>
             <a href="/pages/zapros"><img src="{{ url_for('static', filename='assets/img/banner_stroi.png') }}" alt=""></a>
           </div>
