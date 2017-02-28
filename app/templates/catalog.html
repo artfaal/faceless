@@ -46,6 +46,11 @@
         {# Если это страница товара
         ======================================= -#}
         {% if item_page -%}
+        <div class="item-breadcrumbs"><a href="/catalog/{{item_page['slug_category']}}">{{item_page['main_category']}}</a>
+        {%- if item_page['child_category']-%}
+        &nbsp;/ {{item_page['child_category']}}
+        {%- endif -%}
+        </div>
         <span itemscope itemtype="http://schema.org/Product">
         <div class="img-detail four columns alpha">
             {%set path_to_img = 'items/' + item_page['img'][0]['filename']%}

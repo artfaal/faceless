@@ -543,6 +543,18 @@ ul {
  //ITEMS PAGE//
 //////////////
 
+.item-breadcrumbs {
+    font-size: 1.1em;
+    padding-bottom: 1em;
+    a {
+        color: $orange;
+        text-decoration: none;
+        &:hover {text-decoration: underline;}
+    }
+    @include media_S {
+            font-size: .8em;
+        }
+}
 .box-items {
     display: inline-block;
     vertical-align: middle;
