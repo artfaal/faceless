@@ -76,6 +76,19 @@ ul {
 .flags img {
     padding-right: .6em;
 }
+// .catalog-link-top {
+//     position: absolute;
+//     text-align: right;
+//     right: 0;
+//     text-transform: uppercase;
+//     color: white;
+//     text-decoration: none;
+//     &:hover {
+//         color: $orange;
+//         text-decoration: underline;
+//         @include animation(.4s, .2s, .5s);
+//     }
+// }
 
   /////////
  //INDEX//
@@ -384,6 +397,34 @@ ul {
             top: .5em;
         }
     }
+    a {
+        text-decoration: none;
+        .catalog-banner {
+            // background-image: url(https://s-media-cache-ak0.pinimg.com/originals/99/09/8b/99098bbb6cb4d84a630a03d1a51d744b.jpg);
+            position: relative;
+            padding: .6em .6em;
+            // background: $gray_1;
+            // opacity: 0.1;
+            border: 1px solid $gray_0;
+            text-transform: uppercase;
+            // height: 2em;
+            // line-height: 2em;
+            text-align: center;
+            color: $gray_0;
+            font-size: 1.3em;
+            border-radius: .1em;
+            @include media_S_L { display: none; }
+            &:hover {
+                // background: $light-gray;
+                opacity: 1;
+                border-color: $orange;
+                // color: $orange;
+                @include animation(.4s, .2s, .5s);
+            }
+        }
+        .catalog-banner
+    }
+
     ul {
         list-style-type: none;
         padding-top: 2em;
