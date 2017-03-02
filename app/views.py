@@ -4,7 +4,7 @@ from flask import render_template, send_from_directory, \
     request, redirect, url_for, flash, make_response
 from models import DB, MailSend, bg_for_index
 from app.auth import requires_auth
-from forms import FeedbackForm, ServiceRequest, BuildRequest, Empty
+from forms import FeedbackForm, ServiceRequest, BuildRequest, SendByPostMail, Empty
 from app.evil import secret
 import datetime
 from app import recaptcha
@@ -111,6 +111,7 @@ def page(slug):
     form = FeedbackForm(request.form)
     service_form = ServiceRequest(request.form)
     build_form = BuildRequest(request.form)
+    postmail_form = SendByPostMail(request.form)
     if request.method == 'POST' and request.form['feedback'] == 'Default_Send' and form.validate() and recaptcha.verify():
         mail.send_feedback(request.base_url, form.name.data,
                            form.email.data, form.phone.data,
@@ -131,10 +132,15 @@ def page(slug):
                               build_form.body.data)
         flash(app.config['ANSWER_3'])
         return redirect(url_for('page', slug=slug))
+    elif request.method == 'POST' and request.form['feedback'] == 'Postmail_Send' and form.validate() and recaptcha.verify():
+        mail.send_postmail_query(request.base_url, postmail_form.first_name.data, postmail_form.second_name.data, postmail_form.middle_name.data, postmail_form.contact_info.data, postmail_form.company_name.data, postmail_form.count.data, postmail_form.index.data, postmail_form.city.data, postmail_form.adrress.data, postmail_form.body.data)
+        flash(app.config['ANSWER_4'])
+        return redirect(url_for('page', slug=slug))
 
     return render_template('pages.html',
                            form=form,
                            service_form=service_form,
+                           postmail_form=postmail_form,
                            category=category,
                            pages=pages,
                            page=page)

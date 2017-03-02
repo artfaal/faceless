@@ -15,6 +15,8 @@
             {{ def_servise_request_form() }}
         {% elif name_of_the_page == 'zapros' %}
             {{ def_build_request_form() }}
+        {% elif name_of_the_page == 'zaprosit_katalog' %}
+            {{ def_postmail_request_form() }}
         {% else %}
             {{ def_contact_form() }}
         {% endif %}

@@ -201,11 +201,14 @@ class MailSend:
         self.sender = app.config['MAIL_SENDER']
         self.recepients = app.config['MAIL_RECEPIENTS']
         self.boss_email = app.config['BOSS_EMAIL']
+        self.zulfiya_email = app.config['ZULFIYA_EMAIL']
         self.title_feedback = app.config['MAIL_FEEDBACK_TITLE']
         self.title_build_query = app.config['MAIL_STROITELSTVO_TITLE']
         self.body_feedback = app.config['MAIL_FEEDBACK_BODY']
         self.title_service_query = app.config['MAIL_SERVICE_QUERY_TITLE']
+        self.title_postmail_query = app.config['MAIL_POSTMAIL_TITLE']
         self.body_service_query = app.config['MAIL_SERVICE_QUERY_BODY']
+        self.body_postmail_query = app.config['MAIL_POSTMAIL_QUERY_BODY']
 
     def send_feedback(self, url_from, name, email=None, phone=None, body=None):
         msg = Message(
@@ -231,4 +234,12 @@ class MailSend:
             recipients=self.recepients)
         msg.html = self.body_service_query % (equipment, name, email,
                                               phone, body, comment)
+        mail.send(msg)
+
+    def send_postmail_query(self, first_name, second_name, contact_info, count, index, city, adrress, middle_name=None, company_name=None, body=None):
+        msg = Message(
+            self.title_service_query,
+            sender=self.sender,
+            recipients=self.zulfiya_email)
+        msg.html = self.body_postmail_query % (first_name, second_name, middle_name, company_name, contact_info, count, index, city, adrress, body)
         mail.send(msg)
