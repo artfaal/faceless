@@ -41,18 +41,16 @@ class SendByPostMail(Form):
     '''
     Для отправки печатной продукции на физический почтовый адрес
     '''
-    first_name = StringField(u'Имя*:', validators=[DataRequired()])
-    second_name = StringField(u'Фамилия*:', validators=[DataRequired()])
+    first_name = StringField(u'Имя: *', validators=[DataRequired()])
+    second_name = StringField(u'Фамилия: *', validators=[DataRequired()])
     middle_name = StringField(u'Отчество:')
-    contact_info = StringField(u'E-mail или телефон для связи*:', validators=[DataRequired()])
+    contact_info = StringField(u'E-mail или телефон для связи: *', validators=[DataRequired()])
     company_name = StringField(u'Название кампании:')
-    count = IntegerField(u'Количество каталогов*:', validators=[DataRequired()], default=1)
-    index = StringField(u'Индекс:*:', validators=[DataRequired()])
-    city = StringField(u'Город(Населенный пункт)*:', validators=[DataRequired()])
-    adrress = StringField(u'Улица, дом, корпус/строение, квартира/офис*:', validators=[DataRequired()])
-    body = TextAreaField(u'Сообщение:',
-                         validators=[DataRequired(),
-                                     Length(min=5, max=5000)])
+    count = StringField(u'Количество каталогов: *', validators=[DataRequired()], default=1)
+    index = StringField(u'Индекс: *', validators=[DataRequired()])
+    city = StringField(u'Город/Населенный пункт: *', validators=[DataRequired()])
+    adrress = StringField(u'Улица, дом, корпус/строение, квартира/офис: *', validators=[DataRequired()])
+    body = TextAreaField(u'Сообщение:')
 
 
 class Empty(Form):

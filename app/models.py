@@ -238,7 +238,7 @@ class MailSend:
 
     def send_postmail_query(self, first_name, second_name, contact_info, count, index, city, adrress, middle_name=None, company_name=None, body=None):
         msg = Message(
-            self.title_service_query,
+            self.title_postmail_query % company_name,
             sender=self.sender,
             recipients=self.zulfiya_email)
         msg.html = self.body_postmail_query % (first_name, second_name, middle_name, company_name, contact_info, count, index, city, adrress, body)

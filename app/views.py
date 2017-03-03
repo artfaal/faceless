@@ -119,24 +119,23 @@ def page(slug):
         flash(app.config['ANSWER_1'])
         return redirect(url_for('page', slug=slug))
 
-    elif request.method == 'POST' and request.form['feedback'] == 'Service_Send' and form.validate() and recaptcha.verify():
+    elif request.method == 'POST' and request.form['feedback'] == 'Service_Send' and service_form.validate() and recaptcha.verify():
         mail.send_service_query(
             service_form.equipment.data, service_form.name.data,
             service_form.email.data, service_form.phone.data,
             service_form.body.data, service_form.comment.data)
         flash(app.config['ANSWER_2'])
         return redirect(url_for('page', slug=slug))
-    elif request.method == 'POST' and request.form['feedback'] == 'Build_Send' and form.validate() and recaptcha.verify():
+    elif request.method == 'POST' and request.form['feedback'] == 'Build_Send' and build_form.validate() and recaptcha.verify():
         mail.send_build_query(request.base_url, build_form.name.data,
                               build_form.email.data, build_form.phone.data,
                               build_form.body.data)
         flash(app.config['ANSWER_3'])
         return redirect(url_for('page', slug=slug))
-    elif request.method == 'POST' and request.form['feedback'] == 'Postmail_Send' and form.validate() and recaptcha.verify():
-        mail.send_postmail_query(request.base_url, postmail_form.first_name.data, postmail_form.second_name.data, postmail_form.middle_name.data, postmail_form.contact_info.data, postmail_form.company_name.data, postmail_form.count.data, postmail_form.index.data, postmail_form.city.data, postmail_form.adrress.data, postmail_form.body.data)
+    elif request.method == 'POST' and request.form['feedback'] == 'Postmail_Send' and postmail_form.validate() and recaptcha.verify():
+        mail.send_postmail_query(postmail_form.first_name.data, postmail_form.second_name.data, postmail_form.middle_name.data, postmail_form.company_name.data, postmail_form.contact_info.data, postmail_form.count.data, postmail_form.index.data, postmail_form.city.data, postmail_form.adrress.data, postmail_form.body.data)
         flash(app.config['ANSWER_4'])
         return redirect(url_for('page', slug=slug))
-
     return render_template('pages.html',
                            form=form,
                            service_form=service_form,
