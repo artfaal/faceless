@@ -133,7 +133,7 @@ def page(slug):
         flash(app.config['ANSWER_3'])
         return redirect(url_for('page', slug=slug))
     elif request.method == 'POST' and request.form['feedback'] == 'Postmail_Send' and postmail_form.validate() and recaptcha.verify():
-        mail.send_postmail_query(postmail_form.first_name.data, postmail_form.second_name.data, postmail_form.middle_name.data, postmail_form.company_name.data, postmail_form.contact_info.data, postmail_form.count.data, postmail_form.index.data, postmail_form.city.data, postmail_form.adrress.data, postmail_form.body.data)
+        mail.send_postmail_query(postmail_form.first_name.data, postmail_form.second_name.data, postmail_form.contact_info.data, postmail_form.count.data, postmail_form.index.data, postmail_form.city.data, postmail_form.adrress.data, postmail_form.middle_name.data, postmail_form.company_name.data, postmail_form.body.data)
         flash(app.config['ANSWER_4'])
         return redirect(url_for('page', slug=slug))
     return render_template('pages.html',
