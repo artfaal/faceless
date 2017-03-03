@@ -76,7 +76,8 @@
               <input class="search-submit"
                 src="{{ url_for('static', filename='assets/img/find-ico.gif') }}" alt="Найти" type="image">
             </div> -->
-            <a href="/doc/2017.pdf" target="_blank"><div class="catalog-banner">Открыть каталог EOS 2017</div></a>
+            <a href="/doc/2017.pdf" target="_blank"><div class="catalog-banner catalog-banner-top">Открыть каталог EOS 2017</div></a>
+            <a href="/pages/zaprosit_katalog"><div class="catalog-banner catalog-banner-bottom">Заказать каталог по почте</div></a>
             <ul>
               {% for c in category() -%}
               <li><a href="{{url_for('catalog', category_slug=c['slug'])}}">{{ c['name'] }}</a></li>

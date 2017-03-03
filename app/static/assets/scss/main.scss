@@ -400,29 +400,33 @@ ul {
     a {
         text-decoration: none;
         .catalog-banner {
-            // background-image: url(https://s-media-cache-ak0.pinimg.com/originals/99/09/8b/99098bbb6cb4d84a630a03d1a51d744b.jpg);
             position: relative;
-            padding: .6em .6em;
-            // background: $gray_1;
-            // opacity: 0.1;
+            padding: .6em .3em;
             border: 1px solid $gray_0;
-            text-transform: uppercase;
-            // height: 2em;
-            // line-height: 2em;
             text-align: center;
             color: $gray_0;
-            font-size: 1.3em;
-            border-radius: .1em;
+            font-size: .9em;
+            // border-radius: .1em;
+            text-transform: uppercase;
             @include media_S_L { display: none; }
             &:hover {
-                // background: $light-gray;
+                // background-image: url(/static/assets/img/back-for-dillers.png);
+                background: $orange;
+                color: white;
                 opacity: 1;
                 border-color: $orange;
                 // color: $orange;
                 @include animation(.4s, .2s, .5s);
             }
         }
-        .catalog-banner
+        .catalog-banner-top {
+            border-radius: .2em .2em 0 0;
+        }
+        .catalog-banner-bottom {
+            border-top: none;
+            border-radius: 0 0 .2em .2em;
+
+        }
     }
 
     ul {
