@@ -77,6 +77,37 @@
     height: auto;
 }
 
+.left-half {
+    float: left;
+    padding: 0 !important;
+    width: 49.5%;
+    height: auto;
+}
+.right-half {
+    float: right;
+    padding: 0 !important;
+    width: 49.5%;
+    height: auto;
+}
+.one-third-left {
+    float: left;
+    padding: 0 !important;
+    width: 33.1%;
+    height: auto;
+}
+.one-third-center {
+    float: center;
+    padding: 0 !important;
+    width: 33.1%;
+    height: auto;
+}
+.one-third-right {
+    float: right;
+    padding: 0 !important;
+    width: 33.1%;
+    height: auto;
+}
+
 .hide_img img {
     display: none;
 }
