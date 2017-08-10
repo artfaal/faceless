@@ -1,0 +1,16 @@
+{% extends "layout.html" -%}
+
+{% block title -%}Новости {% endblock -%}
+
+{% block description -%}Новинки индустрии оборудования для саун, турецких бань и СПА зоны. Обзоры, статьи, применение, примеры использования и особенности эксплуатации.{% endblock -%}
+
+{% block keywords -%}печи для саун, eos, еос, wdt, lux elements, baldus, ideal, float spa, новости, спа, сауна, хамам, турецкая баня, спа зона, оборудование для спа{% endblock -%}
+
+{% block content -%}
+    <div class="pages-content content-wrapper" id="no-img">
+        <h2>Последние новости</h2>
+        {% for n in recent_news -%}
+            <p><a href="{{ url_for('news', slug=n['slug']) }}">{{n['name']}}</a> <i>{{n['date']}} {{n['section']}}</i></p>
+        {% endfor%}
+    </div>
+{% endblock -%}

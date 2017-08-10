@@ -138,6 +138,7 @@ class News(_Base):
 
     structure = {
         'date': basestring,
+        'section': basestring,
     }
 
 

@@ -128,6 +128,7 @@ def save_news_to_db():
                 add['body'] = row[2]
                 add['meta_keywords'] = row[3]
                 add['meta_description'] = row[4]
+                add['section'] = row[5]
                 add.save()
 
 
