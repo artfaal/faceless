@@ -75,8 +75,9 @@
         </div>
         </span>
         <div class="clear">
-        {% include 'kusatek_gallery.html' %}
-
+        {% if "Газовые печи" in item_page['child_category'] %}
+            {% include 'kusatek_gallery.html' %}
+        {% endif %}
         <div class="details">
             <hr>
             {% if item_page['doc'] > 0 -%}
