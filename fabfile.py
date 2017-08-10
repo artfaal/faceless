@@ -3,6 +3,7 @@ from __future__ import with_statement
 from fabric.api import env, put, run, cd, lcd, settings, prefix, local
 from fabric.contrib.files import exists
 import os
+import socket
 env.roledefs['prod'] = ['root@eos-sauna.ru']
 env.roledefs['stage'] = ['root@test.eos-sauna.ru']
 env.config_local_folder = '~/Dropbox/.faceless_config/*'
@@ -220,7 +221,10 @@ def reload_nginx_and_uwsgi():
 def repo_update():
     """Hard Pull from repo"""
     with cd(env.base_dir):
-        run('git fetch --all && git reset --hard origin/master')
+        if socket.gethostname() == 'test':
+            run('git fetch --all && git reset --hard origin/dev')
+        else:
+            run('git fetch --all && git reset --hard origin/master')
 
 
 def ufw():
