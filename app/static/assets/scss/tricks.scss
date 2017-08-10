@@ -130,3 +130,14 @@ table {
 }
 // fix for Jquery accord
 .ui-state-focus { outline: none; }
+
+.kusatek-tumb {
+    img {
+        padding: .1em;
+        float: left;
+    }
+}
+// Переделываю поведение лайтбокса, что бы можно было писать с новой строки
+.lb-data .lb-caption {
+  white-space: pre !important;
+}
