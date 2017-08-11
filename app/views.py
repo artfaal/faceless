@@ -156,7 +156,7 @@ def news_list():
 
 @app.route('/news_category/', methods=['GET'])
 def news_list2():
-    recent_news = n.find().sort('position', -1).limit(4)
+    recent_news = n.find().sort('position', -1).limit(3)
     return render_template('news_list2.html',
                            category=category,
                            pages=pages,
