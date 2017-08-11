@@ -7,10 +7,23 @@
 {% block keywords -%}печи для саун, eos, еос, wdt, lux elements, baldus, ideal, float spa, новости, спа, сауна, хамам, турецкая баня, спа зона, оборудование для спа{% endblock -%}
 
 {% block content -%}
-    <div class="pages-content content-wrapper" id="no-img">
-        <h2>Последние новости</h2>
-        {% for n in recent_news -%}
-            <p><a href="{{ url_for('news', slug=n['slug']) }}">{{n['name']}}</a> <i>{{n['date']}} {{n['section']}}</i></p>
-        {% endfor%}
+    <div class="pages-content content-wrapper news" id="no-img">
+        <h2><span class='spacer'></span>Последние новости</h2>
+        <div class="recent-news-wrapper">
+            {% for n in recent_news -%}
+                <a href="{{ url_for('news', slug=n['slug']) }}"><div class="line-wrapper">{{n['name']}} <i class="date">{{n['date']}}</i></div></a>
+            {% endfor%}
+        </div>
+        <!-- <div class="clear"></div> -->
+        <div class="section-wrapper">
+            <a href="news"><div class="section"><img src="{{ url_for('img', filename='news/category/1.jpg') }}" alt="" height="100%" width="100%"><h2><span class='spacer'></span>Новости<span class='spacer'></span></h2></div></a>
+            <a href="cool"><div class="section"><img src="{{ url_for('img', filename='news/category/2.jpg') }}" alt="" height="100%" width="100%"><h2><span class='spacer'></span>Охлаждение<span class='spacer'></span></h2></div></a>
+            <a href="review"><div class="section"><img src="{{ url_for('img', filename='news/category/3.jpg') }}" alt="" height="100%" width="100%"><h2><span class='spacer'></span>Обзоры оборудования<span class='spacer'></span></h2></div></a>
+            <a href="steam"><div class="section"><img src="{{ url_for('img', filename='news/category/4.jpg') }}" alt="" height="100%" width="100%"><h2><span class='spacer'></span>Паровые бани<span class='spacer'></span></h2></div></a>
+            <a href="sauna"><div class="section"><img src="{{ url_for('img', filename='news/category/5.jpg') }}" alt="" height="100%" width="100%"><h2><span class='spacer'></span>Сауны<span class='spacer'></span></h2></div></a>
+            <a href="spa"><div class="section"><img src="{{ url_for('img', filename='news/category/6.jpg') }}" alt="" height="100%" width="100%"><h2><span class='spacer'></span>СПА<span class='spacer'></span></h2></div></a>
+        </div>
     </div>
+
+
 {% endblock -%}
