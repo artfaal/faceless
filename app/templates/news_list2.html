@@ -14,7 +14,6 @@
                 <a href="{{ url_for('news', slug=n['slug']) }}"><div class="line-wrapper">{{n['name']}} <i class="date">{{n['date']}}</i></div></a>
             {% endfor%}
         </div>
-        <!-- <div class="clear"></div> -->
         <div class="section-wrapper">
             <a href="news"><div class="section"><img src="{{ url_for('img', filename='news/category/1.jpg') }}" alt="" height="100%" width="100%"><h2><span class='spacer'></span>Новости<span class='spacer'></span></h2></div></a>
             <a href="cool"><div class="section"><img src="{{ url_for('img', filename='news/category/2.jpg') }}" alt="" height="100%" width="100%"><h2><span class='spacer'></span>Охлаждение<span class='spacer'></span></h2></div></a>
