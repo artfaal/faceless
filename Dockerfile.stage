@@ -1,25 +1,36 @@
 # STAGE_ENV
+
+#Копируем папку с проектом и папку Deploy к конфигами на сервер.
+
+#Собираем образ
+#docker build -f Dockerfile.stage -t artfaal/eos:stage .
+
+#Запускаем пустую базу (или не пустую, если в папке она уже есть)
+#docker run -d --name db_eos_stage --restart=always -v /home/eos-sauna.ru_stage/deploy/data/db:/data/db mongo:3.4
+
+#Запускаем яндекс диск (если ещё не запущен) для синхронизации контента
+#docker run --name yandex-disk -it --restart=always -e YANDEX_USER=<LOGIN> -e YANDEX_PASSWORD=<PASS> -v /home/yandex-disk:/var/lib/selenium artfaal/docker-yandex-disk
+
+#Запускаем сервер. Обратить внимание, что контейнер с nginx уже должен быть запущен.
+#docker run -d --name eos_prod -d --restart=always -e VIRTUAL_HOST=test.eos-sauna.ru --link db_eos_stage:db -v /home/eos-sauna.ru_stage:/app -v /home/yandex-disk/CONTENT_EOS_SAUNA/content:/app/app/static/content artfaal/eos:stage
+
+#Для первого запуска запись в базу
+#docker exec -it eos_stage bash -c 'python app.py & fab download_xlsx:l=1 write_to_base:l=1' && docker stop eos_stage && docker start eos_stage
+
 FROM tiangolo/uwsgi-nginx-flask:flask
 
 RUN /bin/ln -fs /usr/share/zoneinfo/Europe/Moscow /etc/localtime
 
 WORKDIR /app
 
-ENV CONF_DIR '/home/eos-sauna.ru_stage/deploy'
+ADD ./deploy ./
 
-COPY '${CONF_DIR}/config.py' ./
+
+COPY ./deploy/config.py ./
 RUN mkdir -p ./instance
-COPY '${CONF_DIR}/config_Stage.py' './instance/config.py'
-COPY '${CONF_DIR}/uwsgi.ini' '/app/uwsgi.ini'
-COPY '${CONF_DIR}/nginx_Stage.conf' '/etc/nginx/conf.d/nginx.conf'
-COPY ./requirements.txt ./
+RUN mkdir -p ./tmp
+COPY ./deploy/config_Stage.py ./instance/config.py
+COPY ./deploy/uwsgi.ini /app/uwsgi.ini
+COPY ./deploy/nginx_Stage.conf /etc/nginx/conf.d/nginx.conf
 RUN pip install --no-cache-dir -r requirements.txt
 ADD ./ ./
-
-
-#ln -s /var/lib/selenium/CONTENT_EOS_SAUNA/content /app/app/static/CONTENT_EOS_SAUNA
-
-#docker build -f Dockerfile.stage -t artfaal/eos:stage .
-#docker run -d --name db_eos_stage --restart=always -v /home/eos-sauna.ru_stage/deploy/db:/data/db mongo:3.4
-#docker run --name yandex-disk -it --restart=always -e YANDEX_USER=<LOGIN> -e YANDEX_PASSWORD=<PASS> -v /home/yandex-disk:/var/lib/selenium artfaal/docker-yandex-disk
-#docker run -d --name eos_stage -d --restart=always -e VIRTUAL_HOST=test.eos-sauna.ru --link db_eos_stage:db -v /home/eos-sauna.ru_stage:/app -v /home/yandex-disk/CONTENT_EOS_SAUNA/content:/app/app/static/content eos:stage
