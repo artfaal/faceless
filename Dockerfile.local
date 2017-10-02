@@ -1,0 +1,19 @@
+#LOCAL ENV
+FROM python:2.7
+
+WORKDIR /app
+
+ENV CONF_DIR '/home/max/Dropbox/.faceless_config'
+ENV YA_DIR ''
+
+COPY requirements.txt ./
+
+RUN pip install --no-cache-dir -r requirements.txt
+
+CMD [ "python", "./app.py" ]
+
+#sudo docker build -f Dockerfile.local -t artfaal/eos:local .
+#docker run --name yadisk -it --restart=always -e YANDEX_USER=<LOGIN> -e YANDEX_PASSWORD=<PASS> artfaal/docker-yandex-disk
+#sudo docker run --name db_eos_local -v /home/max/wf/faceless/data/db:/data/db mongo:3.4
+#sudo docker run --name eos_local -p 5000:5000 --rm -v /home/max/wf/faceless:/app --link db_eos_local:localhost artfaal/eos:local
+

@@ -192,3 +192,4 @@ config_production.py
 
 VARIABLES
 app/static/thumb/
+deploy/

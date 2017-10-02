@@ -11,7 +11,7 @@ from flask_recaptcha import ReCaptcha
 app = Flask(__name__, instance_relative_config=True)
 app.config.from_object('config')
 app.config.from_pyfile('config.py')
-mongo = Connection()
+mongo = Connection(app.config['MONGO_HOST'])
 thumb = Thumbnail(app)
 assets = Environment(app)
 Markdown(app, extensions=['attr_list'])

@@ -1,0 +1,23 @@
+# PROD_ENV
+FROM tiangolo/uwsgi-nginx-flask:flask
+
+RUN /bin/ln -fs /usr/share/zoneinfo/Europe/Moscow /etc/localtime
+
+WORKDIR /app
+
+ENV CONF_DIR '/home/eos-sauna.ru_prod/deploy/'
+
+COPY '${CONF_DIR}/config.py' ./
+RUN mkdir -p ./instance
+COPY '${CONF_DIR}/config_Prod.py' './instance/config.py'
+COPY '${CONF_DIR}/uwsgi.ini' '/app/uwsgi.ini'
+COPY '${CONF_DIR}/nginx_Prod.conf' '/etc/nginx/conf.d/nginx.conf'
+COPY ./requirements.txt ./
+RUN pip install --no-cache-dir -r requirements.txt
+ADD ./ ./
+
+
+#docker build -f Dockerfile.prod -t artfaal/eos:production .
+#docker run -d --name db_eos_prod --restart=always -v home/eos_prod/deploy/data:/data/db mongo:3.4
+#docker run --name yandex-disk -it --restart=always -e YANDEX_USER=<LOGIN> -e YANDEX_PASSWORD=<PASS> -v /home/yandex-disk:/var/lib/selenium artfaal/docker-yandex-disk
+#docker run -d --name eos_prod -d --restart=always -e VIRTUAL_HOST=eos-sauna.ru,www.eos-sauna.ru --link db_eos_prod:db -v /path/to/repo:/app --volumes-from yadisk eos:production
