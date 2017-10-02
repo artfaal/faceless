@@ -1,3 +1,4 @@
+fabric
 appdirs==1.4.0
 appnope==0.1.0
 blinker==1.4
